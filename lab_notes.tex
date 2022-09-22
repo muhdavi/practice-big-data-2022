@@ -151,30 +151,21 @@ Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat k
 \newday{15 September 2022}
 
 \newthought{Instalasi Apache Hadoop} \\
-Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
+Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada pertemuan sebelumnya. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
+
 \begin{enumerate}
 \item Install Java \\
 {\tt sudo apt update} \\
 {\tt sudo apt install openjdk-8-jdk -y} \\
 
-\item Verifikasi Instalasi Java \\
+\item Verifikasi Hasil Instalasi Java \\
 {\tt java -version} \\
-Hasil verifikasi  instalasi java dapat dilihat pada Gambar \ref{gam:java-version}.
+Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasil seperti pada Gambar \ref{gam:java-version}.
 \begin{figure}
 \includegraphics[width=\textwidth]{java-version}
-\caption{Mengecek Versi Java}
+\caption{Versi Java yang Terinstall}
 \label{gam:java-version}
 \end{figure}
-
-\item Setup JAVA\_HOME dan JRE\_HOME Variabel
-{\tt sudo nano /etc/profile} \\
-\begin{lstlisting}
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
-export JAVA_HOME
-export JRE_HOME
-export PATH
-\end{lstlisting}
 
 \item Download Apache Hadoop \\
 {\tt wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz}
@@ -188,32 +179,49 @@ export PATH
 \item f $\Rightarrow$ nama file arsip.
 \end{itemize}
 
-\item Pindahkan hasil ekstrak ke /opt/ \\
-{\tt sudo mv hadoop-3.3.4 /opt/}
+\item Pindahkan hasil ekstrak ke /usr/local/ \\
+{\tt sudo mv hadoop-3.3.4 /usr/local/hadoop}
 
-\item Edit file hadoop-env.sh \\
-{\tt cd /opt/} \\
-{\tt sudo nano hadoop-3.3.4/etc/hadoop/hadoop-env.sh} \\
-{\tt export JAVA\_HOME=/usr/lib/jvm/java-8-openjdk-amd64} \\
-Untuk mengubah file {\tt hadoop-env.sh} dapat dilihat pada Gambar \ref{gam:java-hadoop}.
-
-\begin{figure}
-\includegraphics[width=\textwidth]{java-hadoop}
+\item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
+{\tt cd /usr/local/hadoop} \\
+{\tt sudo nano etc/hadoop/hadoop-env.sh} \\
+{\tt export JAVA\_HOME=/usr/lib/jvm/java-8-openjdk-amd64}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.85\textwidth]{java-hadoop}
 \caption{Konfigurasi Java Home}
 \label{gam:java-hadoop}
 \end{figure}
 
-\item Verifikasi Hadoop \\
-{\tt ./hadoop-3.3.4/bin/hadoop version} \\
-Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
+\item Menambahkan Hadoop Path ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-patch}} \\
+{\tt sudo nano $\sim$/.bashrc} \\
+\begin{lstlisting}
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
+export HADOOP_MAPRED_HOME=${HADOOP_HOME}
+export HADOOP_COMMON_HOME=${HADOOP_HOME}
+export HADOOP_HDFS_HOME=${HADOOP_HOME}
+export YARN_HOME=${HADOOP_HOME}
+export PATH=$PATH:/usr/local/hadoop/bin
+\end{lstlisting}
+{\tt source .bashrc}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{hadoop-path}
+\caption{Konfigurasi Hadoop Path}
+\label{gam:hadoop-path}
+\end{figure}
 
+\item Verifikasi Hasil Instalasi Hadoop \\
+{\tt hadoop version} \\
+Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{hadoop-version}
-\caption{Mengecek Versi Hadoop}
+\caption{Versi Hadoop yang Terinstall}
 \label{gam:hadoop-version}
 \end{figure}
 \end{enumerate}
-
+ 
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,7 +229,114 @@ Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan mun
 \newday{22 September 2022}
 \textit{N.B.: Setiap mahasiswa membuat laporan hasil praktikum dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
-\newthought{Instalasi Apache Pig} \\
+\newthought{Konfigurasi Apache Hadoop} \\
+Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop agar memudahkan kita dalam memonitoring ekosistem Hadoop yang telah diinstall.
+\begin{enumerate}
+\item Konfigurasi File Hadoop \\
+File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
+
+{\tt cd /usr/local/hadoop/etc/hadoop} \\
+{\tt ls}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{file-hadoop}
+\caption{File Konfigurasi Hadoop}
+\label{gam:file-hadoop}
+\end{figure}
+
+Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
+\begin{itemize}
+\item core-site.xml
+\begin{lstlisting}
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:9000</value>
+</property>
+\end{lstlisting}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.85\textwidth]{site-core}
+\caption{Konfigurasi Core Site}
+\label{gam:site-yarn}
+\end{figure}
+
+\item hdfs-site.xml
+\begin{lstlisting}
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+<property>
+<name>dfs.permission</name>
+<value>false</value>
+</property>
+\end{lstlisting}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.85\textwidth]{site-hdfs}
+\caption{Konfigurasi HDFS Site}
+\label{gam:site-yarn}
+\end{figure}
+
+\item mapred-site.xml
+\begin{lstlisting}
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+\end{lstlisting}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{site-mapred}
+\caption{Konfigurasi Mapred Site}
+\label{gam:site-yarn}
+\end{figure}
+
+\item yarn-site.xml
+\begin{lstlisting}
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+<property>
+<name>
+yarn.nodemanager.auxservices.mapreduce.shuffle.class
+</name>
+<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+\end{lstlisting}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{site-yarn}
+\caption{Konfigurasi Yarn Site}
+\label{gam:site-yarn}
+\end{figure}
+\end{itemize}
+
+\item Jalankan Perintah Format Filesystem \\
+{\tt hdfs namenode -format}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{format-filesystem}
+\caption{Format Filesystem}
+\label{gam:format-filesystem}
+\end{figure}
+
+\item Jalankan NameNode Daemon dan DataNode Daemon \\
+{\tt sbin/start-dfs.sh} \\
+NameNode dapat diakses melalui \url{http://localhost:9870} dan akan tampil halaman web seperti yang diperlihatkan pada Gambar \ref{gam:namenode}.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{namenode}
+\caption{Namemnode Hadoop}
+\label{gam:namenode}
+\end{figure}
+
+\item Jalankan ResourceManager Daemon and NodeManager Daemon \\
+{\tt sbin/start-yarn.sh} \\
+ResourceManager dapat diakses melalui \url{http://localhost:8088} dan akan tampil halaman web serperti pada Gambar \ref{gam:namenode}.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{resourcemanager}
+\caption{Resource Manager Hadoop}
+\label{gam:resourcemanager}
+\end{figure}
+\end{enumerate}
 
 \section{Laporan Mahasiswa}
 \begin{enumerate}
@@ -269,10 +384,11 @@ Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan mun
 \textit{isi laporan}
 \end{enumerate}
 
-
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \newpage
 \bibliographystyle{plain}
 \bibliography{lab_notes}
@@ -280,6 +396,22 @@ Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan mun
 \end{document}
 
 \begin{comment}
+\clearpage
+\newday{22 September 2022}
+\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktikum dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
+
+\newthought{Konfigurasi Apache Hadoop} \\
+\begin{figure}
+\includegraphics[width=\textwidth]{hadoop-ecosystem}
+\caption{Ekosistem Hadoop}
+\label{gam:hadoop-ecosystem}
+\end{figure}
+Seperti yang telah dibahas pada pertemuan sebelumnya bahwa Hadoop memiliki ekosistem sendiri dalam praktik big data seperti yang ditampilkan pada Gambar \ref{gam:hadoop-ecosystem}.
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Laporan Mahasiswa}
 \begin{enumerate}
 \item Nadzura Kumaira		\\
