@@ -28,7 +28,7 @@ Nama &	Akun Github\\
 \midrule
 Kelompok 1\\
 \midrule
-Nadzura Kumaira			& - \\
+\textcolor{red}{Nadzura Kumaira}			& - \\
 Nurani Harum Fardaniah	& \url{https://github.com/fardaniahnh} \\
 Nuraula Tafiza			& \url{https://github.com/olala17} \\
 Nurul Aflah				& \url{https://github.com/Nurulaflahhh} \\
@@ -50,8 +50,8 @@ Zulfahmi				& \url{https://github.com/zulfahmidev} \\
 \midrule
 Kelompok 4\\
 \midrule
-\textcolor{red}{Salsabila Irmanda}		& \url{https://github.com/salsalsabilairmanda17} \\
-Siti Hajar Al Zahra		& - \\
+Salsabila Irmanda		& \url{https://github.com/salsabilairmanda17} \\
+\textcolor{red}{Siti Hajar Al Zahra	}	& - \\
 Syarfani Akbar			& \url{https://github.com/SyarfaniAkbar} \\
 Cut Opy Mandalisa		& \url{https://github.com/cutopymdl} \\
 \midrule
@@ -71,10 +71,10 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 
 \begin{maybe}
     \begin{itemize}
-    	\item Matakuliah Practice Big Data
+    	\item Waktu, Tempat dan Penilaian Matakuliah Practice Big Data
     	\begin{itemize}
     	\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
-    	\item Ruang: Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
+    	\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
     	\item Penilaian\footnote{Sesuai ketenuan dari Kepala Lab}
     	\begin{itemize}
     	\item Responsi Kompetensi
@@ -86,7 +86,9 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
     	\end{itemize}
     	\end{itemize}
     	\item Sebelum masuk lab wajib berbaris dan berdo'a terlebih dahulu di depan lab.
+    	\item Sebelum perkuliahan dimulai, mahasiswa atau yang mewakili memberi laporan.
     	\item Setiap keluar lab meminta izin kepada dosen pengampu.
+    	\item Mengikuti Tata Tertib yang berlaku.
     	\item Referensi
     	\begin{itemize}
     		\item Buku Ajar Big Data \citep{Mursyidah2020}.
@@ -105,31 +107,33 @@ Pada pertemuan pertama, kegiatan lab adalah perkenalan dan persiapan kebutuhan u
 \caption{Hasil Perkenalan Mahasiswa}
 \label{tab:perkenalan}
 \centering
-\begin{tabular}{llr} 
+\begin{tabular}{cllr} 
 \toprule
-Nama 	&	Asal Sekolah 	&	Alamat\\
+No & Nama 	&	Asal Sekolah 	&	Alamat\\
 \midrule
-Nadzura Kumaira			& & \\
-Nurani Harum Fardaniah	& & \\
-Nuraula Tafiza			& & \\
-Nurul Aflah				& & \\
-Faiza Yuwafiqi			& & \\
-Adinda Awaliah			& & \\
-Adjie Yusmunandar		& & \\
-Arya Saputra			& & \\
-Jihan Dwi Sarah			& & \\
-Muhammad Munawir		& & \\
-Muhammad Ikrammullah	& & \\
-M. Ikhsan				& & \\
-Zulfahmi				& & \\
-Salsabila Irmanda		& & \\
-Siti Hajar Al Zahra		& & \\
-Syarfani Akbar			& & \\
-Cut Opy Mandalisa		& & \\
-Rauzatinur Syah			& & \\
-Resha Russita			& & \\
-Rizki Ilhami			& & \\
-Taravia Fauzah			& & \\
+1 & Nadzura Kumaira			& & \\
+2 & Nurani Harum Fardaniah	& & \\
+3 & Nuraula Tafiza			& & \\
+4 & Nurul Aflah				& & \\
+5 & Faiza Yuwafiqi			& & \\
+6 & Adinda Awaliah			& & \\
+7 & Adjie Yusmunandar		& & \\
+8 & Arya Saputra			& & \\
+9 & Jihan Dwi Sarah			& & \\
+10 & Muhammad Munawir		& & \\
+11 & Muhammad Ikrammullah	& & \\
+\midrule
+12 & M. Ikhsan				& & \\
+13 & Zulfahmi				& & \\
+14 & Salsabila Irmanda		& & \\
+15 & Siti Hajar Al Zahra	& & \\
+16 & Syarfani Akbar			& & \\
+17 & Cut Opy Mandalisa		& & \\
+18 & Rauzatinur Syah		& & \\
+20 & Resha Russita			& & \\
+21 & Rizki Ilhami			& & \\
+22 & Taravia Fauzah			& & \\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -185,10 +189,12 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 \item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
 {\tt cd /usr/local/hadoop} \\
 {\tt sudo nano etc/hadoop/hadoop-env.sh} \\
-{\tt export JAVA\_HOME=/usr/lib/jvm/java-8-openjdk-amd64}
+\begin{lstlisting}
+export JAVA\_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.85\textwidth]{java-hadoop}
+\includegraphics[width=.66\textwidth]{java-hadoop}
 \caption{Konfigurasi Java Home}
 \label{gam:java-hadoop}
 \end{figure}
@@ -227,17 +233,15 @@ Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan mun
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{22 September 2022}
-\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktikum dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
+\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktik sesuai dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
 \newthought{Konfigurasi Apache Hadoop} \\
 Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop agar memudahkan kita dalam memonitoring ekosistem Hadoop yang telah diinstall.
 \begin{enumerate}
 \item Konfigurasi File Hadoop \\
 File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
-
 {\tt cd /usr/local/hadoop/etc/hadoop} \\
 {\tt ls}
-
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{file-hadoop}
 \caption{File Konfigurasi Hadoop}
@@ -255,7 +259,7 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \end{lstlisting}
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.85\textwidth]{site-core}
+\includegraphics[width=.8\textwidth]{site-core}
 \caption{Konfigurasi Core Site}
 \label{gam:site-yarn}
 \end{figure}
@@ -273,7 +277,7 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \end{lstlisting}
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.85\textwidth]{site-hdfs}
+\includegraphics[width=.7\textwidth]{site-hdfs}
 \caption{Konfigurasi HDFS Site}
 \label{gam:site-yarn}
 \end{figure}
@@ -341,47 +345,47 @@ ResourceManager dapat diakses melalui \url{http://localhost:8088} dan akan tampi
 \section{Laporan Mahasiswa}
 \begin{enumerate}
 \item Nadzura Kumaira		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Nurani Harum Fardaniah\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Nuraula Tafiza		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Nurul Aflah			\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Faiza Yuwafiqi		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Adinda Awaliah		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Adjie Yusmunandar		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Arya Saputra			\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Jihan Dwi Sarah		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Muhammad Munawir		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Muhammad Ikrammullah	\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item M. Ikhsan				\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Zulfahmi				\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Salsabila Irmanda		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Siti Hajar Al Zahra	\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Syarfani Akbar		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Cut Opy Mandalisa		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Rauzatinur Syah		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Resha Russita			\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Rizki Ilhami			\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \item Taravia Fauzah		\\
-\textit{isi laporan}
+\textit{isi laporan memuat langkah-langkah yang dilakukan, error dan hasil praktik.}
 \end{enumerate}
 
 \hrulefill
