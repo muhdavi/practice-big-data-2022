@@ -75,7 +75,7 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
     	\begin{itemize}
     	\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
     	\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
-    	\item Penilaian\footnote{Sesuai ketenuan dari Kepala Lab}
+    	\item Penilaian\footnote{Sesuai ketentuan dari Kepala Lab}
     	\begin{itemize}
     	\item Responsi Kompetensi
     	\item Sikap
@@ -98,9 +98,10 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{8 September 2022}
+\newday{\#1 - 8 September 2022}
 
-\newthought{Introduction \& Preparation} \\
+\newthought{Introduction \& Preparation}
+
 Pada pertemuan pertama, kegiatan lab adalah perkenalan dan persiapan kebutuhan untuk praktik big data. Setelah dosen pengampu memperkenalkan diri dan matakuliah yang diajarkan, dilanjutkan perkenalan dari setiap mahasiswa dah hasilnya dapat dilihat pada Tabel \ref{tab:perkenalan}.
 
 \begin{table}[!ht]
@@ -149,16 +150,17 @@ Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat k
 \item Processor 2 GHz dual-core
 \item RAM sebesar 4 GB
 \item Harddisk kosong 25 GB
-\item Resolusi layar 1024x768
+\item Resolusi layar 1024 x 768
 \end{itemize}
 \vspace*{-.3cm}
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{15 September 2022}
+\newday{\#2 - 15 September 2022}
 
-\newthought{Instalasi Apache Hadoop} \\
+\newthought{Instalasi Apache Hadoop}
+
 Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada pertemuan sebelumnya. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
 
 \begin{enumerate}
@@ -236,10 +238,11 @@ Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan mun
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{22 September 2022}
+\newday{\#3 - 22 September 2022}
 \textit{N.B.: Setiap mahasiswa membuat laporan hasil praktik sesuai dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
-\newthought{Konfigurasi Apache Hadoop} \\
+\newthought{Konfigurasi Apache Hadoop}
+
 Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop agar memudahkan kita dalam memonitoring ekosistem Hadoop yang telah diinstall.
 
 \begin{enumerate}
@@ -354,22 +357,163 @@ Proses analisis big data sebaiknya menggunakan komputer dengan spesifikasi yang 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{24 November 2022 menggantikan 29 September 2022}
+\newday{\#4 - 24 November 2022 menggantikan 29 September 2022}
 
-\newthought{Instalasi dan Konfigurasi GIT dan GitHub} \\
+\newthought{Instalasi dan Konfigurasi GIT dan GitHub}
+
 Pada pertemuan kali ini kita belajar install GIT dan konfigurasi GIT dengan GitHub agar dapat menjalankan perintah-perintah GIT melalui lokal dan menyimpan hasil kerjaan kita ke GitHub. Karena pada pertemuan pertama telah membuat akun GitHub, maka pada pertemuan kali ini asumsinya semua sudah memiliki akun GitHub. Setelah itu ikuti beberapa langkah berikut untuk praktikum kali ini.
 
 \begin{enumerate}
 \item Install Git \\
-Pertema download program Git melalui link ini \url{https://git-scm.com/download/win}. Jika sudah selesai didownload langsung diinstall seperti program windows pada umumnya (Next, Next, Next, terus sampai selesai).
+Pertema download program Git melalui link ini (\url{https://git-scm.com/download}) sesuai dengan sistem operasi yang digunakan. Bagi pengguna Windows jika proses download sudah selesai, lanjut proses instalasi seperti program windows pada umumnya (Next, Next, Next, sampai selesai).
 
 \item \textit{Generate} SSH-Key \\
 Jika instalasi sudah selesai, coba buka Git Bash, maka akan muncul program baru yang mirip dengan Terminal atau Command Prompt (CMD) kita sebut Git Bash. Kemudian jalankan perintah berikut untuk \textit{generate ssh-key}.
 
 {\tt ssh-keygen -t ed25519 -C "email@akun.github"} \\
 
-Ganti {\tt email@akun.github} dengan email yang sesuai ketika membuat akun GitHub. Selanjut jika muncul beberapa pertanyaan seperti berikut ini tekan {\tt Enter}.
+Ganti {\tt email@akun.github} dengan email yang terdaftar pada akun GitHub. Selanjutnya jika muncul beberapa pertanyaan seperti berikut ini tekan [enter].
+
+{\tt > Enter a file in which to save the key (/Users/YOU/.ssh/id\_ed25519:} \\
+{\tt > Enter passphrase (empty for no passphrase):} \\
+{\tt > Enter same passphrase again:}
+
+Jika proses diatas berhasil maka terbentuk folder baru dengan nama {\tt .ssh}. Didalam folder tersebut terdapat \textit{private key} dan \textit{public key}. Bukan file \textit{public key} (id\_ed25519.pub) dan \textit{copy} isi dari file tersebut.
+
+\item Menambahkan SSH-Key ke Akun GitHub \\
+Untuk menambahkan SSH-Key ke akun GitHub pertama login terlebih dahulu. Setelah berhasil login klik pada gambar profil sehingga tampil menu dropdown seperti pada Gambar \ref{gam:langkah-ssh} nomor 1. Selanjutnya pilih menu \textbf{Setting} sepertin yang ditunukan pada nomor 2. Setelah memilih menu \textbf{Setting} maka muncul halaman setting dengan menu di sidebar sebelah kiri. Pada menu sebelah kiri pilih menu \textbf{SSH and GPG keys} seperti pada nomor 3. Kemudian klik tombol \textbf{New SSH key} maka akan muncul form menambahkan SSH seperti yang diperlihatkan pada Gambar \ref{gam:form-ssh}.
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{gtihub-1}
+\caption{Lankah-langkah Menambah SSH-Key di GitHub}
+\label{gam:langkah-ssh}
+\end{figure}
+
+Kode SSH-Key yang telah di-\textit{copy} pada langkah sebelumnya \textit{paste}-kan kode tersebut pada isian \textbf{Key} dan beri judul SSH-Key pada isian \textbf{Title}. Setelah semua diisi klik tombol \textbf{Add SSH key} untuk menyimpan SSH-Key baru tersebut.
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{github-2}
+\caption{Form Penambahan SSH-Key di GitHub}
+\label{gam:form-ssh}
+\end{figure}
+
+Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git clone} untuk repositori laporan practice big data dari akun masing-masing. Untuk lebih jelasnya tentang GIT dapat membaca catatan pada link berikut \url{https://muhdavi.github.io/learn-git/}.
 \end{enumerate}
+
+\begin{figure}[!ht]
+\includegraphics[width=.95\textwidth]{24-11-2022}
+\caption{Perkuliahan Daring via GMeet 24-11-2022}
+\label{gam:form-ssh}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#5 - 25 November 2022 menggantikan 6 Oktober 2022}
+
+\newthought{Instalasi dan Konfigurasi GIT dan GitHub - Lanjutan}
+
+Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt Pull Request}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item Rizki Ilhami
+\item Rauzatinur Syah $\star$
+\item Taravia Fauzah
+\item Resha Russita $\star$
+\item Nurani Harum Fardaniah $\star$
+\item Adinda Awaliah $\star$
+\item Salsabila Irmanda $\star$
+\item M. Ikhsan
+\item Jihan Dwi Sarah $\star$
+\item Cut Opy Mandalisa $\star$
+\item Zulfahmi
+\item Muhammad Munawir
+\end{enumerate}
+\end{multicols}
+
+\noindent
+Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
+\begin{multicols}{3}
+\begin{enumerate}
+\item \textcolor{purple}{Adjie Yusmunandar}
+\item Arya Saputra
+\item Faiza Yuwafiqi
+\item Muhammad Ikrammullah
+\item Nadzura Kumaira
+\item \textcolor{purple}{Nuraula Tafiza}
+\item Nurul Aflah
+\item \textcolor{red}{Siti Hajar Al Zahra}
+\item Syarfani Akbar
+\end{enumerate}
+\end{multicols}
+
+\begin{figure}[!ht]
+\includegraphics[width=.95\textwidth]{25-11-2022}
+\caption{Perkuliahan Daring via GMeet 25-11-2022}
+\label{gam:form-ssh}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022}
+
+\newthought{Instalasi Apache Pig}
+
+\begin{enumerate}
+\item Download Apache Pig  \\
+Apache Pig dapat didownload dari link ini \url{https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz} menggunakan {\tt wget} sehingga akan ada file baru dengan nama {\tt pig-0.17.0.tar.gz}
+
+{\tt wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz}
+
+\item Ekstrak Apache Pig \\
+Ekstrak hasil download tadi dengan perintah {\tt tar}
+
+{\tt tar -xzvf pig-0.17.0.tar.gz}
+
+\item Pindahkan Hasil Ekstraksi \\
+Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
+
+{\tt sudo mv pig-0.17.0 /usr/local/pig}
+
+\item Tambahkan Path Apache Pig ke {\tt .bashrc} \\
+Untuk menambahkan path apache pig ke {\tt .bashrc} gunakan perintah nano
+
+{\tt sudo nano $\sim$/.bashrc}
+
+\begin{lstlisting}
+#Apache Pig location
+export PIG_INSTALL=/usr/local/pig
+export PATH=$PATH:/usr/local/pig/bin
+\end{lstlisting}
+
+Kemdudian jalankan perintah {\tt source} agar konfigurasi yang telah ditambahkan ke {\tt .bashrc} dapat dikenali oleh sistem dan memastikan konfigurasi tersebut sudah benar.
+
+{\tt source .bashrc}
+
+\item Verifikasi Apache Pig \\
+Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig dengan perintah berikut:
+
+{\tt pig -version}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#7 - 2 Desember 2022 menggantikan 20 Oktober 2022}
+
+\newthought{Instalasi Apache Hive}
+
+\begin{enumerate}
+\item Download Apaceh Hive
+\item Ekstrak Apache Hive
+\item Pindahkan Hasil Ekstraksi
+\item Tambahkan Path Apaceh Hive ke {\tt .bashrc}
+\item Verifikasi Apache Hive
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#8 - 2 Desember 2022 menggantikan 27 Oktober 2022}
+
+\newthought{Analisis Data Youtube}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -384,7 +528,7 @@ Ganti {\tt email@akun.github} dengan email yang sesuai ketika membuat akun GitHu
 \include{laporan/MuhammadMunawir}
 \include{laporan/NadzuraKumaira}
 \include{laporan/NuraniHarumFardaniah}
-\include{laporan/NuraulaTafiza	}
+\include{laporan/NuraulaTafiza}
 \include{laporan/NurulAflah}
 \include{laporan/RauzatinurSyah}
 \include{laporan/ReshaRussita}
