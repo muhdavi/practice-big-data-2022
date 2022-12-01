@@ -1,5 +1,3 @@
-
-
 %%% Laboratory	 Notes
 %%% Template by Mikhail Klassen, April 2013
 %%% Contributions from Sarah Mount, May 2014
@@ -125,9 +123,9 @@ No & Nama 					& Asal Sekolah 			& Alamat\\
 \midrule
 8 & Muhammad Ikrammullah	& & \\
 9 & Muhammad Munawir		& SMK N 1 Lhoksukon		& Karing Meurah Mulia \\
-10 & Nadzura Kumaira		& SMK N 2 Lhokseumawe   & keude aceh \\
+10 & Nadzura Kumaira		& SMK N 2 Lhokseumawe 	& Keude Aceh \\
 11 & Nurani Harum Fardaniah	& SMK N 1 Lhoksukon 	& Buket Hagu \\
-12 & Nuraula Tafiza			& SMK N 1 Lhoksukon & Alue Buket \\
+12 & Nuraula Tafiza			& SMK N 1 Lhoksukon 	& Alue Buket \\
 13 & Nurul Aflah			& & \\
 14 & Rauzatinur Syah		& MAS Misbahul Ulum 	& Geudong \\
 \midrule
@@ -194,20 +192,21 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 \item Pindahkan hasil ekstrak ke /usr/local/ \\
 {\tt sudo mv hadoop-3.3.4 /usr/local/hadoop}
 
-\item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
+\item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Pada baris 54, lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
 {\tt cd /usr/local/hadoop} \\
 {\tt sudo nano etc/hadoop/hadoop-env.sh} \\
 \begin{lstlisting}
-export JAVA\_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 \end{lstlisting}
+
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.66\textwidth]{java-hadoop}
+\includegraphics[width=.6\textwidth]{java-hadoop}
 \caption{Konfigurasi Java Home}
 \label{gam:java-hadoop}
 \end{figure}
 
-\item Menambahkan Hadoop Path ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-patch}} \\
+\item Menambahkan Hadoop Path ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-path}} \\
 {\tt sudo nano $\sim$/.bashrc} \\
 \begin{lstlisting}
 export HADOOP_HOME=/usr/local/hadoop
@@ -218,6 +217,7 @@ export HADOOP_HDFS_HOME=${HADOOP_HOME}
 export YARN_HOME=${HADOOP_HOME}
 export PATH=$PATH:/usr/local/hadoop/bin
 \end{lstlisting}
+
 {\tt source .bashrc}
 \begin{figure}[!ht]
 \centering
@@ -399,7 +399,7 @@ Kode SSH-Key yang telah di-\textit{copy} pada langkah sebelumnya \textit{paste}-
 \label{gam:form-ssh}
 \end{figure}
 
-Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git clone} untuk repositori laporan practice big data dari akun masing-masing. Untuk lebih jelasnya tentang GIT dapat membaca catatan pada link berikut \url{https://muhdavi.github.io/learn-git/}.
+Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push} untuk repositori laporan practice big data dari akun masing-masing. Untuk lebih jelasnya tentang GIT dapat membaca catatan pada link berikut \url{https://muhdavi.github.io/learn-git/}.
 \end{enumerate}
 
 \begin{figure}[!ht]
@@ -429,19 +429,19 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 \item Cut Opy Mandalisa $\star$
 \item Zulfahmi
 \item Muhammad Munawir
+\item Nuraula Tafiza
 \end{enumerate}
 \end{multicols}
 
 \noindent
 Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
-\begin{multicols}{3}
+\begin{multicols}{2}
 \begin{enumerate}
 \item \textcolor{purple}{Adjie Yusmunandar}
 \item Arya Saputra
 \item Faiza Yuwafiqi
 \item Muhammad Ikrammullah
 \item Nadzura Kumaira
-\item \textcolor{purple}{Nuraula Tafiza}
 \item Nurul Aflah
 \item \textcolor{red}{Siti Hajar Al Zahra}
 \item Syarfani Akbar
@@ -449,7 +449,7 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \end{multicols}
 
 \begin{figure}[!ht]
-\includegraphics[width=.95\textwidth]{25-11-2022}
+\includegraphics[width=\textwidth]{25-11-2022}
 \caption{Perkuliahan Daring via GMeet 25-11-2022}
 \label{gam:form-ssh}
 \end{figure}
@@ -504,11 +504,34 @@ Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig de
 \newthought{Instalasi Apache Hive}
 
 \begin{enumerate}
-\item Download Apaceh Hive
-\item Ekstrak Apache Hive
-\item Pindahkan Hasil Ekstraksi
-\item Tambahkan Path Apaceh Hive ke {\tt .bashrc}
-\item Verifikasi Apache Hive
+\item Download Apaceh Hive \\
+Download Apache Hive melalui link ini \url{https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz} dengan menggunakan perintah {\tt wget} seperti berikut:
+
+{\tt wget https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz}
+
+\item Ekstrak Apache Hive \\
+Ekstrak file yang telah didownload dengna perintah berikut:
+
+{\tt tar -zxvf apache-hive-2.3.9-bin.tar.gz}
+
+\item Pindahkan Hasil Ekstraksi \\
+Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
+
+{\tt sudo mv apache-hive-2.3.9-bin /usr/local/hive}
+
+\item Tambahkan Path Apaceh Hive ke {\tt .bashrc} \\
+Untuk menambahkan path apache hive ke {\tt .bashrc} gunakan perintah nano
+seperti berikut:
+
+{\tt sudo nano $\sim$/.bashrc}
+
+\begin{lstlisting}
+#Apache Hive location
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:/usr/local/hive/bin
+\end{lstlisting}
+
+\item Verifikasi Apache Hive \\
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
