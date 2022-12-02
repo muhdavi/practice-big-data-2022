@@ -264,8 +264,8 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item core-site.xml
 \begin{lstlisting}
 <property>
-<name>fs.default.name</name>
-<value>hdfs://localhost:9000</value>
+	<name>fs.default.name</name>
+	<value>hdfs://localhost:9000</value>
 </property>
 \end{lstlisting}
 \begin{figure}[!ht]
@@ -278,12 +278,12 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item hdfs-site.xml
 \begin{lstlisting}
 <property>
-<name>dfs.replication</name>
-<value>1</value>
+	<name>dfs.replication</name>
+	<value>1</value>
 </property>
 <property>
-<name>dfs.permission</name>
-<value>false</value>
+	<name>dfs.permission</name>
+	<value>false</value>
 </property>
 \end{lstlisting}
 \begin{figure}[!ht]
@@ -296,8 +296,8 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item mapred-site.xml
 \begin{lstlisting}
 <property>
-<name>mapreduce.framework.name</name>
-<value>yarn</value>
+	<name>mapreduce.framework.name</name>
+	<value>yarn</value>
 </property>
 \end{lstlisting}
 \begin{figure}[!ht]
@@ -309,14 +309,12 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item yarn-site.xml
 \begin{lstlisting}
 <property>
-<name>yarn.nodemanager.aux-services</name>
-<value>mapreduce_shuffle</value>
+	<name>yarn.nodemanager.aux-services</name>
+	<value>mapreduce_shuffle</value>
 </property>
 <property>
-<name>
-yarn.nodemanager.auxservices.mapreduce.shuffle.class
-</name>
-<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+	<name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+	<value>org.apache.hadoop.mapred.ShuffleHandler</value>
 </property>
 \end{lstlisting}
 \begin{figure}[!ht]
@@ -430,6 +428,8 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 \item Zulfahmi
 \item Muhammad Munawir
 \item Nuraula Tafiza
+\item Muhammad Ikrammullah
+\item Nadzura Kumaira
 \end{enumerate}
 \end{multicols}
 
@@ -440,8 +440,6 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \item \textcolor{purple}{Adjie Yusmunandar}
 \item Arya Saputra
 \item Faiza Yuwafiqi
-\item Muhammad Ikrammullah
-\item Nadzura Kumaira
 \item Nurul Aflah
 \item \textcolor{red}{Siti Hajar Al Zahra}
 \item Syarfani Akbar
@@ -531,14 +529,156 @@ export HIVE_HOME=/usr/local/hive
 export PATH=$PATH:/usr/local/hive/bin
 \end{lstlisting}
 
-\item Verifikasi Apache Hive \\
+\item Konfigurasi {\tt core-site.xml} \\
+Buka file {\tt core-site.xml} yang berada di {\tt /usr/local/hadoop/etc/hadoop} dan update seperti pada kode berikut:
+
+\begin{lstlisting}
+<configuration>
+	<property>
+		<name>fs.default.name</name>
+		<value>hdfs://localhost:9000</value>
+	</property>
+	<property>
+		<name>hadoop.tmp.dir</name>
+		<value>/home/muhdavi/hadoop/tmp</value>
+	</property>
+	<property>
+		<name>hadoop.proxyuser.dataflair.groups</name>
+		<value>*</value>
+	</property>
+	<property>
+		<name>hadoop.proxyuser.dataflair.hosts</name>
+		<value>*</value>
+	</property>
+	<property>
+		<name>hadoop.proxyuser.server.hosts</name>
+		<value>*</value>
+	</property>
+	<property>
+		<name>hadoop.proxyuser.server.groups</name>
+		<value>*</value>
+	</property>
+</configuration>
+\end{lstlisting}
+
+\item Membuat directory di HDPS \\
+Buatlah beberapa directory berikut di HDPS dengan perintah sebagai berikut:
+
+{\tt \$hadoop fs -mkdir /tmp} \\
+{\tt \$hadoop fs -mkdir /user} \\
+{\tt \$hadoop fs -mkdir /user/hive} \\
+{\tt \$hadoop fs -mkdir /user/hive/warehouse}
+
+\item Memberikan Hak Akses \\
+Memberikan hak akses (\textit{permission}) pada folder berikut:
+
+{\tt \$hadoop fs -chmod g+w /tmp} \\
+{\tt \$hadoop fs -chmod g+w /user/hive/warehouse}
+
+\item Inisialisasi Hive Database
+
+{\tt \$bin/schematool -dbType derby -initSchema}
+
+\item Jalankan Hive
+
+{\tt \$bin/hiveserver2}
+
+\item Verifikasi Hive \\
+Buka terminal baru dan coba konek ke Hive dengan perintah berikut:
+
+{\tt \$bin/beeline -n bigdata -u jdbc:hive2://localhost:10000}
+
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#8 - 2 Desember 2022 menggantikan 27 Oktober 2022}
+\newday{\#8 - 8 Desember 2022 menggantikan 3 November 2022}
 
 \newthought{Analisis Data Youtube}
+
+\begin{enumerate}
+\item Download Dataset \\
+Dataset dapat didownload dengan perintah berikut.
+
+{\tt wget http://netsg.cs.sfu.ca/youtubedata/0222.zip}
+
+\item Kode Apache Pig \\
+Tulis kode Apache Pig berikut menggunakan IDE.
+
+\begin{lstlisting}
+infiles = load '/hdfs/bhavesh/Youtube_POC/Youtube/0222/{0,1,2,3,4}.txt' using PigStorage('\t') as 
+(videoid:chararray,uploader:chararray,age:int,category:chararray,length:int,views:int,rate:int,rating:int,comments:int,related_id:chararray);
+files = FILTER infiles BY category is not null;
+grpn_for_catagories = group files by category;
+cnt_for_catagories = foreach grpn_for_catagories generate group, COUNT(files.videoid) as counting;
+sorted_for_catagories_desc = order cnt_for_catagories by counting desc;
+top5_for_catagories = limit sorted_for_catagories_desc 5;
+STORE top5_for_catagories INTO  '/hdfs/bhavesh/Youtube_POC/Top5Catagories' using PigStorage(',');
+order_rated_video = order files by rating desc;
+top10_rated_video = limit order_rated_video 10;
+final_top10_rated_video = foreach top10_rated_video generate $0,$3,$7;
+STORE final_top10_rated_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Rated' using PigStorage(',');
+order_viewed_video = order files by views desc;
+top10_viewed_video = limit order_viewed_video 10;
+final_top10_viewed_video = foreach top10_viewed_video generate $0,$3,$5;
+STORE final_top10_viewed_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Viewed' using PigStorage(',');
+top10_rated_catagories = foreach grpn_for_catagories{
+                           sorted = order files by rating desc;
+                           top10 = limit sorted 10;
+                           generate flatten(top10);
+};
+top10_rated_by_catagories = foreach top10_rated_catagories generate $0,$3,$7;
+STORE top10_rated_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories' using PigStorage(',');
+top10_viewed_catagories = foreach grpn_for_catagories{
+                           sorted = order files by views desc;
+                           top10 = limit sorted 10;
+                           generate flatten(top10);
+};
+top10_viewed_by_catagories = foreach top10_viewed_catagories generate $0,$3,$5;
+STORE top10_viewed_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories' using PigStorage(',');
+\end{lstlisting}
+
+\item Kode Shell Script
+
+\begin{lstlisting}
+sudo rm -rf /var/lib/hive/metastore/metastore_db/*.lck
+rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
+rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
+rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
+rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
+rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
+hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top5Catagories
+hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Rated
+hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories
+hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Viewed
+hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories
+pig /home/bhavesh/Youtube_POC/Youtube/0222/Youtube_data_analysis.pig
+hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000               /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
+hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000                   /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
+hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000       /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
+hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000                  /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
+hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000      /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
+hive -e 'drop table if exists Top5CatagoriesTable';
+hive -e 'drop table if exists Top10RatedTable';
+hive -e 'drop table if exists Top10RatedByCatagoriesTable';
+hive -e 'drop table if exists Top10ViewedTable';
+hive -e 'drop table if exists Top10ViewedByCatagoriesTable';
+hive -e "create external table Top5CatagoriesTable(Top5Catagory string, VideoCount int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top5Catagories'";
+hive -e "create external table Top10RatedTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedTable'";
+hive -e "create external table Top10RatedByCatagoriesTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedByCatagoriesTable'";
+hive -e "create external table Top10ViewedTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedTable'";
+hive -e "create external table Top10ViewedByCatagoriesTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedByCatagoriesTable'";
+hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000' overwrite into table Top5CatagoriesTable";
+hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000' overwrite into table Top10RatedTable";
+hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000' overwrite into table Top10RatedByCatagoriesTable";
+hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000' overwrite into table Top10ViewedTable";
+hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000' overwrite into table Top10ViewedByCatagoriesTable";
+\end{lstlisting}
+
+\item Jalankan Shell Script
+\item Cek Hasil CSV
+\item Cek Hasil Hive
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
