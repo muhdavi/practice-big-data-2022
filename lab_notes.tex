@@ -1,7 +1,7 @@
 %%% Laboratory	 Notes
 %%% Template by Mikhail Klassen, April 2013
 %%% Contributions from Sarah Mount, May 2014
-%%% Updated by Muhammad Davi, September 2022
+%%% Contributions from Muhammad Davi, September 2022
 \documentclass[a4paper]{tufte-handout}
 \usepackage{lab_notes}
 
@@ -70,30 +70,56 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{maybe}
-    \begin{itemize}
-    	\item Waktu, Tempat dan Penilaian Matakuliah Practice Big Data
-    	\begin{itemize}
-    	\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
-    	\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
-    	\item Penilaian\footnote{Sesuai ketentuan dari Kepala Lab}
-    	\begin{itemize}
-    	\item Responsi Kompetensi
-    	\item Sikap
-    	\item Laporan
-    	\item Seminar
-    	\item UAS
-    	\item Hasil/Benda kerja
-    	\end{itemize}
-    	\end{itemize}
-    	\item Sebelum masuk lab wajib berbaris dan berdo'a terlebih dahulu di depan lab.
-    	\item Sebelum perkuliahan dimulai, mahasiswa atau yang mewakili memberi laporan.
-    	\item Setiap keluar lab meminta izin kepada dosen pengampu.
-    	\item Mengikuti Tata Tertib yang berlaku.
-    	\item Referensi
-    	\begin{itemize}
-    		\item Buku Ajar Big Data \citep{Mursyidah2020}.
-    	\end{itemize}
-    \end{itemize}
+\begin{itemize}
+\item Waktu, Tempat dan Penilaian
+
+\begin{itemize}
+\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
+\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
+\item Penilaian\footnote{Sesuai ketentuan dari Kepala Lab}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Responsi Kompetensi
+\item Sikap
+\item Laporan
+\item Seminar
+\item UAS
+\item Hasil/Benda kerja
+\end{itemize}
+\end{multicols}
+\end{itemize}
+
+\item Sebelum masuk lab wajib berbaris dan berdo'a terlebih dahulu di depan lab.
+\item Sebelum perkuliahan dimulai, mahasiswa atau yang mewakili memberi laporan.
+\item Setiap keluar lab meminta izin kepada dosen pengampu.
+\item Mengikuti Tata Tertib yang berlaku.
+\item Referensi
+
+\begin{itemize}
+\item Buku Ajar Big Data \citep{Mursyidah2020}.
+\end{itemize}
+
+\item Tata Cara Presensi selama Perkuliahan Online
+
+\begin{itemize}
+\item Buka repository laporan-practice-big-data melalui akun GitHub masing-masing
+\item Lakukan sinkro fork (Sync fork)
+\item Buka file {\tt lab\_notes.tex} menggunakan texmaker dan buka file laporan masing-masing
+\item Tambahkan kode berikut dan sesuaikan tanggalnya. \\
+\textbf{\textcolor{red}{Pastikan kode sudah benar!}}
+\begin{lstlisting}
+\newday{\textbf{1 Desember 2022}}
+\begin{enumerate}
+	\item Kendala dan Solusi
+	\item Kesimpulan
+\end{enumerate}
+\end{lstlisting}
+\item Lakukan {\tt git add, git commit dan git push}. \\ 
+Format \textit{message} saat {\tt git commit} \textit{"Presensi dd-mm-yyyy a.n. Nama"}. Contoh: "Presensi 01-12-2022 a.n. Davi"
+\item Buat {\tt pull requests} melalui menu Contribute
+\end{itemize}
+\end{itemize}
 \end{maybe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,9 +140,9 @@ Pada pertemuan pertama, kegiatan lab adalah perkenalan dan persiapan kebutuhan u
 No & Nama 					& Asal Sekolah 			& Alamat\\
 \midrule
 1 & Adinda Awaliah			& SMA N 1 Lhokseumawe 	& Cunda \\
-2 & Adjie Yusmunandar		& SMK N 1 Lhokseumawe &Paloh Lada \\
+2 & Adjie Yusmunandar		& SMK N 1 Lhokseumawe 	& Paloh Lada \\
 3 & Arya Saputra			& & \\
-4 & Cut Opy Mandalisa		& SMA N 1 SyamtaliraBayu	& Bayu \\
+4 & Cut Opy Mandalisa		& SMA N 1 Syamtalira Bayu	& Bayu \\
 5 & Faiza Yuwafiqi			& & \\
 6 & Jihan Dwi Sarah			& SMA N 1 Lhokseumawe 	& Panggoi \\
 7 & M. Ikhsan				& SMK N 1 Simpang Kiri 	& Subulussalam \\
@@ -140,19 +166,20 @@ No & Nama 					& Asal Sekolah 			& Alamat\\
 \end{tabular}
 \end{table}
 
+\vspace*{.5cm}
 Setelah perkenalan, setiap mahasiswa membuat akun github dan akun discord sebagai media komunikasi dan tempat bekerja secara berkelompok. Hasil dari kegiatan tersebut dapat dilihat pada Tabel \ref{tab:peserta} dan Server Discord pada alamat \url{https://discord.gg/V32EWUx6}.
 
 Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat kerja minimal sebagai berikut:
-\vspace*{-.3cm}
+\begin{multicols}{2}
 \begin{itemize}
 \setlength\itemsep{0em}
-\item \textit{Operating System}: Ubuntu 22.04 LTS
 \item Processor 2 GHz dual-core
 \item RAM sebesar 4 GB
 \item Harddisk kosong 25 GB
 \item Resolusi layar 1024 x 768
+\item \textit{Operating System}: Ubuntu 22.04 LTS
 \end{itemize}
-\vspace*{-.3cm}
+\end{multicols}
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,6 +198,7 @@ Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoo
 \item Verifikasi Hasil Instalasi Java \\
 {\tt java -version} \\
 Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasil seperti pada Gambar \ref{gam:java-version}.
+
 \begin{figure}
 \includegraphics[width=\textwidth]{java-version}
 \caption{Versi Java yang Terinstall}
@@ -189,10 +217,10 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 \item f $\Rightarrow$ nama file arsip.
 \end{itemize}
 
-\item Pindahkan hasil ekstrak ke /usr/local/ \\
+\item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
 {\tt sudo mv hadoop-3.3.4 /usr/local/hadoop}
 
-\item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Pada baris 54, lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
+\item Edit file {\tt hadoop-env.sh} dengan mengubah variabel JAVA\_HOME\footnote{Kode terdapat pada baris 54, lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
 {\tt cd /usr/local/hadoop} \\
 {\tt sudo nano etc/hadoop/hadoop-env.sh} \\
 \begin{lstlisting}
@@ -219,12 +247,12 @@ export PATH=$PATH:/usr/local/hadoop/bin
 \end{lstlisting}
 
 {\tt source .bashrc}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\textwidth]{hadoop-path}
-\caption{Konfigurasi Hadoop Path}
-\label{gam:hadoop-path}
-\end{figure}
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=\textwidth]{hadoop-path}
+%\caption{Konfigurasi Hadoop Path}
+%\label{gam:hadoop-path}
+%\end{figure}
 
 \item Verifikasi Hasil Instalasi Hadoop \\
 {\tt hadoop version} \\
@@ -250,8 +278,10 @@ Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop
 \begin{enumerate}
 \item Konfigurasi File Hadoop \\
 File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
+
 {\tt cd /usr/local/hadoop/etc/hadoop} \\
 {\tt ls}
+
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{file-hadoop}
 \caption{File Konfigurasi Hadoop}
@@ -268,12 +298,13 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>hdfs://localhost:9000</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.8\textwidth]{site-core}
-\caption{Konfigurasi Core Site}
-\label{gam:site-yarn}
-\end{figure}
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=.8\textwidth]{site-core}
+%\caption{Konfigurasi Core Site}
+%\label{gam:site-yarn}
+%\end{figure}
 
 \item hdfs-site.xml
 \begin{lstlisting}
@@ -286,12 +317,13 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>false</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.7\textwidth]{site-hdfs}
-\caption{Konfigurasi HDFS Site}
-\label{gam:site-yarn}
-\end{figure}
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=.7\textwidth]{site-hdfs}
+%\caption{Konfigurasi HDFS Site}
+%\label{gam:site-yarn}
+%\end{figure}
 
 \item mapred-site.xml
 \begin{lstlisting}
@@ -300,11 +332,12 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>yarn</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{site-mapred}
-\caption{Konfigurasi Mapred Site}
-\label{gam:site-yarn}
-\end{figure}
+
+%\begin{figure}[!ht]
+%\includegraphics[width=\textwidth]{site-mapred}
+%\caption{Konfigurasi Mapred Site}
+%\label{gam:site-yarn}
+%\end{figure}
 
 \item yarn-site.xml
 \begin{lstlisting}
@@ -317,15 +350,18 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>org.apache.hadoop.mapred.ShuffleHandler</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{site-yarn}
-\caption{Konfigurasi Yarn Site}
-\label{gam:site-yarn}
-\end{figure}
+
+%\begin{figure}[!ht]
+%\includegraphics[width=\textwidth]{site-yarn}
+%\caption{Konfigurasi Yarn Site}
+%\label{gam:site-yarn}
+%\end{figure}
+
 \end{itemize}
 
 \item Jalankan Perintah Format Filesystem \\
 {\tt hdfs namenode -format}
+
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{format-filesystem}
 \caption{Format Filesystem}
@@ -430,6 +466,7 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 \item Nuraula Tafiza
 \item Muhammad Ikrammullah
 \item Nadzura Kumaira
+\item Adjie Yusmunandar
 \end{enumerate}
 \end{multicols}
 
@@ -437,7 +474,6 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \begin{multicols}{2}
 \begin{enumerate}
-\item \textcolor{purple}{Adjie Yusmunandar}
 \item Arya Saputra
 \item Faiza Yuwafiqi
 \item Nurul Aflah
@@ -454,7 +490,26 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022}
+\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022\footnote{
+Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Arya Saputra $\oplus$
+\item Cut Opy Mandalisa
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Instalasi Apache Pig}
 
@@ -462,7 +517,7 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \item Download Apache Pig  \\
 Apache Pig dapat didownload dari link ini \url{https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz} menggunakan {\tt wget} sehingga akan ada file baru dengan nama {\tt pig-0.17.0.tar.gz}
 
-{\tt wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz}
+{\tt \small{wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz}}
 
 \item Ekstrak Apache Pig \\
 Ekstrak hasil download tadi dengan perintah {\tt tar}
@@ -497,7 +552,23 @@ Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig de
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#7 - 2 Desember 2022 menggantikan 20 Oktober 2022}
+\newday{\#7 - 2 Desember 2022 menggantikan 20 Oktober 2022\footnote{
+Mahasiswa yang hadir:
+\begin{enumerate}
+\item Muhammad Munawir
+\item Rizki Ilhami
+\item Rauzatinur Syah
+\item Salsabila Irmanda
+\item Adjie Yusmunandar
+\item Nurani Harum Fardaniah
+\item Cut Opy Mandalisa
+\item Resha Russita
+\item Taravia Fauzah
+\item Adinda Awaliah
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Instalasi Apache Hive}
 
@@ -505,7 +576,7 @@ Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig de
 \item Download Apaceh Hive \\
 Download Apache Hive melalui link ini \url{https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz} dengan menggunakan perintah {\tt wget} seperti berikut:
 
-{\tt wget https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz}
+{\tt wget https://downloads.apache.org/hive/stable-2/apache -hive-2.3.9-bin.tar.gz}
 
 \item Ekstrak Apache Hive \\
 Ekstrak file yang telah didownload dengna perintah berikut:
