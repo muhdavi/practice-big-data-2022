@@ -191,6 +191,20 @@ Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat k
 Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada pertemuan sebelumnya. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
 
 \begin{enumerate}
+\item Membuat Group dan User Baru
+\begin{itemize}
+\item Membuat group \\
+{\tt sudo addgroup hadoop}
+\item Membuat User Baru dan Menambahkan ke Group \\
+{\tt sudo adduser -ingroup hadoop hdfs}
+\item Ubah Hak Akses \\
+{\tt sudo visudo}
+\item Tambahkan Kode \\
+{\tt hdfs	ALL=(ALL:ALL) ALL}
+\item Ganti ke User Baru \\
+{\tt su - hdfs}
+\end{itemize}
+
 \item Install Java \\
 {\tt sudo apt update} \\
 {\tt sudo apt install openjdk-8-jdk -y} \\
@@ -200,10 +214,39 @@ Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoo
 Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasil seperti pada Gambar \ref{gam:java-version}.
 
 \begin{figure}
+\setlength{\belowcaptionskip}{-10pt}
 \includegraphics[width=\textwidth]{java-version}
 \caption{Versi Java yang Terinstall}
 \label{gam:java-version}
 \end{figure}
+
+\item Setting SSH \\
+\begin{itemize}
+\item Uninstall OpenSSH \\
+{\tt sudo apt remove openssh-server openssh-client}
+\item Install OpenSSH Baru \\
+{\tt sudo apt update} \\
+{\tt sudo apt install openssh-server openssh-client} \\
+{\tt sudo ufw allow 22} \\
+{\tt sudo systemctl restart ssh} \\
+{\tt sudo apt install ssh} \\
+{\tt sudo apt install rsync}
+\item Generate Key \\
+{\tt ssh-keygen -t dsa -P '' -f $\sim$/.ssh/id\_dsa} \\
+{\tt cat $\sim$/.ssh/id\_dsa.pub >> $\sim$/.ssh/authorized\_keys} \\
+{\tt ssh-keygen -t rsa}
+\item Coba Masuk via SSH \\
+{\tt ssh localhost}
+\item Jika masih harus memasukkan password, lanjutkan langakh berikut. \\
+{\tt ssh-keygen -t rsa} \\
+{\tt cat $\sim$/.ssh/id\_rsa.pub >> $\sim$/.ssh/authorized\_keys} \\
+{\tt chmod og-wx $\sim$/.ssh/authorized\_keys} \\
+{\tt sudo apt-get update}
+\item Coba Masuk via SSH Lagi \\
+{\tt ssh localhost}
+\item Jika sudah berhasil, keluar dengan perintah {\tt exit} \\
+{\tt exit}
+\end{itemize}
 
 \item Download Apache Hadoop \\
 {\tt wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz}
@@ -220,43 +263,57 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 \item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
 {\tt sudo mv hadoop-3.3.4 /usr/local/hadoop}
 
-\item Edit file {\tt hadoop-env.sh} dengan mengubah variabel JAVA\_HOME\footnote{Kode terdapat pada baris 54, lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
-{\tt cd /usr/local/hadoop} \\
-{\tt sudo nano etc/hadoop/hadoop-env.sh} \\
+\item Ubah Hak Akses {\tt /usr/local/hadoop} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop}
+
+\item Edit file {\tt sysctl.conf} untuk Disable IPV6
+\begin{itemize}
+\item Buka file {\tt sysctl.conf} \\
+{\tt sudo nano /etc/sysctl.conf}
+\item Tambahkan Kode
+\begin{lstlisting}
+net.ipv6.conf.all.disable_ipv6=1
+net.ipv6.conf.lo.disable_ipv6=1
+net.ipv6.conf.default_ipv6=1
+\end{lstlisting}
+\end{itemize}
+
+\item Edit file {\tt hadoop-env.sh} \\
+{\tt cd /usr/local/hadoop/etc/hadoop} \\
+{\tt sudo nano hadoop-env.sh} \\
+
 \begin{lstlisting}
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true
+export HADOOP_HOME_WARN_SUPPRESS="TRUE"
+export HADOOP_ROOT_LOGGER="WARN"
 \end{lstlisting}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.6\textwidth]{java-hadoop}
-\caption{Konfigurasi Java Home}
-\label{gam:java-hadoop}
-\end{figure}
-
-\item Menambahkan Hadoop Path ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-path}} \\
+\item Menambahkan Hadoop ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-path}} \\
 {\tt sudo nano $\sim$/.bashrc} \\
 \begin{lstlisting}
+#Hadoop Location
 export HADOOP_HOME=/usr/local/hadoop
-export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
-export HADOOP_MAPRED_HOME=${HADOOP_HOME}
-export HADOOP_COMMON_HOME=${HADOOP_HOME}
-export HADOOP_HDFS_HOME=${HADOOP_HOME}
-export YARN_HOME=${HADOOP_HOME}
+export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+export HADOOP_MAPRED_HOME=/usr/local/hadoop
+export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_HDFS_HOME=/usr/local/hadoop
+export YARN_HOME=/usr/local/hadoop
 export PATH=$PATH:/usr/local/hadoop/bin
+export PATH=$PATH:/usr/local/hadoop/sbin
+
+#Hadoop Native Location
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
 \end{lstlisting}
 
 {\tt source .bashrc}
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=\textwidth]{hadoop-path}
-%\caption{Konfigurasi Hadoop Path}
-%\label{gam:hadoop-path}
-%\end{figure}
 
 \item Verifikasi Hasil Instalasi Hadoop \\
 {\tt hadoop version} \\
-Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
+Jika instalasi hadoop berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{hadoop-version}
 \caption{Versi Hadoop yang Terinstall}
@@ -280,7 +337,6 @@ Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop
 File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
 
 {\tt cd /usr/local/hadoop/etc/hadoop} \\
-{\tt ls}
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{file-hadoop}
@@ -294,17 +350,14 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item core-site.xml
 \begin{lstlisting}
 <property>
+	<name>hadoop.tmp.dir</name>
+	<value>/app/hadoop/tmp</value>
+</property>
+<property>
 	<name>fs.default.name</name>
 	<value>hdfs://localhost:9000</value>
 </property>
 \end{lstlisting}
-
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=.8\textwidth]{site-core}
-%\caption{Konfigurasi Core Site}
-%\label{gam:site-yarn}
-%\end{figure}
 
 \item hdfs-site.xml
 \begin{lstlisting}
@@ -313,31 +366,26 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>1</value>
 </property>
 <property>
-	<name>dfs.permission</name>
-	<value>false</value>
+	<name>dfs.namenode.name.dir</name>
+	<value>file:/usr/local/hadoop/yarn_data/hdfs/namenode</value>
+</property>
+<property>
+	<name>dfs.datanode.data.dir</name>
+	<value>file:/usr/local/hadoop/yarn_data/hdfs/datanode</value>
 </property>
 \end{lstlisting}
-
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=.7\textwidth]{site-hdfs}
-%\caption{Konfigurasi HDFS Site}
-%\label{gam:site-yarn}
-%\end{figure}
 
 \item mapred-site.xml
 \begin{lstlisting}
 <property>
-	<name>mapreduce.framework.name</name>
+	<name>mapred.framework.name</name>
 	<value>yarn</value>
 </property>
+<property>
+	<name>mapreduce.jobhistory.address</name>
+	<value>localhost:10020</value>
+</property>
 \end{lstlisting}
-
-%\begin{figure}[!ht]
-%\includegraphics[width=\textwidth]{site-mapred}
-%\caption{Konfigurasi Mapred Site}
-%\label{gam:site-yarn}
-%\end{figure}
 
 \item yarn-site.xml
 \begin{lstlisting}
@@ -346,40 +394,43 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>mapreduce_shuffle</value>
 </property>
 <property>
-	<name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+	<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
 	<value>org.apache.hadoop.mapred.ShuffleHandler</value>
 </property>
 \end{lstlisting}
-
-%\begin{figure}[!ht]
-%\includegraphics[width=\textwidth]{site-yarn}
-%\caption{Konfigurasi Yarn Site}
-%\label{gam:site-yarn}
-%\end{figure}
-
 \end{itemize}
 
-\item Jalankan Perintah Format Filesystem \\
+\item Membuat Folder Sementara (\textit{Temporary}) untuk HDFS \\
+{\tt sudo mkdir -p /app/hadoop/tmp} \\
+{\tt sudo chown -R hdfs:hadoop /app/hadoop/tmp} \\
+{\tt sudo chmod -R 777 /app/hadoop/tmp}
+
+\item Membuat Folder {\tt namenode} dan {\tt datanode} \\
+{\tt sudo mkdir -p /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo mkdir -p /usr/local/hadoop/yarn\_data/hdfs/datanode} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop/yarn\_data/hdfs/datanode} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop/yarn\_data/hdfs/datanode}
+
+\item Jalankan Perintah Format HDFS \\
 {\tt hdfs namenode -format}
 
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{format-filesystem}
-\caption{Format Filesystem}
-\label{gam:format-filesystem}
-\end{figure}
-
-\item Jalankan NameNode Daemon dan DataNode Daemon \\
+\item Jalankan Hadoop Service \\
 {\tt sbin/start-dfs.sh} \\
-NameNode dapat diakses melalui \url{http://localhost:9870} dan akan tampil halaman web seperti yang diperlihatkan pada Gambar \ref{gam:namenode}.
+{\tt sbin/start-yarn.sh} \\
+
+\item Cek Service yang \textit{Running}
+\begin{itemize}
+\item Jalankan perintah {\tt jps}
+\item Akses melalui web browser dengan alamat \url{http://localhost:9870}\footnote{Seperti yang diperlihatkan pada Gambar \ref{gam:namenode}} atau \url{http://localhost:8088}\footnote{Seperti yang diperlihatkan pada Gambar \ref{gam:resourcemanager}}.
+\end{itemize}
+
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{namenode}
-\caption{Namemnode Hadoop}
 \label{gam:namenode}
 \end{figure}
 
-\item Jalankan ResourceManager Daemon and NodeManager Daemon \\
-{\tt sbin/start-yarn.sh} \\
-ResourceManager dapat diakses melalui \url{http://localhost:8088} dan akan tampil halaman web serperti pada Gambar \ref{gam:namenode}.
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{resourcemanager}
 \caption{Resource Manager Hadoop}
@@ -387,8 +438,7 @@ ResourceManager dapat diakses melalui \url{http://localhost:8088} dan akan tampi
 \end{figure}
 \end{enumerate}
 
-Proses analisis big data sebaiknya menggunakan komputer dengan spesifikasi yang tinggi atau \textit{High Performance Computer (HPC)}. Namun jika tidak memiliki HPC cara lain adalah dengan menggabungkan beberapa komputer untuk melakukan proses analisis yang dikenal dengan nama \textit{Parallel Computing}. Paga Gambar \ref{gam:resourcemanager} terlihat bahwa ada 1 Node yang aktif, artinya jika diterapkan \textit{Parallel Computing} maka akan ada beberapa Node yang terhubung/aktif pada tampilan tersebut.
-
+Proses analisis big data sebaiknya menggunakan komputer dengan spesifikasi yang tinggi atau \textit{High Performance Computer (HPC)}. Namun jika tidak memiliki HPC cara lain adalah dengan menggabungkan beberapa komputer untuk melakukan proses analisis yang dikenal dengan \textit{Parallel Computing}.
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -448,7 +498,7 @@ Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push
 
 \newthought{Instalasi dan Konfigurasi GIT dan GitHub - Lanjutan}
 
-Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt Pull Request}:
+Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melakukan {\tt Pull Request}:
 \begin{multicols}{2}
 \begin{enumerate}
 \item Rizki Ilhami
@@ -511,44 +561,6 @@ Mahasiswa yang hadir:
 \item Zulfahmi
 \end{enumerate}}}
 
-\newthought{Instalasi Apache Pig}
-
-\begin{enumerate}
-\item Download Apache Pig  \\
-Apache Pig dapat didownload dari link ini \url{https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz} menggunakan {\tt wget} sehingga akan ada file baru dengan nama {\tt pig-0.17.0.tar.gz}
-
-{\tt \small{wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz}}
-
-\item Ekstrak Apache Pig \\
-Ekstrak hasil download tadi dengan perintah {\tt tar}
-
-{\tt tar -xzvf pig-0.17.0.tar.gz}
-
-\item Pindahkan Hasil Ekstraksi \\
-Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
-
-{\tt sudo mv pig-0.17.0 /usr/local/pig}
-
-\item Tambahkan Path Apache Pig ke {\tt .bashrc} \\
-Untuk menambahkan path apache pig ke {\tt .bashrc} gunakan perintah nano
-
-{\tt sudo nano $\sim$/.bashrc}
-
-\begin{lstlisting}
-#Apache Pig location
-export PIG_INSTALL=/usr/local/pig
-export PATH=$PATH:/usr/local/pig/bin
-\end{lstlisting}
-
-Kemdudian jalankan perintah {\tt source} agar konfigurasi yang telah ditambahkan ke {\tt .bashrc} dapat dikenali oleh sistem dan memastikan konfigurasi tersebut sudah benar.
-
-{\tt source .bashrc}
-
-\item Verifikasi Apache Pig \\
-Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig dengan perintah berikut:
-
-{\tt pig -version}
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
@@ -570,186 +582,13 @@ Mahasiswa yang hadir:
 \item Zulfahmi
 \end{enumerate}}}
 
-\newthought{Instalasi Apache Hive}
 
-\begin{enumerate}
-\item Download Apaceh Hive \\
-Download Apache Hive melalui link ini \url{https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz} dengan menggunakan perintah {\tt wget} seperti berikut:
-
-{\tt wget https://downloads.apache.org/hive/stable-2/apache -hive-2.3.9-bin.tar.gz}
-
-\item Ekstrak Apache Hive \\
-Ekstrak file yang telah didownload dengna perintah berikut:
-
-{\tt tar -zxvf apache-hive-2.3.9-bin.tar.gz}
-
-\item Pindahkan Hasil Ekstraksi \\
-Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
-
-{\tt sudo mv apache-hive-2.3.9-bin /usr/local/hive}
-
-\item Tambahkan Path Apaceh Hive ke {\tt .bashrc} \\
-Untuk menambahkan path apache hive ke {\tt .bashrc} gunakan perintah nano
-seperti berikut:
-
-{\tt sudo nano $\sim$/.bashrc}
-
-\begin{lstlisting}
-#Apache Hive location
-export HIVE_HOME=/usr/local/hive
-export PATH=$PATH:/usr/local/hive/bin
-\end{lstlisting}
-
-\item Konfigurasi {\tt core-site.xml} \\
-Buka file {\tt core-site.xml} yang berada di {\tt /usr/local/hadoop/etc/hadoop} dan update seperti pada kode berikut:
-
-\begin{lstlisting}
-<configuration>
-	<property>
-		<name>fs.default.name</name>
-		<value>hdfs://localhost:9000</value>
-	</property>
-	<property>
-		<name>hadoop.tmp.dir</name>
-		<value>/home/muhdavi/hadoop/tmp</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.dataflair.groups</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.dataflair.hosts</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.server.hosts</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.server.groups</name>
-		<value>*</value>
-	</property>
-</configuration>
-\end{lstlisting}
-
-\item Membuat directory di HDPS \\
-Buatlah beberapa directory berikut di HDPS dengan perintah sebagai berikut:
-
-{\tt \$hadoop fs -mkdir /tmp} \\
-{\tt \$hadoop fs -mkdir /user} \\
-{\tt \$hadoop fs -mkdir /user/hive} \\
-{\tt \$hadoop fs -mkdir /user/hive/warehouse}
-
-\item Memberikan Hak Akses \\
-Memberikan hak akses (\textit{permission}) pada folder berikut:
-
-{\tt \$hadoop fs -chmod g+w /tmp} \\
-{\tt \$hadoop fs -chmod g+w /user/hive/warehouse}
-
-\item Inisialisasi Hive Database
-
-{\tt \$bin/schematool -dbType derby -initSchema}
-
-\item Jalankan Hive
-
-{\tt \$bin/hiveserver2}
-
-\item Verifikasi Hive \\
-Buka terminal baru dan coba konek ke Hive dengan perintah berikut:
-
-{\tt \$bin/beeline -n bigdata -u jdbc:hive2://localhost:10000}
-
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{\#8 - 8 Desember 2022 menggantikan 3 November 2022}
 
-\newthought{Analisis Data Youtube}
 
-\begin{enumerate}
-\item Download Dataset \\
-Dataset dapat didownload dengan perintah berikut.
-
-{\tt wget http://netsg.cs.sfu.ca/youtubedata/0222.zip}
-
-\item Kode Apache Pig \\
-Tulis kode Apache Pig berikut menggunakan IDE.
-
-\begin{lstlisting}
-infiles = load '/hdfs/bhavesh/Youtube_POC/Youtube/0222/{0,1,2,3,4}.txt' using PigStorage('\t') as 
-(videoid:chararray,uploader:chararray,age:int,category:chararray,length:int,views:int,rate:int,rating:int,comments:int,related_id:chararray);
-files = FILTER infiles BY category is not null;
-grpn_for_catagories = group files by category;
-cnt_for_catagories = foreach grpn_for_catagories generate group, COUNT(files.videoid) as counting;
-sorted_for_catagories_desc = order cnt_for_catagories by counting desc;
-top5_for_catagories = limit sorted_for_catagories_desc 5;
-STORE top5_for_catagories INTO  '/hdfs/bhavesh/Youtube_POC/Top5Catagories' using PigStorage(',');
-order_rated_video = order files by rating desc;
-top10_rated_video = limit order_rated_video 10;
-final_top10_rated_video = foreach top10_rated_video generate $0,$3,$7;
-STORE final_top10_rated_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Rated' using PigStorage(',');
-order_viewed_video = order files by views desc;
-top10_viewed_video = limit order_viewed_video 10;
-final_top10_viewed_video = foreach top10_viewed_video generate $0,$3,$5;
-STORE final_top10_viewed_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Viewed' using PigStorage(',');
-top10_rated_catagories = foreach grpn_for_catagories{
-                           sorted = order files by rating desc;
-                           top10 = limit sorted 10;
-                           generate flatten(top10);
-};
-top10_rated_by_catagories = foreach top10_rated_catagories generate $0,$3,$7;
-STORE top10_rated_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories' using PigStorage(',');
-top10_viewed_catagories = foreach grpn_for_catagories{
-                           sorted = order files by views desc;
-                           top10 = limit sorted 10;
-                           generate flatten(top10);
-};
-top10_viewed_by_catagories = foreach top10_viewed_catagories generate $0,$3,$5;
-STORE top10_viewed_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories' using PigStorage(',');
-\end{lstlisting}
-
-\item Kode Shell Script
-
-\begin{lstlisting}
-sudo rm -rf /var/lib/hive/metastore/metastore_db/*.lck
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top5Catagories
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Rated
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Viewed
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories
-pig /home/bhavesh/Youtube_POC/Youtube/0222/Youtube_data_analysis.pig
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000               /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000                   /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000       /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000                  /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000      /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
-hive -e 'drop table if exists Top5CatagoriesTable';
-hive -e 'drop table if exists Top10RatedTable';
-hive -e 'drop table if exists Top10RatedByCatagoriesTable';
-hive -e 'drop table if exists Top10ViewedTable';
-hive -e 'drop table if exists Top10ViewedByCatagoriesTable';
-hive -e "create external table Top5CatagoriesTable(Top5Catagory string, VideoCount int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top5Catagories'";
-hive -e "create external table Top10RatedTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedTable'";
-hive -e "create external table Top10RatedByCatagoriesTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedByCatagoriesTable'";
-hive -e "create external table Top10ViewedTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedTable'";
-hive -e "create external table Top10ViewedByCatagoriesTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedByCatagoriesTable'";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000' overwrite into table Top5CatagoriesTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000' overwrite into table Top10RatedTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000' overwrite into table Top10RatedByCatagoriesTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000' overwrite into table Top10ViewedTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000' overwrite into table Top10ViewedByCatagoriesTable";
-\end{lstlisting}
-
-\item Jalankan Shell Script
-\item Cek Hasil CSV
-\item Cek Hasil Hive
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
