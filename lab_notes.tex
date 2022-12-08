@@ -1,7 +1,7 @@
 %%% Laboratory	 Notes
 %%% Template by Mikhail Klassen, April 2013
 %%% Contributions from Sarah Mount, May 2014
-%%% Updated by Muhammad Davi, September 2022
+%%% Contributions from Muhammad Davi, September 2022
 \documentclass[a4paper]{tufte-handout}
 \usepackage{lab_notes}
 
@@ -70,30 +70,56 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{maybe}
-    \begin{itemize}
-    	\item Waktu, Tempat dan Penilaian Matakuliah Practice Big Data
-    	\begin{itemize}
-    	\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
-    	\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
-    	\item Penilaian\footnote{Sesuai ketentuan dari Kepala Lab}
-    	\begin{itemize}
-    	\item Responsi Kompetensi
-    	\item Sikap
-    	\item Laporan
-    	\item Seminar
-    	\item UAS
-    	\item Hasil/Benda kerja
-    	\end{itemize}
-    	\end{itemize}
-    	\item Sebelum masuk lab wajib berbaris dan berdo'a terlebih dahulu di depan lab.
-    	\item Sebelum perkuliahan dimulai, mahasiswa atau yang mewakili memberi laporan.
-    	\item Setiap keluar lab meminta izin kepada dosen pengampu.
-    	\item Mengikuti Tata Tertib yang berlaku.
-    	\item Referensi
-    	\begin{itemize}
-    		\item Buku Ajar Big Data \citep{Mursyidah2020}.
-    	\end{itemize}
-    \end{itemize}
+\begin{itemize}
+\item Waktu, Tempat dan Penilaian
+
+\begin{itemize}
+\item Waktu: 13.30 - 16.00, 16.20 - 18.00\footnote{Istirahat dan Sholat Ashar 20 Menit}
+\item Tempat: Ruang Lab 3\footnote{Lab Jaringan dan Multimedia di Lantai Dasar Gedung Utama}
+\item Penilaian\footnote{Sesuai ketentuan dari Kepala Lab}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Responsi Kompetensi
+\item Sikap
+\item Laporan
+\item Seminar
+\item UAS
+\item Hasil/Benda kerja
+\end{itemize}
+\end{multicols}
+\end{itemize}
+
+\item Sebelum masuk lab wajib berbaris dan berdo'a terlebih dahulu di depan lab.
+\item Sebelum perkuliahan dimulai, mahasiswa atau yang mewakili memberi laporan.
+\item Setiap keluar lab meminta izin kepada dosen pengampu.
+\item Mengikuti Tata Tertib yang berlaku.
+\item Referensi
+
+\begin{itemize}
+\item Buku Ajar Big Data \citep{Mursyidah2020}.
+\end{itemize}
+
+\item Tata Cara Presensi selama Perkuliahan Online
+
+\begin{itemize}
+\item Buka repository laporan-practice-big-data melalui akun GitHub masing-masing
+\item Lakukan sinkro fork (Sync fork)
+\item Buka file {\tt lab\_notes.tex} menggunakan texmaker dan buka file laporan masing-masing
+\item Tambahkan kode berikut dan sesuaikan tanggalnya. \\
+\textbf{\textcolor{red}{Pastikan kode sudah benar!}}
+\begin{lstlisting}
+\newday{\textbf{1 Desember 2022}}
+\begin{enumerate}
+	\item Kendala dan Solusi
+	\item Kesimpulan
+\end{enumerate}
+\end{lstlisting}
+\item Lakukan {\tt git add, git commit dan git push}. \\ 
+Format \textit{message} saat {\tt git commit} \textit{"Presensi dd-mm-yyyy a.n. Nama"}. Contoh: "Presensi 01-12-2022 a.n. Davi"
+\item Buat {\tt pull requests} melalui menu Contribute
+\end{itemize}
+\end{itemize}
 \end{maybe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,9 +140,9 @@ Pada pertemuan pertama, kegiatan lab adalah perkenalan dan persiapan kebutuhan u
 No & Nama 					& Asal Sekolah 			& Alamat\\
 \midrule
 1 & Adinda Awaliah			& SMA N 1 Lhokseumawe 	& Cunda \\
-2 & Adjie Yusmunandar		& & \\
+2 & Adjie Yusmunandar		& SMK N 1 Lhokseumawe 	& Paloh Lada \\
 3 & Arya Saputra			& & \\
-4 & Cut Opy Mandalisa		& SMA N 1 Syamtali Bayu	& Bayu \\
+4 & Cut Opy Mandalisa		& SMA N 1 Syamtalira Bayu	& Bayu \\
 5 & Faiza Yuwafiqi			& & \\
 6 & Jihan Dwi Sarah			& SMA N 1 Lhokseumawe 	& Panggoi \\
 7 & M. Ikhsan				& SMK N 1 Simpang Kiri 	& Subulussalam \\
@@ -140,19 +166,20 @@ No & Nama 					& Asal Sekolah 			& Alamat\\
 \end{tabular}
 \end{table}
 
+\vspace*{.5cm}
 Setelah perkenalan, setiap mahasiswa membuat akun github dan akun discord sebagai media komunikasi dan tempat bekerja secara berkelompok. Hasil dari kegiatan tersebut dapat dilihat pada Tabel \ref{tab:peserta} dan Server Discord pada alamat \url{https://discord.gg/V32EWUx6}.
 
 Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat kerja minimal sebagai berikut:
-\vspace*{-.3cm}
+\begin{multicols}{2}
 \begin{itemize}
 \setlength\itemsep{0em}
-\item \textit{Operating System}: Ubuntu 22.04 LTS
 \item Processor 2 GHz dual-core
 \item RAM sebesar 4 GB
 \item Harddisk kosong 25 GB
 \item Resolusi layar 1024 x 768
+\item \textit{Operating System}: Ubuntu 22.04 LTS
 \end{itemize}
-\vspace*{-.3cm}
+\end{multicols}
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,6 +191,20 @@ Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat k
 Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada pertemuan sebelumnya. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
 
 \begin{enumerate}
+\item Membuat Group dan User Baru
+\begin{itemize}
+\item Membuat group \\
+{\tt sudo addgroup hadoop}
+\item Membuat User Baru dan Menambahkan ke Group \\
+{\tt sudo adduser -ingroup hadoop hdfs}
+\item Ubah Hak Akses \\
+{\tt sudo visudo}
+\item Tambahkan Kode \\
+{\tt hdfs	ALL=(ALL:ALL) ALL}
+\item Ganti ke User Baru \\
+{\tt su - hdfs}
+\end{itemize}
+
 \item Install Java \\
 {\tt sudo apt update} \\
 {\tt sudo apt install openjdk-8-jdk -y} \\
@@ -171,11 +212,41 @@ Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoo
 \item Verifikasi Hasil Instalasi Java \\
 {\tt java -version} \\
 Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasil seperti pada Gambar \ref{gam:java-version}.
+
 \begin{figure}
+\setlength{\belowcaptionskip}{-10pt}
 \includegraphics[width=\textwidth]{java-version}
 \caption{Versi Java yang Terinstall}
 \label{gam:java-version}
 \end{figure}
+
+\item Setting SSH \\
+\begin{itemize}
+\item Uninstall OpenSSH \\
+{\tt sudo apt remove openssh-server openssh-client}
+\item Install OpenSSH Baru \\
+{\tt sudo apt update} \\
+{\tt sudo apt install openssh-server openssh-client} \\
+{\tt sudo ufw allow 22} \\
+{\tt sudo systemctl restart ssh} \\
+{\tt sudo apt install ssh} \\
+{\tt sudo apt install rsync}
+\item Generate Key \\
+{\tt ssh-keygen -t dsa -P '' -f $\sim$/.ssh/id\_dsa} \\
+{\tt cat $\sim$/.ssh/id\_dsa.pub >> $\sim$/.ssh/authorized\_keys} \\
+{\tt ssh-keygen -t rsa}
+\item Coba Masuk via SSH \\
+{\tt ssh localhost}
+\item Jika masih harus memasukkan password, lanjutkan langakh berikut. \\
+{\tt ssh-keygen -t rsa} \\
+{\tt cat $\sim$/.ssh/id\_rsa.pub >> $\sim$/.ssh/authorized\_keys} \\
+{\tt chmod og-wx $\sim$/.ssh/authorized\_keys} \\
+{\tt sudo apt-get update}
+\item Coba Masuk via SSH Lagi \\
+{\tt ssh localhost}
+\item Jika sudah berhasil, keluar dengan perintah {\tt exit} \\
+{\tt exit}
+\end{itemize}
 
 \item Download Apache Hadoop \\
 {\tt wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz}
@@ -189,49 +260,63 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 \item f $\Rightarrow$ nama file arsip.
 \end{itemize}
 
-\item Pindahkan hasil ekstrak ke /usr/local/ \\
+\item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
 {\tt sudo mv hadoop-3.3.4 /usr/local/hadoop}
 
-\item Edit file hadoop-env.sh dengan mengubah variabel JAVA\_HOME\footnote{Pada baris 54, lebih jelasnya lihat Gambar \ref{gam:java-hadoop}} \\
-{\tt cd /usr/local/hadoop} \\
-{\tt sudo nano etc/hadoop/hadoop-env.sh} \\
+\item Ubah Hak Akses {\tt /usr/local/hadoop} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop}
+
+\item Edit file {\tt sysctl.conf} untuk Disable IPV6
+\begin{itemize}
+\item Buka file {\tt sysctl.conf} \\
+{\tt sudo nano /etc/sysctl.conf}
+\item Tambahkan Kode
+\begin{lstlisting}
+net.ipv6.conf.all.disable_ipv6=1
+net.ipv6.conf.lo.disable_ipv6=1
+net.ipv6.conf.default_ipv6=1
+\end{lstlisting}
+\end{itemize}
+
+\item Edit file {\tt hadoop-env.sh} \\
+{\tt cd /usr/local/hadoop/etc/hadoop} \\
+{\tt sudo nano hadoop-env.sh} \\
+
 \begin{lstlisting}
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true
+export HADOOP_HOME_WARN_SUPPRESS="TRUE"
+export HADOOP_ROOT_LOGGER="WARN"
 \end{lstlisting}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.6\textwidth]{java-hadoop}
-\caption{Konfigurasi Java Home}
-\label{gam:java-hadoop}
-\end{figure}
-
-\item Menambahkan Hadoop Path ke {\tt .bashrc}\footnote{Lebih jelasnya lihat Gambar \ref{gam:hadoop-path}} \\
+\item Menambahkan Hadoop ke {\tt .bashrc} \\
 {\tt sudo nano $\sim$/.bashrc} \\
 \begin{lstlisting}
+#Hadoop Location
 export HADOOP_HOME=/usr/local/hadoop
-export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
-export HADOOP_MAPRED_HOME=${HADOOP_HOME}
-export HADOOP_COMMON_HOME=${HADOOP_HOME}
-export HADOOP_HDFS_HOME=${HADOOP_HOME}
-export YARN_HOME=${HADOOP_HOME}
+export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+export HADOOP_MAPRED_HOME=/usr/local/hadoop
+export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_HDFS_HOME=/usr/local/hadoop
+export YARN_HOME=/usr/local/hadoop
 export PATH=$PATH:/usr/local/hadoop/bin
+export PATH=$PATH:/usr/local/hadoop/sbin
+
+#Hadoop Native Location
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
 \end{lstlisting}
 
 {\tt source .bashrc}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\textwidth]{hadoop-path}
-\caption{Konfigurasi Hadoop Path}
-\label{gam:hadoop-path}
-\end{figure}
 
 \item Verifikasi Hasil Instalasi Hadoop \\
 {\tt hadoop version} \\
-Jika instalasi hadoop sudah berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
+Jika instalasi hadoop berhasil, maka ketika mengecek versi hadoop akan muncul seperti yang diperlihatkan pada Gambar \ref{gam:hadoop-version}.
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{hadoop-version}
-\caption{Versi Hadoop yang Terinstall}
+\caption{Versi Hadoop Terinstall 3.3.4}
 \label{gam:hadoop-version}
 \end{figure}
 \end{enumerate}
@@ -250,8 +335,9 @@ Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop
 \begin{enumerate}
 \item Konfigurasi File Hadoop \\
 File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
+
 {\tt cd /usr/local/hadoop/etc/hadoop} \\
-{\tt ls}
+
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{file-hadoop}
 \caption{File Konfigurasi Hadoop}
@@ -264,16 +350,14 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 \item core-site.xml
 \begin{lstlisting}
 <property>
+	<name>hadoop.tmp.dir</name>
+	<value>/app/hadoop/tmp</value>
+</property>
+<property>
 	<name>fs.default.name</name>
 	<value>hdfs://localhost:9000</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.8\textwidth]{site-core}
-\caption{Konfigurasi Core Site}
-\label{gam:site-yarn}
-\end{figure}
 
 \item hdfs-site.xml
 \begin{lstlisting}
@@ -282,29 +366,26 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>1</value>
 </property>
 <property>
-	<name>dfs.permission</name>
-	<value>false</value>
+	<name>dfs.namenode.name.dir</name>
+	<value>file:/usr/local/hadoop/yarn_data/hdfs/namenode</value>
+</property>
+<property>
+	<name>dfs.datanode.data.dir</name>
+	<value>file:/usr/local/hadoop/yarn_data/hdfs/datanode</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=.7\textwidth]{site-hdfs}
-\caption{Konfigurasi HDFS Site}
-\label{gam:site-yarn}
-\end{figure}
 
 \item mapred-site.xml
 \begin{lstlisting}
 <property>
-	<name>mapreduce.framework.name</name>
+	<name>mapred.framework.name</name>
 	<value>yarn</value>
 </property>
+<property>
+	<name>mapreduce.jobhistory.address</name>
+	<value>localhost:10020</value>
+</property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{site-mapred}
-\caption{Konfigurasi Mapred Site}
-\label{gam:site-yarn}
-\end{figure}
 
 \item yarn-site.xml
 \begin{lstlisting}
@@ -313,46 +394,60 @@ Beberapa file yang perlu dikonfigurasi adalah sebebai berikut:
 	<value>mapreduce_shuffle</value>
 </property>
 <property>
-	<name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+	<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
 	<value>org.apache.hadoop.mapred.ShuffleHandler</value>
 </property>
 \end{lstlisting}
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{site-yarn}
-\caption{Konfigurasi Yarn Site}
-\label{gam:site-yarn}
-\end{figure}
 \end{itemize}
 
-\item Jalankan Perintah Format Filesystem \\
-{\tt hdfs namenode -format}
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{format-filesystem}
-\caption{Format Filesystem}
-\label{gam:format-filesystem}
-\end{figure}
+\item Membuat Folder Sementara (\textit{Temporary}) untuk HDFS \\
+{\tt sudo mkdir -p /app/hadoop/tmp} \\
+{\tt sudo chown -R hdfs:hadoop /app/hadoop/tmp} \\
+{\tt sudo chmod -R 777 /app/hadoop/tmp}
 
-\item Jalankan NameNode Daemon dan DataNode Daemon \\
-{\tt sbin/start-dfs.sh} \\
-NameNode dapat diakses melalui \url{http://localhost:9870} dan akan tampil halaman web seperti yang diperlihatkan pada Gambar \ref{gam:namenode}.
+\item Membuat Folder {\tt namenode} dan {\tt datanode} \\
+{\tt sudo mkdir -p /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo mkdir -p /usr/local/hadoop/yarn\_data/hdfs/datanode} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo chown -R hdfs:hadoop /usr/local/hadoop/yarn\_data/hdfs/datanode} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop/yarn\_data/hdfs/namenode} \\
+{\tt sudo chmod -R 777 /usr/local/hadoop/yarn\_data/hdfs/datanode}
+
+\item Jalankan Perintah Format HDFS \\
+{\tt hdfs namenode -format}
+
+\item Jalankan Hadoop Service \\
+{\tt start-dfs.sh} \\
+{\tt start-yarn.sh} \\
+
+\item Cek Hadoop Service
+\begin{itemize}
+\item Jalankan perintah {\tt jps}
+\item Akses melalui web browser dengan alamat \url{http://localhost:9870}\footnote{Seperti yang diperlihatkan pada Gambar \ref{gam:namenode}} atau \url{http://localhost:8088}\footnote{Seperti yang diperlihatkan pada Gambar \ref{gam:resourcemanager}}.
+\end{itemize}
+
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{namenode}
-\caption{Namemnode Hadoop}
 \label{gam:namenode}
 \end{figure}
-
-\item Jalankan ResourceManager Daemon and NodeManager Daemon \\
-{\tt sbin/start-yarn.sh} \\
-ResourceManager dapat diakses melalui \url{http://localhost:8088} dan akan tampil halaman web serperti pada Gambar \ref{gam:namenode}.
+\vspace*{-.5cm}
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{resourcemanager}
 \caption{Resource Manager Hadoop}
 \label{gam:resourcemanager}
 \end{figure}
+
+\vspace*{-.5cm}
+\item Hentikan Hadoop Service
+\begin{itemize}
+\item Hentikan Service Tertentu \\
+{\tt stop-dfs.sh} atau {\tt stop-yarn.sh}
+\item Hentikan Semua Service \\
+{\tt stop-all.sh}
+\end{itemize}
 \end{enumerate}
-
-Proses analisis big data sebaiknya menggunakan komputer dengan spesifikasi yang tinggi atau \textit{High Performance Computer (HPC)}. Namun jika tidak memiliki HPC cara lain adalah dengan menggabungkan beberapa komputer untuk melakukan proses analisis yang dikenal dengan nama \textit{Parallel Computing}. Paga Gambar \ref{gam:resourcemanager} terlihat bahwa ada 1 Node yang aktif, artinya jika diterapkan \textit{Parallel Computing} maka akan ada beberapa Node yang terhubung/aktif pada tampilan tersebut.
-
+% mounting data shared folder
+% sudo mount -t vboxsf share /mnt/share
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -406,13 +501,16 @@ Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push
 \label{gam:form-ssh}
 \end{figure}
 
+\vspace*{-.5cm}
+\hrulefill
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{\#5 - 25 November 2022 menggantikan 6 Oktober 2022}
 
 \newthought{Instalasi dan Konfigurasi GIT dan GitHub - Lanjutan}
 
-Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt Pull Request}:
+Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melakukan {\tt Pull Request}:
 \begin{multicols}{2}
 \begin{enumerate}
 \item Rizki Ilhami
@@ -430,6 +528,7 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 \item Nuraula Tafiza
 \item Muhammad Ikrammullah
 \item Nadzura Kumaira
+\item Adjie Yusmunandar
 \end{enumerate}
 \end{multicols}
 
@@ -437,7 +536,6 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melalkukan {\tt 
 Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \begin{multicols}{2}
 \begin{enumerate}
-\item \textcolor{purple}{Adjie Yusmunandar}
 \item Arya Saputra
 \item Faiza Yuwafiqi
 \item Nurul Aflah
@@ -452,233 +550,401 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \label{gam:form-ssh}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022}
-
-\newthought{Instalasi Apache Pig}
-
-\begin{enumerate}
-\item Download Apache Pig  \\
-Apache Pig dapat didownload dari link ini \url{https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz} menggunakan {\tt wget} sehingga akan ada file baru dengan nama {\tt pig-0.17.0.tar.gz}
-
-{\tt wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz}
-
-\item Ekstrak Apache Pig \\
-Ekstrak hasil download tadi dengan perintah {\tt tar}
-
-{\tt tar -xzvf pig-0.17.0.tar.gz}
-
-\item Pindahkan Hasil Ekstraksi \\
-Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
-
-{\tt sudo mv pig-0.17.0 /usr/local/pig}
-
-\item Tambahkan Path Apache Pig ke {\tt .bashrc} \\
-Untuk menambahkan path apache pig ke {\tt .bashrc} gunakan perintah nano
-
-{\tt sudo nano $\sim$/.bashrc}
-
-\begin{lstlisting}
-#Apache Pig location
-export PIG_INSTALL=/usr/local/pig
-export PATH=$PATH:/usr/local/pig/bin
-\end{lstlisting}
-
-Kemdudian jalankan perintah {\tt source} agar konfigurasi yang telah ditambahkan ke {\tt .bashrc} dapat dikenali oleh sistem dan memastikan konfigurasi tersebut sudah benar.
-
-{\tt source .bashrc}
-
-\item Verifikasi Apache Pig \\
-Untuk memverifikasi bahwa instalasi telah berhasil, coba cek versi Apache Pig dengan perintah berikut:
-
-{\tt pig -version}
-\end{enumerate}
+\vspace*{-.5cm}
+\hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#7 - 2 Desember 2022 menggantikan 20 Oktober 2022}
+\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Arya Saputra $\oplus$
+\item Cut Opy Mandalisa
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
-\newthought{Instalasi Apache Hive}
+\newthought{Program WordCount bawaan Hadoop}
+
+Jika sudah selesai malakukan instalasi Hadoop, maka dapat mencoba program bawaan Hadoop untuk memahami bagaimana proses dan cara kerja Hadoop dalam memproses data input hingga menghasilkan sebuah output. Salah satu program yang sudah disediakan oleh Hadoop adalah WordCount, yaitu program menghitung jumlah kata dalam data input yang dibarikan. Silahkan ikuti langkah-langkah berikut ini untuk mengetahui cara penggunaan program WordCount.
 
 \begin{enumerate}
-\item Download Apaceh Hive \\
-Download Apache Hive melalui link ini \url{https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz} dengan menggunakan perintah {\tt wget} seperti berikut:
+\item Jalankan Hadoop Service \\
+{\tt start-dfs.sh} \\
+{\tt yarn-dfs.sh}
 
-{\tt wget https://downloads.apache.org/hive/stable-2/apache-hive-2.3.9-bin.tar.gz}
+\item Buat folder input di HDFS\\
+{\tt hadoop fs -mkdir /input}
 
-\item Ekstrak Apache Hive \\
-Ekstrak file yang telah didownload dengna perintah berikut:
-
-{\tt tar -zxvf apache-hive-2.3.9-bin.tar.gz}
-
-\item Pindahkan Hasil Ekstraksi \\
-Pindahkan hasil ekstraksi ke {\tt /usr/local/} dengan perintah {\tt mv}
-
-{\tt sudo mv apache-hive-2.3.9-bin /usr/local/hive}
-
-\item Tambahkan Path Apaceh Hive ke {\tt .bashrc} \\
-Untuk menambahkan path apache hive ke {\tt .bashrc} gunakan perintah nano
-seperti berikut:
-
-{\tt sudo nano $\sim$/.bashrc}
-
+\item Buat file baru dengan nama dan data berikut \\
+{\tt sudo nano dataWordCount.txt}
 \begin{lstlisting}
-#Apache Hive location
-export HIVE_HOME=/usr/local/hive
-export PATH=$PATH:/usr/local/hive/bin
+AdindaAwaliah, SMA_N_1_Lhokseumawe, Cunda
+AdjieYusmunandar, SMK_N_1_Lhokseumawe, Paloh_Lada
+AryaSaputra
+CutOpyMandalisa, SMA_N_1_Syamtalira_Bayu, Bayu
+FaizaYuwafiqi
+JihanDwiSarah, SMA_N_1_Lhokseumawe, Panggoi
+M.Ikhsan, SMK_N_1_Simpang_Kiri, Subulussalam
+MuhammadIkrammullah
+MuhammadMunawir, SMK_N_1_Lhoksukon, Karing_Meurah_Mulia
+NadzuraKumaira, SMK_N_2_Lhokseumawe, Keude_Aceh
+NuraniHarumFardaniah, SMK_N_1_Lhoksukon, Buket_Hagu
+NuraulaTafiza, SMK_N_1_Lhoksukon, Alue_Buket
+NurulAflah
+RauzatinurSyah, MAS_Misbahul_Ulum, Geudong
+ReshaRussita, SMA_N_1_Lhokseumawe, Alue_Awe
+RizkiIlhami, SMK_N_1_Lhoksukon, Lapang
+SalsabilaIrmanda, MAS_Misbahul_Ulum, Alue_Awe
+SitiHajarAlZahra
+SyarfaniAkbar
+TaraviaFauzah, SMA_N_1_Dewantara, Blang_Naleung_Mameh
+Zulfahmi, SMK_N_1_Lhokseumawe, Kuta_Makmur
 \end{lstlisting}
 
-\item Konfigurasi {\tt core-site.xml} \\
-Buka file {\tt core-site.xml} yang berada di {\tt /usr/local/hadoop/etc/hadoop} dan update seperti pada kode berikut:
+\item Pindahkan file dataWordCount.txt ke folder input di HDFS \\
+{\tt hadoop fs -put dataWordCount.txt /input}
 
-\begin{lstlisting}
-<configuration>
-	<property>
-		<name>fs.default.name</name>
-		<value>hdfs://localhost:9000</value>
-	</property>
-	<property>
-		<name>hadoop.tmp.dir</name>
-		<value>/home/muhdavi/hadoop/tmp</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.dataflair.groups</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.dataflair.hosts</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.server.hosts</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.server.groups</name>
-		<value>*</value>
-	</property>
-</configuration>
-\end{lstlisting}
+\item Jalankan program WordCount \\
+{\tt hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar wordcount /input/dataWordCount.txt /output}
+%hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.0.jar wordcount /input/ /output2 -> untuk semua file dari folder input
 
-\item Membuat directory di HDPS \\
-Buatlah beberapa directory berikut di HDPS dengan perintah sebagai berikut:
+\item Cek Hasil \\
+{\tt hadoop fs -ls /output}
 
-{\tt \$hadoop fs -mkdir /tmp} \\
-{\tt \$hadoop fs -mkdir /user} \\
-{\tt \$hadoop fs -mkdir /user/hive} \\
-{\tt \$hadoop fs -mkdir /user/hive/warehouse}
-
-\item Memberikan Hak Akses \\
-Memberikan hak akses (\textit{permission}) pada folder berikut:
-
-{\tt \$hadoop fs -chmod g+w /tmp} \\
-{\tt \$hadoop fs -chmod g+w /user/hive/warehouse}
-
-\item Inisialisasi Hive Database
-
-{\tt \$bin/schematool -dbType derby -initSchema}
-
-\item Jalankan Hive
-
-{\tt \$bin/hiveserver2}
-
-\item Verifikasi Hive \\
-Buka terminal baru dan coba konek ke Hive dengan perintah berikut:
-
-{\tt \$bin/beeline -n bigdata -u jdbc:hive2://localhost:10000}
-
+\item Lihat Hasil \\
+{\tt hadoop fs -cat /output/part-r-00000}
 \end{enumerate}
+
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 6 dan 7 dan masukkan ke dalam laporan.
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#7 - 2 Desember 2022 menggantikan 20 Oktober 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Muhammad Munawir
+\item Rizki Ilhami
+\item Rauzatinur Syah
+\item Salsabila Irmanda
+\item Adjie Yusmunandar
+\item Nurani Harum Fardaniah
+\item Cut Opy Mandalisa
+\item Resha Russita
+\item Taravia Fauzah
+\item Adinda Awaliah
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Zulfahmi
+\end{enumerate}}}
+
+\newthought{Program WordCount dengan Java}
+
+Pada pertemuan sebelumnya telah mencoba program WordCount bawaan Hadoop. Jika dengan program bawaan Hadoop sudah dapat mendapatkan hasil, artinya Hadoop kita sudah bisa digunakan untuk menjalankan program. Ikuti beberapa langkah berikut untuk memberikan pemahaman bagaimana proses membuat program, menyiapkan data, meng-compile program hingga menjalankan program dan memperoleh hasilnya.
+
+\begin{enumerate}
+\item Pastikan Hadoop Service sudah berjalan
+\item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
+\item Buat file baru dengan nama dan kode berikut \\
+
+{\tt sudo nano WordCount.java}
+\begin{lstlisting}
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+public class WordCount {
+
+    public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
+
+        private final static IntWritable one = new IntWritable(1);
+        private Text word = new Text();
+
+        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+            StringTokenizer itr = new StringTokenizer(value.toString());
+            while (itr.hasMoreTokens()) {
+                word.set(itr.nextToken());
+                context.write(word, one);
+            }
+        }
+    }
+
+    public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+        private IntWritable result = new IntWritable();
+
+        public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+            int sum = 0;
+            for (IntWritable val : values) {
+                sum += val.get();
+            }
+            result.set(sum);
+            context.write(key, result);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "word count");
+        job.setJarByClass(WordCount.class);
+        job.setMapperClass(TokenizerMapper.class);
+        job.setCombinerClass(IntSumReducer.class);
+        job.setReducerClass(IntSumReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}
+\end{lstlisting}
+
+{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice-
+big-data/main/WordCount/src/main/java/WordCount.java}
+
+\item Buat classpath \\
+{\tt export HADOOP\_CLASSPATH=\$(\$HADOOP\_HOME/bin/hadoop classpath)}
+
+\item Buat folder baru untuk menampung hasil \textit{compile} program java dan ubah hak aksesnya \\
+{\tt sudo mkdir JavaCompiled} \\
+{\tt sudo chmod -R 777 JavaCompiled}
+
+\item Compile file WordCount.java \\
+{\tt \small{javac -classpath \$HADOOP\_CLASSPATH -d JavaCompiled/ WordCount.java}}
+
+\item Mengubah file menjadi executable .jar \\
+{\tt jar -cvf WordCount.jar -C JavaCompiled/ .}
+
+\item Jalankan program WordCount \\
+{\tt hadoop jar WordCount.jar WordCount /input/dataWordCount.txt /ResultWordCountJava}
+
+\item Cek Hasil \\
+{\tt hadoop fs -ls /ResultWordCountJava}
+
+\item Lihat Hasil \\
+{\tt hadoop fs -cat /ResultWordCountJava/part-r-00000}
+\end{enumerate}
+
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan.
+
+\hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{\#8 - 8 Desember 2022 menggantikan 3 November 2022}
 
-\newthought{Analisis Data Youtube}
+\newthought{Program WordCount dengan Python}
 
 \begin{enumerate}
-\item Download Dataset \\
-Dataset dapat didownload dengan perintah berikut.
-
-{\tt wget http://netsg.cs.sfu.ca/youtubedata/0222.zip}
-
-\item Kode Apache Pig \\
-Tulis kode Apache Pig berikut menggunakan IDE.
-
+\item Pastikan Hadoop Service dan Spark Service berjalan
+\item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
+\item Buat folder baru untuk menyimpan file Python \\
+{\tt sudo mkdir WordCountPython}
+\item Buat file baru dengan nama dan kode berikut
+\begin{itemize}
+\item {\tt map.py} \\
+{\tt sudo nano WordCountPython/map.py}
 \begin{lstlisting}
-infiles = load '/hdfs/bhavesh/Youtube_POC/Youtube/0222/{0,1,2,3,4}.txt' using PigStorage('\t') as 
-(videoid:chararray,uploader:chararray,age:int,category:chararray,length:int,views:int,rate:int,rating:int,comments:int,related_id:chararray);
-files = FILTER infiles BY category is not null;
-grpn_for_catagories = group files by category;
-cnt_for_catagories = foreach grpn_for_catagories generate group, COUNT(files.videoid) as counting;
-sorted_for_catagories_desc = order cnt_for_catagories by counting desc;
-top5_for_catagories = limit sorted_for_catagories_desc 5;
-STORE top5_for_catagories INTO  '/hdfs/bhavesh/Youtube_POC/Top5Catagories' using PigStorage(',');
-order_rated_video = order files by rating desc;
-top10_rated_video = limit order_rated_video 10;
-final_top10_rated_video = foreach top10_rated_video generate $0,$3,$7;
-STORE final_top10_rated_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Rated' using PigStorage(',');
-order_viewed_video = order files by views desc;
-top10_viewed_video = limit order_viewed_video 10;
-final_top10_viewed_video = foreach top10_viewed_video generate $0,$3,$5;
-STORE final_top10_viewed_video INTO '/hdfs/bhavesh/Youtube_POC/Top10Viewed' using PigStorage(',');
-top10_rated_catagories = foreach grpn_for_catagories{
-                           sorted = order files by rating desc;
-                           top10 = limit sorted 10;
-                           generate flatten(top10);
-};
-top10_rated_by_catagories = foreach top10_rated_catagories generate $0,$3,$7;
-STORE top10_rated_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories' using PigStorage(',');
-top10_viewed_catagories = foreach grpn_for_catagories{
-                           sorted = order files by views desc;
-                           top10 = limit sorted 10;
-                           generate flatten(top10);
-};
-top10_viewed_by_catagories = foreach top10_viewed_catagories generate $0,$3,$5;
-STORE top10_viewed_by_catagories INTO '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories' using PigStorage(',');
+#!/usr/bin/env python
+
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    words = line.split()
+    for word in words:
+        print('{}\t{}'.format(word, 1))
 \end{lstlisting}
+{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/map.py}
 
-\item Kode Shell Script
-
+\item {\tt reduce.py} \\
+{\tt sudo nano WordCountPython/reduce.py}
 \begin{lstlisting}
-sudo rm -rf /var/lib/hive/metastore/metastore_db/*.lck
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
-rm /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top5Catagories
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Rated
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10Viewed
-hadoop fs -rmr /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories
-pig /home/bhavesh/Youtube_POC/Youtube/0222/Youtube_data_analysis.pig
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000               /home/mrinmoy/Downloads/POC/YoutubePOC/Top5Catagories.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000                   /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Rated.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000       /home/mrinmoy/Downloads/POC/YoutubePOC/Top10RatedByCatagories.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000                  /home/mrinmoy/Downloads/POC/YoutubePOC/Top10Viewed.csv
-hadoop fs -get /hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000      /home/mrinmoy/Downloads/POC/YoutubePOC/Top10ViewedByCatagories.csv
-hive -e 'drop table if exists Top5CatagoriesTable';
-hive -e 'drop table if exists Top10RatedTable';
-hive -e 'drop table if exists Top10RatedByCatagoriesTable';
-hive -e 'drop table if exists Top10ViewedTable';
-hive -e 'drop table if exists Top10ViewedByCatagoriesTable';
-hive -e "create external table Top5CatagoriesTable(Top5Catagory string, VideoCount int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top5Catagories'";
-hive -e "create external table Top10RatedTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedTable'";
-hive -e "create external table Top10RatedByCatagoriesTable(Videoid string,Catagory string,Rating int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10RatedByCatagoriesTable'";
-hive -e "create external table Top10ViewedTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedTable'";
-hive -e "create external table Top10ViewedByCatagoriesTable(Videoid string,Catagory string,Viewed_count int) row format delimited fields terminated by',' lines terminated by '\n' stored as textfile location '/hdfs/bhavesh/Youtube_POC/hive/Top10ViewedByCatagoriesTable'";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top5Catagories/part-r-00000' overwrite into table Top5CatagoriesTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Rated/part-r-00000' overwrite into table Top10RatedTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10RatedByCatagories/part-r-00000' overwrite into table Top10RatedByCatagoriesTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10Viewed/part-r-00000' overwrite into table Top10ViewedTable";
-hive -e "load data inpath '/hdfs/bhavesh/Youtube_POC/Top10ViewedByCatagories/part-r-00000' overwrite into table Top10ViewedByCatagoriesTable";
-\end{lstlisting}
+#!/usr/bin/env python
 
-\item Jalankan Shell Script
-\item Cek Hasil CSV
-\item Cek Hasil Hive
+import sys
+
+current_word = None
+current_count = 0
+word = None
+
+for line in sys.stdin:
+    line = line.strip()
+    word, count = line.split('\t', 1)
+
+    try:
+        count = int(count)
+    except ValueError:
+        continue
+
+    if current_word == word:
+        current_count += count
+    else:
+        if current_word:
+            print('{}\t{}'.format(current_word, current_count))
+        current_count = count
+
+if current_word == word:
+    print('{}\t{}'.format(current_word, current_count))
+\end{lstlisting}
+{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/reduce.py}
+\end{itemize}
+
+\item Ubah Hak Akses \\
+{\tt sudo chmod +x -R WordCountPython/} 
+
+\item Mencoba Program di Local
+\begin{itemize}
+\item Mencoba jalankan {\tt map.py} \\
+{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py}
+\item Mencoba jalankan {\tt reduce.py} \\
+{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/reduce.py}
+\item Mencoba jalankan {\tt map.py} dan {\tt reduce.py}
+{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
+\end{itemize}
+
+\item Jalankan Program menggunakan Hadoop \\
+{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper ~/WordCountPython/Map.py -reducer ~/WordCountPython/Reduce.py -input /input/inputWordCount.txt -output /ResultWordCountPython}
+
+\item Cek Hasil \\
+{\tt hadoop fs -ls /ResultWordCountPython}
+
+\item Lihat Hasil \\
+{\tt hadoop fs -cat /ResultWordCountPython/part-r-00000}
 \end{enumerate}
+
+\vspace*{-.5cm}
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan.
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#9 - 9 Desember 2022 menggantikan 10 November 2022}
+
+\newthought{Instalasi Apache Spark (PySpark)}
+
+\begin{enumerate}
+\item Download Apache Spark \\
+{\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
+
+\item Ekstrak Apache Spark \\
+{\tt tar -xzf spark-3.3.1-bin-hadoop3.tgz /usr/local/spark}
+
+\item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
+{\tt sudo mv spark-3.3.1-bin-hadoop3 /usr/local/spark}
+
+\item Menambahkan Spark ke {\tt .bashrc} \\
+{\tt sudo nano $\sim$/.bashrc}
+\begin{lstlisting}
+#Spark Location
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+\end{lstlisting}
+{\tt source $\sim$/.bashrc}
+
+\item Verifikasi Hasil Instalasi Spark
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{spark-version}
+\caption{Versi Spark Terinstall 3.3.1 }
+\label{gam:form-ssh}
+\end{figure}
+
+\item Jalankan Spark Service \\
+{\tt start-master.sh}
+
+\item Hentikan Spark Service \\
+{\tt stop-master.sh}
+\end{enumerate}
+
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan.
+
+\hrulefill
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022}
+
+\newthought{Pertemuan 10}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#11 - 16 Desember 2022 menggantikan 17 November 2022}
+
+\newthought{Pertemuan 11}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022}
+
+\newthought{Pertemuan 12}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022}
+
+\newthought{Pertemuan 13}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#14 - 29 Desember 2022 menggantikan 8 Desember 2022}
+
+\newthought{Pertemuan 14}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#15 - 30 Desember 2022 menggantikan 15 Desember 2022}
+
+\newthought{Pertemuan 15}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#16 - 30 Desember 2022 menggantikan 22 Desember 2022}
+
+\newthought{Pertemuan 16}
+
+\hrulefill
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
