@@ -309,7 +309,7 @@ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
 export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
 \end{lstlisting}
 
-{\tt source $\sim$/.bashrc}
+{\tt source .bashrc}
 
 \item Verifikasi Hasil Instalasi Hadoop \\
 {\tt hadoop version} \\
@@ -326,6 +326,7 @@ Jika instalasi hadoop berhasil, maka ketika mengecek versi hadoop akan muncul se
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{\#3 - 22 September 2022}
+\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktik sesuai dengan format yang telah ditentukan. Template laporan dapat di download pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
 \newthought{Konfigurasi Apache Hadoop}
 
@@ -336,7 +337,6 @@ Setelah selesai meng-install Hadoop, kita perlu konfigurasi beberapa file Hadoop
 File-file konfigurasi hadoop berada pada folder {\tt hadoop/etc/hadoop} seperti yang diperlihatkan pada Gambar \ref{gam:file-hadoop}.
 
 {\tt cd /usr/local/hadoop/etc/hadoop} \\
-{\tt sudo nano nama-file}
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{file-hadoop}
@@ -489,7 +489,7 @@ Kode SSH-Key yang telah di-\textit{copy} pada langkah sebelumnya \textit{paste}-
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{github-2}
 \caption{Form Penambahan SSH-Key di GitHub}
-\label{gam:tambah-ssh}
+\label{gam:form-ssh}
 \end{figure}
 
 Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push} untuk repositori laporan practice big data dari akun masing-masing. Untuk lebih jelasnya tentang GIT dapat membaca catatan pada link berikut \url{https://muhdavi.github.io/learn-git/}.
@@ -498,7 +498,7 @@ Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push
 \begin{figure}[!ht]
 \includegraphics[width=.95\textwidth]{24-11-2022}
 \caption{Perkuliahan Daring via GMeet 24-11-2022}
-\label{gam:perkuliahan-24-11}
+\label{gam:form-ssh}
 \end{figure}
 
 \vspace*{-.5cm}
@@ -547,7 +547,7 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{25-11-2022}
 \caption{Perkuliahan Daring via GMeet 25-11-2022}
-\label{gam:perkuliahan-25-11}
+\label{gam:form-ssh}
 \end{figure}
 
 \vspace*{-.5cm}
@@ -575,8 +575,6 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \item Taravia Fauzah
 \item Zulfahmi
 \end{enumerate}}}
-
-\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktik sesuai dengan format yang telah ditentukan. Template laporan dapat dilihat pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
 \newthought{Program WordCount bawaan Hadoop}
 
@@ -631,7 +629,7 @@ Zulfahmi, SMK_N_1_Lhokseumawe, Kuta_Makmur
 \end{enumerate}
 
 \newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 6 dan 7 dan masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan 8-8-2022 an. Nama}"
+Screenshot hasil dari langkah 6 dan 7 dan masukkan ke dalam laporan.
 
 \hrulefill
 
@@ -751,79 +749,13 @@ big-data/main/WordCount/src/main/java/WordCount.java}
 \end{enumerate}
 
 \newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan 8-8-2022 an. Nama}"
+Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan.
 
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#8 - 8 Desember 2022 menggantikan 3 November 2022
-\footnote{Mahasiswa yang hadir:
-\begin{enumerate}
-\item Adinda Awaliah
-\item Adjie Yusmunandar
-%\item Arya Saputra
-\item Cut Opy Mandalisa
-%\item Faiza Yuwafiqi
-\item Jihan Dwi Sarah
-\item M. Ikhsan
-\item Muhammad Ikrammullah
-\item Muhammad Munawir
-%\item Nadzura Kumaira
-%\item Nurani Harum Fardaniah
-%\item Nuraula Tafiza
-%\item Nurul Aflah
-\item Rauzatinur Syah
-\item Resha Russita
-\item Rizki Ilhami
-\item Salsabila Irmanda
-%\item Siti Hajar Al Zahra
-%\item Syarfani Akbar
-\item Taravia Fauzah
-\item Zulfahmi
-\end{enumerate}}}
-
-\newthought{Instalasi Apache Hadoop - Lanjutan}
-
-Mahasiswa yang sudah ada progress install Apache Hadoop :
-\begin{multicols}{2}
-\begin{enumerate}
-\item Muhammad Ikrammullah
-\item Taravia Fauzah
-\item Zulfahmi
-\end{enumerate}
-\end{multicols}
-
-\noindent
-Berikut mahasiswa yang belum terlihat progress::
-\begin{multicols}{2}
-\begin{enumerate}
-\item Adinda Awaliah
-\item Adjie Yusmunandar
-\item Arya Saputra
-\item Cut Opy Mandalisa
-\item Faiza Yuwafiqi
-\item Jihan Dwi Sarah
-\item M. Ikhsan
-\item Muhammad Munawir
-\item Nadzura Kumaira
-\item Nurani Harum Fardaniah
-\item Nuraula Tafiza
-\item Nurul Aflah
-\item Rauzatinur Syah
-\item Resha Russita
-\item Rizki Ilhami
-\item Salsabila Irmanda
-\item Siti Hajar Al Zahra
-\item Syarfani Akbar
-\end{enumerate}
-\end{multicols}
-
-\hrulefill
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#9 - 9 Desember 2022 menggantikan 10 November 2022}
+\newday{\#8 - 8 Desember 2022 menggantikan 3 November 2022}
 
 \newthought{Program WordCount dengan Python}
 
@@ -907,14 +839,13 @@ if current_word == word:
 
 \vspace*{-.5cm}
 \newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan 8-8-2022 an. Nama}"
+Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan.
 
-\vspace*{-.4cm}
 \hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022}
+\newday{\#9 - 9 Desember 2022 menggantikan 10 November 2022}
 
 \newthought{Instalasi Apache Spark (PySpark)}
 
@@ -923,7 +854,7 @@ Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan. Kumpulkan
 {\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
 
 \item Ekstrak Apache Spark \\
-{\tt tar -xzvf spark-3.3.1-bin-hadoop3.tgz /usr/local/spark}
+{\tt tar -xzf spark-3.3.1-bin-hadoop3.tgz /usr/local/spark}
 
 \item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
 {\tt sudo mv spark-3.3.1-bin-hadoop3 /usr/local/spark}
@@ -942,7 +873,7 @@ export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{spark-version}
 \caption{Versi Spark Terinstall 3.3.1 }
-\label{gam:spark-version}
+\label{gam:form-ssh}
 \end{figure}
 
 \item Jalankan Spark Service \\
@@ -953,11 +884,19 @@ export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 \end{enumerate}
 
 \newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan 8-8-2022 an. Nama}"
+Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan.
 
 \hrulefill
 
 \begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022}
+
+\newthought{Pertemuan 10}
+
+\hrulefill
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \newday{\#11 - 16 Desember 2022 menggantikan 17 November 2022}
