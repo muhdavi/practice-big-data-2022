@@ -58,7 +58,7 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 Kelompok 5\\
 \midrule
 Salsabila Irmanda		& \url{https://github.com/salsabilairmanda17} \\
-\textcolor{red}{Siti Hajar Al Zahra	}	& - \\
+\textcolor{red}{Siti Hajar Al Zahra	}	& \url{-} \\
 Syarfani Akbar			& \url{https://github.com/SyarfaniAkbar} \\
 Cut Opy Mandalisa		& \url{https://github.com/cutopymdl} \\
 \midrule
@@ -711,7 +711,7 @@ Jika sudah selesai malakukan instalasi Hadoop, maka dapat mencoba program bawaan
 {\tt hadoop fs -mkdir /input}
 
 \item Buat file baru dengan nama dan data berikut \\
-{\tt sudo nano dataWordCount.txt}
+{\tt nano dataWordCount.txt}
 \begin{lstlisting}
 AdindaAwaliah, SMA_N_1_Lhokseumawe, Cunda
 AdjieYusmunandar, SMK_N_1_Lhokseumawe, Paloh_Lada
@@ -736,7 +736,7 @@ TaraviaFauzah, SMA_N_1_Dewantara, Blang_Naleung_Mameh
 Zulfahmi, SMK_N_1_Lhokseumawe, Kuta_Makmur
 \end{lstlisting}
 
-\item Pindahkan file dataWordCount.txt ke folder input di HDFS \\
+\item Pindahkan file {\tt dataWordCount.txt} ke folder input di HDFS \\
 {\tt hadoop fs -put dataWordCount.txt /input}
 
 \item Jalankan program WordCount \\
@@ -778,13 +778,15 @@ Pada pertemuan sebelumnya telah mencoba program WordCount bawaan Hadoop. Jika de
 \begin{enumerate}
 \item Pastikan Hadoop Service sudah berjalan
 \item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
+
+{\tt hadoop fs -ls /input}
+
 \item Buat file baru dengan nama dan kode berikut \\
 
 {\tt sudo nano WordCount.java}
 \begin{lstlisting}
 import java.io.IOException;
 import java.util.StringTokenizer;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -796,15 +798,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class WordCount {
-
-    public static class TokenizerMapper
-            extends Mapper<Object, Text, Text, IntWritable> {
-
-        private final static IntWritable one = new IntWritable(1);
+	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
+    	private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
-
-        public void map(Object key, Text value, Context context
-        ) throws IOException, InterruptedException {
+        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken());
@@ -813,13 +810,9 @@ public class WordCount {
         }
     }
 
-    public static class IntSumReducer
-            extends Reducer<Text, IntWritable, Text, IntWritable> {
+    public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
         private IntWritable result = new IntWritable();
-
-        public void reduce(Text key, Iterable<IntWritable> values,
-                           Context context
-        ) throws IOException, InterruptedException {
+        public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             int sum = 0;
             for (IntWritable val : values) {
                 sum += val.get();
@@ -880,104 +873,7 @@ Mahasiswa yang sudah berhasil:
 \item Resha Russita
 \item Rauzatinur Syah
 \item Salsabila Irmanda
-\end{enumerate}
-\end{multicols}
-
-\hrulefill
-
-\begin{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022
-\footnote{Mahasiswa yang hadir:
-\begin{enumerate}
-\item Adinda Awaliah
-\item Adjie Yusmunandar
-%\item Arya Saputra
-\item Cut Opy Mandalisa
-%\item Faiza Yuwafiqi
-\item Jihan Dwi Sarah
-\item M. Ikhsan
-%\item Muhammad Ikrammullah
-\item Muhammad Munawir
-%\item Nadzura Kumaira
 \item Nurani Harum Fardaniah
-%\item Nuraula Tafiza
-%\item Nurul Aflah
-\item Rauzatinur Syah
-\item Resha Russita
-\item Rizki Ilhami
-\item Salsabila Irmanda
-%\item Siti Hajar Al Zahra
-%\item Syarfani Akbar
-\item Taravia Fauzah
-\item Zulfahmi
-\end{enumerate}}}
-\newday{\#11 - 16 Desember 2022 menggantikan 17 November 2022
-\footnote{Mahasiswa yang hadir:
-\begin{enumerate}
-\item Adinda Awaliah
-\item Adjie Yusmunandar
-%\item Arya Saputra
-\item Cut Opy Mandalisa
-%\item Faiza Yuwafiqi
-\item Jihan Dwi Sarah
-\item M. Ikhsan
-%\item Muhammad Ikrammullah
-\item Muhammad Munawir
-%\item Nadzura Kumaira
-\item Nurani Harum Fardaniah
-%\item Nuraula Tafiza
-%\item Nurul Aflah
-\item Rauzatinur Syah
-\item Resha Russita
-\item Rizki Ilhami
-\item Salsabila Irmanda
-%\item Siti Hajar Al Zahra
-%\item Syarfani Akbar
-\item Taravia Fauzah
-\item Zulfahmi
-\end{enumerate}}}
-
-\newthought{Program WordCount bawaan Hadoop - Lanjutan}
-
-Mahasiswa yang sudah berhasil install Apache Hadoop:
-\begin{multicols}{2}
-\begin{enumerate}
-\item Taravia Fauzah
-\item Jihan Dwi Sarah
-\item Salsabila Irmanda
-\item Rauzatinur Syah
-\item Resha Russita
-\end{enumerate}
-\end{multicols}
-
-Mahasiswa yang sudah ada progress install Apache Hadoop :
-\begin{multicols}{2}
-\begin{enumerate}
-\item Muhammad Ikrammullah
-\item Nurani Harum Fardaniah
-\item Rizki Ilhami
-\item Zulfahmi
-\item Cut Opy Mandalisa
-\item M. Ikhsan
-\item Adjie Yusmunandar
-\item Muhammad Munawir
-\end{enumerate}
-\end{multicols}
-
-\noindent
-Berikut mahasiswa yang belum terlihat progress::
-\begin{multicols}{2}
-\begin{enumerate}
-\item Adinda Awaliah
-\item Arya Saputra
-\item Faiza Yuwafiqi
-\item Nadzura Kumaira
-\item Nuraula Tafiza
-\item Nurul Aflah
-\item Siti Hajar Al Zahra
-\item Syarfani Akbar
 \end{enumerate}
 \end{multicols}
 
@@ -985,7 +881,54 @@ Berikut mahasiswa yang belum terlihat progress::
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022}
+\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022}
+
+\newthought{Instalasi Apache Spark (PySpark)}
+
+\begin{enumerate}
+\item Download Apache Spark \\
+{\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
+
+\item Ekstrak Apache Spark \\
+{\tt tar -xzvf spark-3.3.1-bin-hadoop3.tgz /usr/local/spark}
+
+\item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
+{\tt sudo mv spark-3.3.1-bin-hadoop3 /usr/local/spark}
+
+\item Menambahkan Spark ke {\tt .bashrc} \\
+{\tt sudo nano $\sim$/.bashrc}
+\begin{lstlisting}
+#Spark Location
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+\end{lstlisting}
+{\tt source $\sim$/.bashrc}
+
+\item Verifikasi Hasil Instalasi Spark
+
+{\tt pyspark --version}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{spark-version}
+\caption{Versi Spark Terinstall 3.3.1 }
+\label{gam:form-ssh}
+\end{figure}
+
+\item Jalankan Spark Service \\
+{\tt start-master.sh}
+
+\item Hentikan Spark Service \\
+{\tt stop-master.sh}
+\end{enumerate}
+
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan dd-mm-yyyy an. Nama}".
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022}
 
 \newthought{Program WordCount dengan Python}
 
@@ -993,11 +936,13 @@ Berikut mahasiswa yang belum terlihat progress::
 \item Pastikan Hadoop Service dan Spark Service berjalan
 \item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
 \item Buat folder baru untuk menyimpan file Python \\
-{\tt sudo mkdir WordCountPython}
+{\tt sudo mkdir WordCountPython} \\
+{\tt cd WordCountPython}
+
 \item Buat file baru dengan nama dan kode berikut
 \begin{itemize}
 \item {\tt map.py} \\
-{\tt sudo nano WordCountPython/map.py}
+{\tt nano WordCountPython/map.py}
 \begin{lstlisting}
 #!/usr/bin/env python
 
@@ -1009,10 +954,10 @@ for line in sys.stdin:
     for word in words:
         print('{}\t{}'.format(word, 1))
 \end{lstlisting}
-{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/map.py}
+%{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/map.py}
 
 \item {\tt reduce.py} \\
-{\tt sudo nano WordCountPython/reduce.py}
+{\tt nano WordCountPython/reduce.py}
 \begin{lstlisting}
 #!/usr/bin/env python
 
@@ -1041,7 +986,7 @@ for line in sys.stdin:
 if current_word == word:
     print('{}\t{}'.format(current_word, current_count))
 \end{lstlisting}
-{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/reduce.py}
+%{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/reduce.py}
 \end{itemize}
 
 \item Ubah Hak Akses \\
@@ -1053,12 +998,12 @@ if current_word == word:
 {\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py}
 \item Mencoba jalankan {\tt reduce.py} \\
 {\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/reduce.py}
-\item Mencoba jalankan {\tt map.py} dan {\tt reduce.py}
+\item Mencoba jalankan {\tt map.py} dan {\tt reduce.py} \\
 {\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
 \end{itemize}
 
 \item Jalankan Program menggunakan Hadoop \\
-{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper ~/WordCountPython/Map.py -reducer ~/WordCountPython/Reduce.py -input /input/inputWordCount.txt -output /ResultWordCountPython}
+{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper ~/WordCountPython/map.py -reducer ~/WordCountPython/reduce.py -input /input/inputWordCount.txt -output /ResultWordCountPython}
 
 \item Cek Hasil \\
 {\tt hadoop fs -ls /ResultWordCountPython}
@@ -1069,68 +1014,7 @@ if current_word == word:
 
 \vspace*{-.5cm}
 \newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan.
-
-\hrulefill
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#11 - 16 Desember 2022 menggantikan 17 November 2022}
-
-\newthought{Instalasi Apache Spark (PySpark)}
-
-\begin{enumerate}
-\item Download Apache Spark \\
-{\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
-
-\item Ekstrak Apache Spark \\
-{\tt tar -xzf spark-3.3.1-bin-hadoop3.tgz /usr/local/spark}
-
-\item Pindahkan hasil ekstraksi ke {\tt /usr/local/} \\
-{\tt sudo mv spark-3.3.1-bin-hadoop3 /usr/local/spark}
-
-\item Menambahkan Spark ke {\tt .bashrc} \\
-{\tt sudo nano $\sim$/.bashrc}
-\begin{lstlisting}
-#Spark Location
-export SPARK_HOME=/usr/local/spark
-export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-\end{lstlisting}
-{\tt source $\sim$/.bashrc}
-
-\item Verifikasi Hasil Instalasi Spark
-
-\begin{figure}[!ht]
-\includegraphics[width=\textwidth]{spark-version}
-\caption{Versi Spark Terinstall 3.3.1 }
-\label{gam:form-ssh}
-\end{figure}
-
-\item Jalankan Spark Service \\
-{\tt start-master.sh}
-
-\item Hentikan Spark Service \\
-{\tt stop-master.sh}
-\end{enumerate}
-
-\newthought{Tugas Praktikum} \\
-Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan.
-
-\hrulefill
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022}
-
-\newthought{Pertemuan 11}
-
-\hrulefill
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022}
-
-\newthought{Pertemuan 12}
+Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan dd-mm-yyyy an. Nama}".
 
 \hrulefill
 
@@ -1138,9 +1022,79 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan.
 \clearpage
 \newday{\#14 - 29 Desember 2022 menggantikan 8 Desember 2022}
 
-\newthought{Pertemuan 13}
+\newthought{Program WordCount dengan PySpark}
+
+\begin{enumerate}
+\item Pastikan Hadoop Service dan Spark Service berjalan
+\item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
+\item Buat folder baru untuk menyimpan file Python \\
+{\tt sudo mkdir WordCountPySpark} \\
+{\tt cd WordCountPySpark}
+
+\item Buat file baru dengan nama dan kode berikut \\
+{\tt nano WordCount.py}
+\begin{lstlisting}
+from pyspark.sql import SparkSession
+spark = SparkSession.builder\
+                    .master("local")\
+                    .appName('WordCount')\
+                    .getOrCreate()
+sc = spark.sparkContext
+sc.setLogLevel("ERROR")
+data = sc.textFile("/input/inputWordCount.txt")
+counts = data.flatMap(lambda line: line.split(" ")) \
+             .map(lambda word: (word, 1)) \
+             .reduceByKey(lambda a, b: a + b)
+counts.saveAsTextFile("/ResultWordCountPyspark")
+output = counts.collect()
+for (word, count) in output:
+    print("%s: %i" % (word, count))
+\end{lstlisting}
+
+\item Jalankan Program menggunakan PySpark \\
+{\tt spark-submit WordCount.py}
+
+\item Cek Hasil \\
+{\tt hadoop fs -ls /ResultWordCountPyspark}
+
+\item Lihat Hasil \\
+{\tt hadoop fs -cat /ResultWordCountPyspark/part-r-00000}
+\end{enumerate}
+
+\vspace*{-.5cm}
+\newthought{Tugas Praktikum} \\
+Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan dd-mm-yyyy an. Nama}".
 
 \hrulefill
+
+
+
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Adjie Yusmunandar
+%\item Arya Saputra
+\item Cut Opy Mandalisa
+%\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+%\item Muhammad Ikrammullah
+\item Muhammad Munawir
+%\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+%\item Nuraula Tafiza
+%\item Nurul Aflah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+%\item Siti Hajar Al Zahra
+%\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
