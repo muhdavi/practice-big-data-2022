@@ -142,9 +142,9 @@ No & Nama 				& Asal Sekolah 				& Alamat\\
 \midrule
 1 	& Adinda Awaliah	& SMA N 1 Lhokseumawe 		& Cunda \\
 2 	& Adjie Yusmunandar	& SMK N 1 Lhokseumawe 		& Paloh Lada \\
-3 	& Arya Saputra		& & \\
+3 	& Arya Saputra 		& SMK N 2 Lhokseumawe 		& Blang Pulo \\
 4 	& Cut Opy Mandalisa	& SMA N 1 Syamtalira Bayu	& Bayu \\
-5 	& Faiza Yuwafiqi	& & \\
+5 	& Faiza Yuwafiqi	& SMK N 3 Lhokseumawe 		& Panggoi \\
 6 	& Jihan Dwi Sarah	& SMA N 1 Lhokseumawe 		& Panggoi \\
 7 	& M. Ikhsan			& SMK N 1 Simpang Kiri 		& Subulussalam \\
 \midrule
@@ -153,7 +153,7 @@ No & Nama 				& Asal Sekolah 				& Alamat\\
 10 	& Nadzura Kumaira			& SMK N 2 Lhokseumawe 	& Keude Aceh \\
 11 	& Nurani Harum Fardaniah	& SMK N 1 Lhoksukon 	& Buket Hagu \\
 12 	& Nuraula Tafiza			& SMK N 1 Lhoksukon 	& Alue Buket \\
-13 	& Nurul Aflah				& & \\
+13 	& Nurul Aflah				& MAS Syamsuddhuha		& Glp. Sulu Barat \\
 14 	& Rauzatinur Syah			& MAS Misbahul Ulum 	& Geudong \\
 \midrule
 15 	& Resha Russita			& SMA N 1 Lhokseumawe 	& Alue Awe \\
@@ -264,6 +264,7 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melakukan {\tt P
 \item Muhammad Ikrammullah
 \item Nadzura Kumaira
 \item Adjie Yusmunandar
+\item Nurul Aflah
 \end{enumerate}
 \end{multicols}
 
@@ -273,7 +274,6 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 \begin{enumerate}
 \item Arya Saputra
 \item Faiza Yuwafiqi
-\item Nurul Aflah
 \item \textcolor{red}{Siti Hajar Al Zahra}
 \item Syarfani Akbar
 \end{enumerate}
@@ -696,7 +696,31 @@ Berikut mahasiswa yang belum terlihat progress::
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022}
+\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Adjie Yusmunandar
+\item Arya Saputra
+\item Cut Opy Mandalisa
+\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+%\item Nuraula Tafiza
+\item Nurul Aflah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+%\item Siti Hajar Al Zahra
+%\item Syarfani Akbar
+\item Taravia Fauzah
+%\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Program WordCount bawaan Hadoop}
 
@@ -853,7 +877,7 @@ public class WordCount {
 {\tt jar -cvf WordCount.jar -C JavaCompiled/ .}
 
 \item Jalankan program WordCount \\
-{\tt hadoop jar WordCount.jar WordCount /input/dataWordCount.txt /ResultWordCountJava}
+{\tt \footnotesize{hadoop jar WordCount.jar WordCount /input/dataWordCount.txt /ResultWordCountJava}}
 
 \item Cek Hasil \\
 {\tt hadoop fs -ls /ResultWordCountJava}
