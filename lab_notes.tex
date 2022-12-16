@@ -186,6 +186,130 @@ Tugas di pertemuan pertama adalah menyiapkan \textit{environment} untuk tempat k
 \clearpage
 \newday{\#2 - 15 September 2022}
 
+\newthought{Instalasi dan Konfigurasi GIT dengan GitHub}
+
+Pada pertemuan kali ini kita belajar install GIT dan konfigurasi GIT dengan GitHub agar dapat menjalankan perintah-perintah GIT melalui lokal dan menyimpan hasil kerjaan kita ke GitHub. Karena pada pertemuan pertama telah membuat akun GitHub, maka pada pertemuan kali ini asumsinya semua sudah memiliki akun GitHub. Setelah itu ikuti beberapa langkah berikut untuk praktikum kali ini.
+
+\begin{enumerate}
+\item Install Git \\
+Pertema download program Git melalui link ini (\url{https://git-scm.com/download}) sesuai dengan sistem operasi yang digunakan. Bagi pengguna Windows jika proses download sudah selesai, lanjut proses instalasi seperti program windows pada umumnya (Next, Next, Next, sampai selesai).
+
+\item \textit{Generate} SSH-Key \\
+Jika instalasi sudah selesai, coba buka Git Bash, maka akan muncul program baru yang mirip dengan Terminal atau Command Prompt (CMD) kita sebut Git Bash. Kemudian jalankan perintah berikut untuk \textit{generate ssh-key}.
+
+{\tt ssh-keygen -t ed25519 -C "email@akun.github"} \\
+
+Ganti {\tt email@akun.github} dengan email yang terdaftar pada akun GitHub. Selanjutnya jika muncul beberapa pertanyaan seperti berikut ini tekan [enter].
+
+{\tt > Enter a file in which to save the key (/Users/YOU/.ssh/id\_ed25519:} \\
+{\tt > Enter passphrase (empty for no passphrase):} \\
+{\tt > Enter same passphrase again:}
+
+Jika proses diatas berhasil maka terbentuk folder baru dengan nama {\tt .ssh}. Didalam folder tersebut terdapat \textit{private key} dan \textit{public key}. Bukan file \textit{public key} (id\_ed25519.pub) dan \textit{copy} isi dari file tersebut.
+
+\item Menambahkan SSH-Key ke Akun GitHub \\
+Untuk menambahkan SSH-Key ke akun GitHub pertama login terlebih dahulu. Setelah berhasil login klik pada gambar profil sehingga tampil menu dropdown seperti pada Gambar \ref{gam:langkah-ssh} nomor 1. Selanjutnya pilih menu \textbf{Setting} sepertin yang ditunukan pada nomor 2. Setelah memilih menu \textbf{Setting} maka muncul halaman setting dengan menu di sidebar sebelah kiri. Pada menu sebelah kiri pilih menu \textbf{SSH and GPG keys} seperti pada nomor 3. Kemudian klik tombol \textbf{New SSH key} maka akan muncul form menambahkan SSH seperti yang diperlihatkan pada Gambar \ref{gam:form-ssh}.
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{gtihub-1}
+\caption{Lankah-langkah Menambah SSH-Key di GitHub}
+\label{gam:langkah-ssh}
+\end{figure}
+
+Kode SSH-Key yang telah di-\textit{copy} pada langkah sebelumnya \textit{paste}-kan kode tersebut pada isian \textbf{Key} dan beri judul SSH-Key pada isian \textbf{Title}. Setelah semua diisi klik tombol \textbf{Add SSH key} untuk menyimpan SSH-Key baru tersebut.
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{github-2}
+\caption{Form Penambahan SSH-Key di GitHub}
+\label{gam:tambah-ssh}
+\end{figure}
+
+Untuk menguji bahwa penambahan SSH-Key telah berhasil coba lakukan {\tt git push} untuk repositori laporan practice big data dari akun masing-masing. Untuk lebih jelasnya tentang GIT dapat membaca catatan pada link berikut \url{https://muhdavi.github.io/learn-git/}.
+\end{enumerate}
+
+\begin{figure}[!ht]
+\includegraphics[width=.95\textwidth]{24-11-2022}
+\caption{Perkuliahan Daring via Google Meet}
+\label{gam:perkuliahan-24-11}
+\end{figure}
+
+\vspace*{-.5cm}
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#3 - 22 September 2022}
+\newday{\#4 - 24 November 2022 menggantikan 29 September 2022}
+\newday{\#5 - 25 November 2022 menggantikan 6 Oktober 2022}
+
+\newthought{Instalasi dan Konfigurasi GIT dengan GitHub - Lanjutan}
+
+Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melakukan {\tt Pull Request}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item Rizki Ilhami
+\item Rauzatinur Syah $\star$
+\item Taravia Fauzah
+\item Resha Russita $\star$
+\item Nurani Harum Fardaniah $\star$
+\item Adinda Awaliah $\star$
+\item Salsabila Irmanda $\star$
+\item M. Ikhsan
+\item Jihan Dwi Sarah $\star$
+\item Cut Opy Mandalisa $\star$
+\item Zulfahmi
+\item Muhammad Munawir
+\item Nuraula Tafiza
+\item Muhammad Ikrammullah
+\item Nadzura Kumaira
+\item Adjie Yusmunandar
+\item Nurul Aflah
+\end{enumerate}
+\end{multicols}
+
+\noindent
+Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item Arya Saputra
+\item Faiza Yuwafiqi
+\item \textcolor{red}{Siti Hajar Al Zahra}
+\item Syarfani Akbar
+\end{enumerate}
+\end{multicols}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{25-11-2022}
+\caption{Perkuliahan Daring via Google Meet}
+\label{gam:perkuliahan-25-11}
+\end{figure}
+
+\vspace*{-.5cm}
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Arya Saputra $\oplus$
+\item Cut Opy Mandalisa
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
+
 \newthought{Instalasi Apache Hadoop}
 
 Pada pertemuan kedua ini kegiatan yang dilakukan adalah menginstall Apache Hadoop pada \textit{environment} yang telah dibuat pada pertemuan sebelumnya. Untuk menginstall Apache Hadoop dapat mengikut langkah-langkah berikut ini:
@@ -555,28 +679,31 @@ Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#6 - 1 Desember 2022 menggantikan 13 Oktober 2022
+\newday{\#10 - 15 Desember 2022 menggantikan 10 November 2022
 \footnote{Mahasiswa yang hadir:
 \begin{enumerate}
 \item Adinda Awaliah
-\item Arya Saputra $\oplus$
+\item Adjie Yusmunandar
+\item Arya Saputra
 \item Cut Opy Mandalisa
+\item Faiza Yuwafiqi
 \item Jihan Dwi Sarah
 \item M. Ikhsan
 \item Muhammad Ikrammullah
 \item Muhammad Munawir
 \item Nadzura Kumaira
 \item Nurani Harum Fardaniah
+%\item Nuraula Tafiza
+\item Nurul Aflah
 \item Rauzatinur Syah
 \item Resha Russita
 \item Rizki Ilhami
 \item Salsabila Irmanda
-\item Syarfani Akbar
+%\item Siti Hajar Al Zahra
+%\item Syarfani Akbar
 \item Taravia Fauzah
-\item Zulfahmi
+%\item Zulfahmi
 \end{enumerate}}}
-
-\textit{N.B.: Setiap mahasiswa membuat laporan hasil praktik sesuai dengan format yang telah ditentukan. Template laporan dapat dilihat pada alamat \url{https://github.com/muhdavi/laporan-practice-big-data}.}
 
 \newthought{Program WordCount bawaan Hadoop}
 
@@ -741,7 +868,7 @@ big-data/main/WordCount/src/main/java/WordCount.java}
 {\tt jar -cvf WordCount.jar -C JavaCompiled/ .}
 
 \item Jalankan program WordCount \\
-{\tt hadoop jar WordCount.jar WordCount /input/dataWordCount.txt /ResultWordCountJava}
+{\tt \footnotesize{hadoop jar WordCount.jar WordCount /input/dataWordCount.txt /ResultWordCountJava}}
 
 \item Cek Hasil \\
 {\tt hadoop fs -ls /ResultWordCountJava}
