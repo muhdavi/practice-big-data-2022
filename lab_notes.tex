@@ -58,7 +58,7 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 Kelompok 5\\
 \midrule
 Salsabila Irmanda		& \url{https://github.com/salsabilairmanda17} \\
-\textcolor{red}{Siti Hajar Al Zahra	}	& \url{-} \\
+Siti Hajar Al Zahra		& \url{https://github.com/sitihjralzahara} \\
 Syarfani Akbar			& \url{https://github.com/SyarfaniAkbar} \\
 Cut Opy Mandalisa		& \url{https://github.com/cutopymdl} \\
 \midrule
@@ -158,8 +158,8 @@ No & Nama 				& Asal Sekolah 				& Alamat\\
 15 	& Resha Russita			& SMA N 1 Lhokseumawe 	& Alue Awe \\
 16 	& Rizki Ilhami			& SMK N 1 Lhoksukon 	& Lapang \\
 17 	& Salsabila Irmanda		& MAS Misbahul Ulum 	& Alue Awe \\
-18 	& Siti Hajar Al Zahra	& & \\
-19 	& Syarfani Akbar		& & \\
+18 	& Siti Hajar Al Zahra	& MAN 4 Aceh Utara 		& Blang Jruen \\
+19 	& Syarfani Akbar		& SMK N 1 Lhokseumawe 	& Uten Bayi \\
 20 	& Taravia Fauzah		& SMA N 1 Dewantara 	& Blang Naleung Mameh \\
 21 	& Zulfahmi				& SMK N 1 Lhokseumawe	& Kuta Makmur \\
 \bottomrule
@@ -904,13 +904,37 @@ Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan. Kumpulka
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022}
+\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Adjie Yusmunandar
+\item Arya Saputra
+\item Cut Opy Mandalisa
+%\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+%\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+\item Nuraula Tafiza
+\item Nurul Aflah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+\item Siti Hajar Al Zahra
+\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Instalasi Apache Spark (PySpark)}
 
 \begin{enumerate}
 \item Download Apache Spark \\
-{\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
+{\tt \footnotesize{wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}}
 
 \item Ekstrak Apache Spark \\
 {\tt tar -xzvf spark-3.3.1-bin-hadoop3.tgz}
@@ -959,13 +983,12 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 \item Pastikan Hadoop Service dan Spark Service berjalan
 \item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
 \item Buat folder baru untuk menyimpan file Python \\
-{\tt sudo mkdir WordCountPython} \\
-{\tt cd WordCountPython}
+{\tt sudo mkdir WordCountPython} 
 
 \item Buat file baru dengan nama dan kode berikut
 \begin{itemize}
 \item {\tt map.py} \\
-{\tt nano WordCountPython/map.py}
+{\tt sudo nano WordCountPython/map.py}
 \begin{lstlisting}
 #!/usr/bin/env python
 
@@ -980,7 +1003,7 @@ for line in sys.stdin:
 %{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/map.py}
 
 \item {\tt reduce.py} \\
-{\tt nano WordCountPython/reduce.py}
+{\tt sudo nano WordCountPython/reduce.py}
 \begin{lstlisting}
 #!/usr/bin/env python
 
@@ -1096,7 +1119,7 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 
 \newthought{Program Machine Learning dengan PySpark}
 
-Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
+Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
 
 \begin{enumerate}
 \item Download data \\
@@ -1156,12 +1179,12 @@ from pyspark.ml.evaluation import ClusteringEvaluator \\
 silhouette\_score=[] \\
 evaluator = ClusteringEvaluator(predictionCol='prediction', featuresCol='standardized', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
 for i in range(2,10): \\
-    KMeans\_algo=KMeans(featuresCol='standardized', k=i) \\
-    KMeans\_fit=KMeans\_algo.fit(data\_scale\_output) \\
-    output=KMeans\_fit.transform(data\_scale\_output) \\
-    score=evaluator.evaluate(output) \\
-    silhouette\_score.append(score) \\
-    print("Silhouette Score:",score) \\
+\hspace*{5mm} KMeans\_algo=KMeans(featuresCol='standardized', k=i) \\
+\hspace*{5mm} KMeans\_fit=KMeans\_algo.fit(data\_scale\_output) \\
+\hspace*{5mm} output=KMeans\_fit.transform(data\_scale\_output) \\
+\hspace*{5mm} score=evaluator.evaluate(output) \\
+\hspace*{5mm} silhouette\_score.append(score) \\
+\hspace*{5mm} print("Silhouette Score:",score) \\
 }
 \item Tampilkan silhouette score \\
 {\tt
@@ -1214,7 +1237,7 @@ No 	& Nama 						& & & & & & & & \\ \hline
 3 	& Arya Saputra 				& & & & & & & & \\ \hline
 4 	& Cut Opy Mandalisa			& $\star$ & $\star$ & $\star$ & & & & & \\ \hline
 5 	& Faiza Yuwafiqi			& & & & & & & & \\ \hline
-6 	& Jihan Dwi Sarah			& $\star$ & $\star$ & & & & & & \\ \hline
+6 	& Jihan Dwi Sarah			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
 7 	& M. Ikhsan					& & & & & & & & \\ \hline
 8 	& Muhammad Ikrammullah		& & & & & & & & \\ \hline
 9 	& Muhammad Munawir			& & & & & & & & \\ \hline
