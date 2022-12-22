@@ -660,6 +660,7 @@ Mahasiswa yang sudah berhasil install Apache Hadoop:
 \item Resha Russita
 \item Nurani Harum Fardaniah
 \item Rizki Ilhami
+\item Cut Opy Mandalisa
 \end{enumerate}
 \end{multicols}
 
@@ -669,7 +670,6 @@ Mahasiswa yang sedang progress install Apache Hadoop :
 \begin{enumerate}
 \item Muhammad Ikrammullah
 \item Zulfahmi
-\item Cut Opy Mandalisa
 \item M. Ikhsan
 \item Adjie Yusmunandar
 \item Muhammad Munawir
@@ -775,18 +775,6 @@ Zulfahmi, SMK_N_1_Lhokseumawe, Kuta_Makmur
 
 \newthought{Tugas Praktikum} \\
 Screenshot hasil dari langkah 6 dan 7 dan masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan dd-mm-yyyy an. Nama}".
-
-\noindent
-Mahasiswa yang sudah berhasil:
-\begin{multicols}{2}
-\begin{enumerate}
-\item Taravia Fauzah
-\item Resha Russita
-\item Rauzatinur Syah
-\item Salsabila Irmanda
-\item Nurani Harum Fardaniah
-\end{enumerate}
-\end{multicols}
 
 \hrulefill
 
@@ -911,18 +899,6 @@ public class WordCount {
 
 \newthought{Tugas Praktikum} \\
 Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan. Kumpulkan melalui {\tt pull requests} dengan format pesan "\textit{Laporan dd-mm-yyyy an. Nama}".
-
-\noindent
-Mahasiswa yang sudah berhasil:
-\begin{multicols}{2}
-\begin{enumerate}
-\item Taravia Fauzah
-\item Resha Russita
-\item Rauzatinur Syah
-\item Salsabila Irmanda
-\item Nurani Harum Fardaniah
-\end{enumerate}
-\end{multicols}
 
 \hrulefill
 
@@ -1120,9 +1096,81 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 
 \newthought{Program Machine Learning dengan PySpark}
 
-Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark.
+Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
+
 \begin{enumerate}
-\item 
+\item Download data \\
+{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/Data/cc\_general.csv?token=GHSAT0AAAAAAB4OSMEAHV6C53FZEJ4NZ66CY5D7CVQ}
+
+\item Pindahkan Data ke HDFS \\
+{\tt hadoop fs -put cc\_general.csv /input}
+
+\item Masukkan ke terminal PySpark \\
+{\tt pyspark}
+
+\item Membaca Data \\
+{\tt 
+from pyspark.sql import SparkSession \\
+spark = SparkSession.builder.appName('Program Machine Learning').getOrCreate() \\
+df=spark.read.csv('/input/cc\_general.csv', header=True, inferSchema=True) \\
+df.printSchema() \\
+df.show(5, truncate = False) \\
+df.describe().show() \\
+}
+\item Data Preprocessing \\
+{\tt
+df=df.na.drop() \\
+from pyspark.ml.feature import VectorAssembler \\
+df.columns \\
+assemble=VectorAssembler(inputCols=[
+ 'BALANCE',
+ 'BALANCE\_FREQUENCY',
+ 'PURCHASES',
+ 'ONEOFF\_PURCHASES',
+ 'INSTALLMENTS\_PURCHASES',
+ 'CASH\_ADVANCE',
+ 'PURCHASES\_FREQUENCY',
+ 'ONEOFF\_PURCHASES\_FREQUENCY',
+ 'PURCHASES\_INSTALLMENTS\_FREQUENCY',
+ 'CASH\_ADVANCE\_FREQUENCY',
+ 'CASH\_ADVANCE\_TRX',
+ 'PURCHASES\_TRX',
+ 'CREDIT\_LIMIT',
+ 'PAYMENTS',
+ 'MINIMUM\_PAYMENTS',
+ 'PRC\_FULL\_PAYMENT',
+ 'TENURE'], outputCol='features') \\
+assembled\_df=assemble.transform(df) \\
+assembled\_df.show(2) \\
+from pyspark.ml.feature import StandardScaler \\
+scale=StandardScaler(inputCol='features',outputCol='standardized') \\
+df\_scale=scale.fit(assembled\_df) \\
+df\_scale\_output=df\_scale.transform(assembled\_df) \\
+df\_scale\_output.show(2)
+}
+
+\item Membangun Model \\
+{\tt
+from pyspark.ml.clustering import KMeans \\
+from pyspark.ml.evaluation import ClusteringEvaluator \\
+silhouette\_score=[] \\
+evaluator = ClusteringEvaluator(predictionCol='prediction', featuresCol='standardized', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
+for i in range(2,10): \\
+    KMeans\_algo=KMeans(featuresCol='standardized', k=i) \\
+    KMeans\_fit=KMeans\_algo.fit(data\_scale\_output) \\
+    output=KMeans\_fit.transform(data\_scale\_output) \\
+    score=evaluator.evaluate(output) \\
+    silhouette\_score.append(score) \\
+    print("Silhouette Score:",score) \\
+}
+\item Tampilkan silhouette score \\
+{\tt
+import matplotlib.pyplot as plt \\
+fig, ax = plt.subplots(1,1, figsize =(8,6)) \\
+ax.plot(range(2,10),silhouette\_score) \\
+ax.set\_xlabel('k') \\
+ax.set\_ylabel('cost') \\
+}
 \end{enumerate}
 
 \hrulefill
@@ -1133,7 +1181,68 @@ Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Berbeda dengan pr
 
 \newthought{Program Machine Learning dengan PySpark}
 
+Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, buatlah program tersebut dalam bentuk file sehingga dapat dijalankan menggunakan {\tt spark-submit}. Dokumentasikan hasil dan perubahan yang Anda lakukan untuk dimasukkan ke dalam laporan. Kumpulkan laporan dengan format \textit{message "Laporan Kelompok Nomor-Kelompok}".
+
 \hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newthought{Rekap Progres Praktikum}
+
+\begin{table}[!ht]
+\vspace*{.5cm}
+\centering
+\begin{tabular}{cl|c|c|c|c|c|c|c|c} 
+	& & 
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Hadoop}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Hadoop}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Java}}} & 
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Apaceh Spark}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Python}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount PySpark}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Tugas Individu}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Tugas Kelompok}}} \\
+	& & & & & & & & & \\
+	& & & & & & & & & \\
+	& & & & & & & & & \\
+	& & & & & & & & & \\
+	& & & & & & & & & \\
+	& & & & & & & & & \\
+No 	& Nama 						& & & & & & & & \\ \hline
+1 	& Adinda Awaliah			& & & & & & & & \\ \hline
+2 	& Adjie Yusmunandar			& & & & & & & & \\ \hline
+3 	& Arya Saputra 				& & & & & & & & \\ \hline
+4 	& Cut Opy Mandalisa			& $\star$ & $\star$ & $\star$ & & & & & \\ \hline
+5 	& Faiza Yuwafiqi			& & & & & & & & \\ \hline
+6 	& Jihan Dwi Sarah			& $\star$ & $\star$ & & & & & & \\ \hline
+7 	& M. Ikhsan					& & & & & & & & \\ \hline
+8 	& Muhammad Ikrammullah		& & & & & & & & \\ \hline
+9 	& Muhammad Munawir			& & & & & & & & \\ \hline
+10 	& Nadzura Kumaira			& & & & & & & & \\ \hline
+11 	& Nurani Harum Fardaniah	& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+12 	& Nuraula Tafiza			& & & & & & & & \\ \hline
+13 	& Nurul Aflah				& & & & & & & & \\ \hline
+14 	& Rauzatinur Syah			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+15 	& Resha Russita				& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+16 	& Rizki Ilhami				& $\star$ & & & & & & & \\ \hline
+17 	& Salsabila Irmanda			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+18 	& Siti Hajar Al Zahra		& & & & & & & & \\ \hline
+19 	& Syarfani Akbar			& & & & & & & & \\ \hline
+20 	& Taravia Fauzah			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+21 	& Zulfahmi					& & & & & & & & \\ \hline
+\multicolumn{2}{c|}{Perbandingan}		& 
+$\frac{8}{13}$ &
+$\frac{7}{14}$ &
+$\frac{6}{15}$ &
+$\frac{5}{16}$ &
+$\frac{0}{21}$ &
+$\frac{0}{21}$ &
+$\frac{0}{21}$ &
+$\frac{0}{21}$ \\
+\end{tabular}
+\end{table}
+
+%\hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{comment}
