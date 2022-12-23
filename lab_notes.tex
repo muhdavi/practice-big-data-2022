@@ -358,7 +358,7 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 {\tt ssh-keygen -t rsa} \\
 {\tt cat $\sim$/.ssh/id\_rsa.pub >> $\sim$/.ssh/authorized\_keys} \\
 {\tt chmod og-wx $\sim$/.ssh/authorized\_keys} \\
-{\tt sudo apt-get update}
+{\tt sudo apt update}
 \item Coba Masuk via SSH Lagi \\
 {\tt ssh localhost}
 \item Jika sudah berhasil, keluar dengan perintah {\tt exit} \\
@@ -946,7 +946,7 @@ export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 \item Verifikasi Hasil Instalasi Spark
 
-{\tt pyspark --version}
+{\tt pyspark ---version}
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{spark-version}
@@ -968,7 +968,31 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022}
+\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+%\item Adjie Yusmunandar
+%\item Arya Saputra
+\item Cut Opy Mandalisa
+\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+%\item Muhammad Ikrammullah
+%\item Muhammad Munawir
+%\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+%\item Nuraula Tafiza
+%\item Nurul Aflah
+%\item Rauzatinur Syah
+%\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+%\item Siti Hajar Al Zahra
+%\item Syarfani Akbar
+\item Taravia Fauzah
+%\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Program WordCount dengan Python}
 
@@ -983,7 +1007,7 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 \item {\tt map.py} \\
 {\tt sudo nano WordCountPython/map.py}
 \begin{lstlisting}
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys
 
@@ -998,12 +1022,12 @@ for line in sys.stdin:
 \item {\tt reduce.py} \\
 {\tt sudo nano WordCountPython/reduce.py}
 \begin{lstlisting}
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys
 
-current_word = None
 current_count = 0
+current_word = None
 word = None
 
 for line in sys.stdin:
@@ -1021,6 +1045,7 @@ for line in sys.stdin:
         if current_word:
             print('{}\t{}'.format(current_word, current_count))
         current_count = count
+        current_word = word        
 
 if current_word == word:
     print('{}\t{}'.format(current_word, current_count))
@@ -1031,24 +1056,18 @@ if current_word == word:
 \item Ubah Hak Akses \\
 {\tt sudo chmod +x -R WordCountPython/} 
 
-\item Mencoba Program di Local
-\begin{itemize}
-\item Mencoba jalankan {\tt map.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py}
-\item Mencoba jalankan {\tt reduce.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/reduce.py}
-\item Mencoba jalankan {\tt map.py} dan {\tt reduce.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
-\end{itemize}
+\item Mencoba Program di Local \\
+{\tt echo jangan heran jika orang cantik merasa jelek sementara orang yang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
+
 
 \item Jalankan Program menggunakan Hadoop \\
-{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper ~/WordCountPython/map.py -reducer ~/WordCountPython/reduce.py -input /input/inputWordCount.txt -output /ResultWordCountPython}
+{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper $\sim$/WordCountPython/map.py -reducer $\sim$/WordCountPython/reduce.py -input /input/dataWordCount.txt -output /ResultWordCountPython}
 
 \item Cek Hasil \\
 {\tt hadoop fs -ls /ResultWordCountPython}
 
 \item Lihat Hasil \\
-{\tt hadoop fs -cat /ResultWordCountPython/part-r-00000}
+{\tt hadoop fs -cat /ResultWordCountPython/part-00000}
 \end{enumerate}
 
 \vspace*{-.5cm}
@@ -1071,20 +1090,15 @@ Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan. Kumpulkan
 {\tt cd WordCountPySpark}
 
 \item Buat file baru dengan nama dan kode berikut \\
-{\tt nano WordCount.py}
+{\tt sudo nano WordCount.py}
 \begin{lstlisting}
 from pyspark.sql import SparkSession
-spark = SparkSession.builder\
-                    .master("local")\
-                    .appName('WordCount')\
-                    .getOrCreate()
+spark = SparkSession.builder.master("local").appName('WordCount').getOrCreate()
 sc = spark.sparkContext
 sc.setLogLevel("ERROR")
-data = sc.textFile("/input/inputWordCount.txt")
-counts = data.flatMap(lambda line: line.split(" ")) \
-             .map(lambda word: (word, 1)) \
-             .reduceByKey(lambda a, b: a + b)
-counts.saveAsTextFile("/ResultWordCountPyspark")
+data = sc.textFile("/input/dataWordCount.txt")
+counts = data.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+counts.saveAsTextFile("/ResultWordCountPySpark")
 output = counts.collect()
 for (word, count) in output:
     print("%s: %i" % (word, count))
@@ -1097,7 +1111,7 @@ for (word, count) in output:
 {\tt hadoop fs -ls /ResultWordCountPyspark}
 
 \item Lihat Hasil \\
-{\tt hadoop fs -cat /ResultWordCountPyspark/part-r-00000}
+{\tt hadoop fs -cat /ResultWordCountPyspark/part-00000}
 \end{enumerate}
 
 \vspace*{-.5cm}
@@ -1106,100 +1120,7 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 
 \hrulefill
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#15 - Tugas Individu menggantikan 15 Desember 2022}
 
-\newthought{Program Machine Learning dengan PySpark}
-
-Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
-
-\begin{enumerate}
-\item Download data \\
-{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/Data/cc\_general.csv?token=GHSAT0AAAAAAB4OSMEAHV6C53FZEJ4NZ66CY5D7CVQ}
-
-\item Pindahkan Data ke HDFS \\
-{\tt hadoop fs -put cc\_general.csv /input}
-
-\item Masukkan ke terminal PySpark \\
-{\tt pyspark}
-
-\item Membaca Data \\
-{\tt 
-from pyspark.sql import SparkSession \\
-spark = SparkSession.builder.appName('Program Machine Learning').getOrCreate() \\
-df=spark.read.csv('/input/cc\_general.csv', header=True, inferSchema=True) \\
-df.printSchema() \\
-df.show(5, truncate = False) \\
-df.describe().show() \\
-}
-\item Data Preprocessing \\
-{\tt
-df=df.na.drop() \\
-from pyspark.ml.feature import VectorAssembler \\
-df.columns \\
-assemble=VectorAssembler(inputCols=[
- 'BALANCE',
- 'BALANCE\_FREQUENCY',
- 'PURCHASES',
- 'ONEOFF\_PURCHASES',
- 'INSTALLMENTS\_PURCHASES',
- 'CASH\_ADVANCE',
- 'PURCHASES\_FREQUENCY',
- 'ONEOFF\_PURCHASES\_FREQUENCY',
- 'PURCHASES\_INSTALLMENTS\_FREQUENCY',
- 'CASH\_ADVANCE\_FREQUENCY',
- 'CASH\_ADVANCE\_TRX',
- 'PURCHASES\_TRX',
- 'CREDIT\_LIMIT',
- 'PAYMENTS',
- 'MINIMUM\_PAYMENTS',
- 'PRC\_FULL\_PAYMENT',
- 'TENURE'], outputCol='features') \\
-assembled\_df=assemble.transform(df) \\
-assembled\_df.show(2) \\
-from pyspark.ml.feature import StandardScaler \\
-scale=StandardScaler(inputCol='features',outputCol='standardized') \\
-df\_scale=scale.fit(assembled\_df) \\
-df\_scale\_output=df\_scale.transform(assembled\_df) \\
-df\_scale\_output.show(2)
-}
-
-\item Membangun Model \\
-{\tt
-from pyspark.ml.clustering import KMeans \\
-from pyspark.ml.evaluation import ClusteringEvaluator \\
-silhouette\_score=[] \\
-evaluator = ClusteringEvaluator(predictionCol='prediction', featuresCol='standardized', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
-for i in range(2,10): \\
-\hspace*{5mm} KMeans\_algo=KMeans(featuresCol='standardized', k=i) \\
-\hspace*{5mm} KMeans\_fit=KMeans\_algo.fit(data\_scale\_output) \\
-\hspace*{5mm} output=KMeans\_fit.transform(data\_scale\_output) \\
-\hspace*{5mm} score=evaluator.evaluate(output) \\
-\hspace*{5mm} silhouette\_score.append(score) \\
-\hspace*{5mm} print("Silhouette Score:",score) \\
-}
-\item Tampilkan silhouette score \\
-{\tt
-import matplotlib.pyplot as plt \\
-fig, ax = plt.subplots(1,1, figsize =(8,6)) \\
-ax.plot(range(2,10),silhouette\_score) \\
-ax.set\_xlabel('k') \\
-ax.set\_ylabel('cost') \\
-}
-\end{enumerate}
-
-\hrulefill
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newday{\#16 - Tugas Kelompok menggantikan 22 Desember 2022}
-
-\newthought{Program Machine Learning dengan PySpark}
-
-Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, buatlah program tersebut dalam bentuk file sehingga dapat dijalankan menggunakan {\tt spark-submit}. Dokumentasikan hasil dan perubahan yang Anda lakukan untuk dimasukkan ke dalam laporan. Kumpulkan laporan dengan format \textit{message "Laporan Kelompok Nomor-Kelompok}".
-
-\hrulefill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
