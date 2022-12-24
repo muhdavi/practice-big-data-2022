@@ -1221,7 +1221,7 @@ pca\_transform = pca\_model.transform(assembled\_data)
 } 
 
 {\tt
-x\_pca = np.array(pca\_transformed.rdd.map(lambda row: row.pca).collect())
+x\_pca = np.array(pca\_transform.rdd.map(lambda row: row.pca).collect())
 }
 
 {\tt
