@@ -1179,7 +1179,7 @@ outputCol = 'iris\_features')
 
 {\tt
 assembled\_data=assemble.transform(spark\_df) \\
-
+assembled\_data.show(5) \\
 from pyspark.ml.clustering import KMeans \\
 from pyspark.ml.evaluation import ClusteringEvaluator \\
 
@@ -1198,9 +1198,9 @@ for K in range(2,11): \\
 \hspace*{7mm}evaluation\_score=evaluator.evaluate(KMeans\_transform) \\
 \hspace*{7mm}silhouette\_scores.append(evaluation\_score) \\
 
-fig, ax = plt.subplots(1,1, figsize =(10,8)) \\
+fig, ax = plt.subplots(1,1, figsize=(10,8)) \\
 ax.plot(range(2,11), silhouette\_scores) \\
-ax.set\_xlabel('Jumlah Clusters') \\
+ax.set\_xlabel('Jumlah Cluster') \\
 ax.set\_ylabel('Hasil Silhouette') \\
 plt.show()
 }
@@ -1217,7 +1217,7 @@ KMeans\_Assignments=KMeans\_Model.transform(assembled\_data)
 from pyspark.ml.feature import PCA as PCAml \\
 pca = PCAml(k=2, inputCol="iris\_features", outputCol="pca") \\
 pca\_model = pca.fit(assembled\_data) \\
-pca\_transformed = pca\_model.transform(assembled\_data)
+pca\_transform = pca\_model.transform(assembled\_data)
 } 
 
 {\tt
@@ -1237,7 +1237,7 @@ pca\_df = pd.DataFrame(data=pca\_data, columns=("1st\_principal", "2nd\_principa
 }
 
 {\tt
-sns.FacetGrid(pca\_df,hue="cluster\_assignment", height=6).map(plt.scatter, '1st\_principal', '2nd\_principal' ).add\_legend() \\
+sns.FacetGrid(pca\_df,hue="cluster\_assignment", height=6).map(plt.scatter, '1st\_principal', '2nd\_principal').add\_legend() \\
 }
 
 {\tt plt.show()}
