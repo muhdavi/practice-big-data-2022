@@ -984,14 +984,14 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 \item Nurani Harum Fardaniah
 %\item Nuraula Tafiza
 %\item Nurul Aflah
-%\item Rauzatinur Syah
-%\item Resha Russita
+\item Rauzatinur Syah
+\item Resha Russita
 \item Rizki Ilhami
 \item Salsabila Irmanda
 %\item Siti Hajar Al Zahra
 %\item Syarfani Akbar
 \item Taravia Fauzah
-%\item Zulfahmi
+\item Zulfahmi
 \end{enumerate}}}
 
 \newthought{Program WordCount dengan Python}
@@ -1096,8 +1096,11 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.master("local").appName('WordCount').getOrCreate()
 sc = spark.sparkContext
 sc.setLogLevel("ERROR")
+# input data
 data = sc.textFile("/input/dataWordCount.txt")
+# process
 counts = data.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+# output
 counts.saveAsTextFile("/ResultWordCountPySpark")
 output = counts.collect()
 for (word, count) in output:
@@ -1120,7 +1123,140 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 
 \hrulefill
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#15 - Tugas Individu menggantikan 15 Desember 2022}
 
+\newthought{Program Machine Learning dengan PySpark}
+
+Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
+
+\begin{enumerate}
+\item Pastikan Hadoop dan Spark berjalan
+\item Pastikan package sudah tersedia \\
+{\tt pip list}
+\begin{multicols}{3}
+\begin{itemize}
+\item pandas
+\item matplotlib
+\item numpy
+\item seaborn
+\item scikit-learn
+\end{itemize}
+\end{multicols}
+
+Jika package tersebut belum tersedia, install terlebih dahulu menggunakan {\tt pip}, misalnya {\tt pip install scikit-learn}.
+
+\item Load Package \\
+{\tt 
+import numpy as np \\
+import pandas as pd \\
+import seaborn as sns \\
+import matplotlib.pyplot as plt \\
+from sklearn.datasets import load\_iris \\
+from pyspark.sql import SparkSession \\
+}
+
+\item Load Data \\
+{\tt
+data\_iris = load\_iris(as\_frame=True) \\
+df = pd.DataFrame(data\_iris.data, columns = data\_iris.feature\_names) \\
+spark\_df = spark.createDataFrame(df) \\
+spark\_df.show(5)
+}
+
+\item Menentukan nilai K dengan metode \textit{silhouette} \\
+{\tt
+from pyspark.ml.feature import VectorAssembler \\
+
+assemble=VectorAssembler(inputCols=[\\
+'sepal length (cm)',\\
+'sepal width (cm)',\\
+'petal length (cm)',\\
+'petal width (cm)'],\\
+outputCol = 'iris\_features')
+}
+
+{\tt
+assembled\_data=assemble.transform(spark\_df) \\
+assembled\_data.show(5) \\
+from pyspark.ml.clustering import KMeans \\
+from pyspark.ml.evaluation import ClusteringEvaluator \\
+
+silhouette\_scores=[]
+}
+
+{\tt
+evaluator = ClusteringEvaluator(featuresCol='iris\_features', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
+}
+
+{\tt
+for K in range(2,11): \\
+\hspace*{7mm}KMeans\_=KMeans(featuresCol='iris\_features', k=K) \\
+\hspace*{7mm}KMeans\_fit=KMeans\_.fit(assembled\_data) \\
+\hspace*{7mm}KMeans\_transform=KMeans\_fit.transform(assembled\_data) \\
+\hspace*{7mm}evaluation\_score=evaluator.evaluate(KMeans\_transform) \\
+\hspace*{7mm}silhouette\_scores.append(evaluation\_score) \\
+
+fig, ax = plt.subplots(1,1, figsize=(10,8)) \\
+ax.plot(range(2,11), silhouette\_scores) \\
+ax.set\_xlabel('Jumlah Cluster') \\
+ax.set\_ylabel('Hasil Silhouette') \\
+plt.show()
+}
+
+\item Membangun Model \textit{K-Means Clustering} \\
+{\tt
+KMeans\_=KMeans(featuresCol='iris\_features', k=3) \\
+KMeans\_Model=KMeans\_.fit(assembled\_data) \\
+KMeans\_Assignments=KMeans\_Model.transform(assembled\_data)
+}
+
+\item Menampilkan Hasil \textit{Clustering} dengan PCA \\
+{\tt
+from pyspark.ml.feature import PCA as PCAml \\
+pca = PCAml(k=2, inputCol="iris\_features", outputCol="pca") \\
+pca\_model = pca.fit(assembled\_data) \\
+pca\_transform = pca\_model.transform(assembled\_data)
+} 
+
+{\tt
+x\_pca = np.array(pca\_transform.rdd.map(lambda row: row.pca).collect())
+}
+
+{\tt
+cluster\_assignment = np.array(KMeans\_Assignments.rdd.map(lambda row: row.prediction).collect()).reshape(-1,1)
+}
+
+{\tt
+pca\_data = np.hstack((x\_pca,cluster\_assignment))
+}
+
+{\tt
+pca\_df = pd.DataFrame(data=pca\_data, columns=("1st\_principal", "2nd\_principal","cluster\_assignment")) 
+}
+
+{\tt
+sns.FacetGrid(pca\_df,hue="cluster\_assignment", height=6).map(plt.scatter, '1st\_principal', '2nd\_principal').add\_legend() \\
+}
+
+{\tt plt.show()}
+\end{enumerate}
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newday{\#16 - Tugas Kelompok menggantikan 22 Desember 2022}
+
+\newthought{Program Machine Learning dengan PySpark}
+
+Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, buatlah program tersebut dalam bentuk file Python sehingga dapat dijalankan menggunakan {\tt spark-submit}. Dokumentasikan hasil dan perubahan yang Anda lakukan untuk dimasukkan ke dalam laporan. Kumpulkan laporan beserta file Python melalui GitHub dengan format \textit{message "Laporan Kelompok Nomor-Kelompok}". Kumpulkan file Python didalam folder yang telah disediakan \textit{TugasKelompok}. Yang mengumpulkan cukup salah satu sebagai perwakilan kelompok.
+
+\hrulefill
+
+\centering{\LARGE{\textbf{\textcolor{red}{Ingat!\\ Semua Tugas dan Laporan panling lambat dikumpulkan tanggal 5 Januari 2023.}}}}
+\vfill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
@@ -1134,7 +1270,7 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Hadoop}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Hadoop}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Java}}} & 
-	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Apaceh Spark}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Apache Spark}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Python}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount PySpark}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Tugas Individu}}} &
