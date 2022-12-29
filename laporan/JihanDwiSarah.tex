@@ -67,19 +67,141 @@ proses dan cara kerja Hadoop dalam memproses data input hingga menghasilkan sebu
 Berhasil mencoba program bawaan Hadoop yaitu program menghitung jumlah kata dalam data input yang diberikan.Berikut ini gambar bukti keberhasilan praktikum. 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{JihanDwiSarah/WordCount bawaan-Hadoop(jihan)}
-\caption{Akses melalui web browser dengan alamat http://localhost:9870}
+\caption{Output Wordcount Bawaan Hadoop}
 \label{gam:WordCount bawaan-Hadoop(jihan)}
 \end{figure}
 \end{enumerate}
 
-\newday{\textbf{} - }
+\newday{\textbf{16 Desember 2022} - Program WordCount dengan Java}
 \begin{enumerate}
 \item Kendala dan Solusi \\
 % jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Pada pertemuan hari ini, kegiatan yang dilakukan adalah mencoba program  wordcount dengan java. Selama praktikum mengalami kendala pada poin ke-6 berdasarkan urutan di modul. Program tidak mau dicompile karena kesalahan penulisan perintah.\\
+
+solusinya adalah menggunakan perintah seperti berikut \\
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/solusi-java-compile(jihan)}
+\caption{Solusi Meng-Compile java}
+\label{gam:solusi-java-compile(jihan)}
+\end{figure}
 
 
 \item Kesimpulan\\
 % berikan kesimpulan dari praktikum yang telah dikerjkan
+Dapat memberikan pemahaman mengenai proses membuat program wordcount java, menyiapkan data, meng-compile program hingga menjalankan program dan memperoleh hasilnya. Berikut hasil praktikum.
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-Java(jihan)}
+\caption{Output Wordcount java}
+\label{gam:WordCount-Java(jihan)}
+\end{figure}
+\end{enumerate}
+
+\newday{\textbf{17 Desember 2022} - Instalasi Apache Spark (PySpark)}
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Terdapat kendala pada poin ke 3 karena kesalahan dari modulnya, perintah yang benar adalah sebagai berikut:\\
+sudo mv spark-3.3.1-bin-hadoop3.\\
+tidak perlu menambahkan '/usr/local/spark' lagi di akhir.
+
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil melakukan instalasi apache spark (PySpark), berikut hasil praktikum : \\
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/Instalasi-Spark(jihan)}
+\caption{Hasil Instalasi Spark}
+\label{gam:Instalasi-Spark(jihan)}
+\end{figure}
+
+
+\end{enumerate}
+
+
+\newday{\textbf{22 Desember 2022} - Program WordCount dengan Python }
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Terdapat error di poin ke-6 yaitu mencoba program local. Belum ada solusinya 
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Belum ada hasil akhir, karena masih ada kendala. Masih mencoba sampai berhasil.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/kendala-WordCountPython(jihan)}
+\caption{Kendala Program Local}
+\label{gam:kendala-WordCountPython(jihan)}
+\end{figure}
+
+
+\end{enumerate}
+
+\newday{\textbf{23 Desember 2022} - Program WordCount dengan Pyspark }
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Pada pertemuan hari ini, kegiatan yang dilakukan adalah mencoba program  wordcount dengan Pyspark. Selama praktikum tidak mengalami kendala.
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menjalankan program menggunakan PySpark, berikut hasil yang diperoleh \\
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-PySpark(jihan)}
+\caption{Output Wordcount PySpark}
+\label{gam:WordCount-PySpark(jihan)}
+\end{figure}
+\end{enumerate}
+
+\newday{\textbf{25 Desember 2022} - Program WordCount dengan Python }
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Kendala yang  pertama terdapat di poin ke-6 yaitu mencoba program local. Solusinya adalah menambahkan python3 di dalam program map.py dan reduce.py karena versi python yang tersedia adalah python3, baru setelah itu program di lokal bisa di jalankan. berikut program yang benar : \\
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/solusi-python-poin-6(jihan)}
+\caption{solusi python poin 6}
+\label{gam:solusi-python-poin-6(jihan)}
+\end{figure} 
+
+kendala yang kedua tidak bisa menjalankan program hadoop python. Terdapat pesan error 'Streaming Command Failed' seperti gambar di bawah ini :
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/kendala-menjalankan-hadoop-python(jihan)}
+\caption{Kendala Menjalankan Hadoop Python}
+\label{gam:kendala-menjalankan-hadoop-python(jihan)}
+\end{figure} 
+
+Ternyata kesalahannya adalah saya tidak mendeklarasikan direktori penyimpanan program WordCountPython dengan benar. Saya menyimpan program WordCountPython di dalam direktori '/usr/local/hadoop/etc/hadoop'. jadi saya harus mendeklasikan direktori tersebut terlebih dahulu, baru setelah itu program hadoop python ini bisa dijalankan. berikut perintah yang benar.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/solusi-python(jihan)}
+\caption{Solusi Menjalankan hadoop Python(jihan)}
+\label{gam:solusi-python(jihan)}
+\end{figure} 
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menjalankan program wordcount dengan python walaupun banyak mengalami kendala, berikut bukti hasil praktikum. 
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/program-local-python(jihan)}
+\caption{Mencoba program di local}
+\label{gam:program-local-python(jihan)}
+\end{figure} 
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-Python(jihan)}
+\caption{Hasil wordcount python}
+\label{gam:WordCount-Python(jihan)}
+\end{figure} 
+
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-Python2(jihan)}
+\caption{Hasil wordcount python2}
+\label{gam:WordCount-Python2(jihan)}
+\end{figure} 
 
 \end{enumerate}
 
