@@ -8,7 +8,7 @@
 \begin{enumerate}
     \item kendala
 \begin{itemize}
-    \item Kendalanya pada saat menjalakan hadoop service, firefox tidak bisa dibuka.
+    \item Kendalanya pada saat menjalankan hadoop service, firefox tidak bisa dibuka.
 \end{itemize}
     \item solusi
 \begin{itemize}
@@ -24,6 +24,12 @@
 
 
 \end{enumerate}
+
+\begin{figure}[!ht]
+    \includegraphics[width=\textwidth]{RizkiIlhami/jps}
+    \caption{hasil jps}
+    \label{gam:Hasil}
+\end{figure}
 
 \begin{figure}[!ht]
     \includegraphics[width=\textwidth]{RizkiIlhami/Hadoop Version}
@@ -123,17 +129,48 @@
 \begin{enumerate}
 \item Kendala dan Solusi
 
+\begin{enumerate}
+    \item kendala
 \begin{itemize}
-\item Tidak bisa menjalankan {\color{red}"echo jangan heran jika orang cantik merasa jelek sementara
-orang yang jelek merasa cantik | WordCountPython/map.py |
-sort | WordCountPython/reduce.py"}
+    \item Tidak bisa menjalankan {\color{red}"echo jangan heran jika orang cantik merasa jelek sementara
+    orang yang jelek merasa cantik | WordCountPython/map.py |
+    sort | WordCountPython/reduce.py"}
 \end{itemize}
-
+    \item solusi
+\begin{itemize}
+    \item Memeriksa pada {\color{red}file map.py} dan {\color{red}reduce.py}
+    \item Setelah diteliti lebih mendalam ternyata ada tulisan yang keliru dan ada yang perlu ditambah lagi.
+\end{itemize}
+\end{enumerate}
 
 \item Kesimpulan
-% berikan kesimpulan dari praktikum yang telah dikerjkan
+\newline Berhasil menjalankan program WordCountPython dengan baik, walaupun banyak kendala yang dialami.
 
 \end{enumerate}
+
+\begin{figure}[!ht]
+    \includegraphics[width=\textwidth]{RizkiIlhami/WordCount python step 6}
+    \caption{Mencoba program di local }
+    \label{gam:hasil WordCountPython}
+    \end{figure}
+
+\begin{figure}[!ht]
+    \includegraphics[width=\textwidth]{RizkiIlhami/WordCount python step 7}
+    \caption{Menjalankan Program menggunakan Hadoop }
+    \label{gam:hasil WordCountPython}
+\end{figure}
+
+\begin{figure}[!ht]
+    \includegraphics[width=\textwidth]{RizkiIlhami/WordCount python step 8}
+    \caption{Hasil WordCount Python }
+    \label{gam:hasil WordCountPython}
+\end{figure}
+
+\begin{figure}[!ht]
+    \includegraphics[width=\textwidth]{RizkiIlhami/WordCount python step 9}
+    \caption{Hasil WordCount Python }
+    \label{gam:hasil WordCountPython}
+\end{figure}
 
 \clearpage
 \newday{\textbf{22 Desember 2022} - WordCount dengan PySpark}
