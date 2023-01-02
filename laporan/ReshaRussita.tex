@@ -78,7 +78,7 @@ Data yang saya input disini adalah data mahasiswa (nama, asal sekolah, dan alama
 
 \end{enumerate}
 
-\newday{\textbf{16 Desember 2022}}
+\newday{\textbf{16 Desember 2022} - WordCount Hadoop dengan Python}
 \begin{enumerate}
 \item Kendala dan Solusi
 \newline Pada program WordCount Hadoop dengan Python terdapat kendala yang saya alami. Hal ini terjadi karena kekeliruan pada modul. Solusi yang saya lakukan adalah mengupdate ulang modul yang diberikan.
@@ -95,7 +95,7 @@ Namun disini saya sebagai praktikan menghitung jumlah kata pada dataWordCount.tx
 
 \end{enumerate}
 
-\newday{\textbf{22 Desember 2022}}
+\newday{\textbf{22 Desember 2022} - WordCount Hadoop dengan PySpark}
 \begin{enumerate}
 \item Kendala dan Solusi
 \newline Pada program WordCount Hadoop dengan PySpark tidak ada kendala yang saya alami.
@@ -112,7 +112,7 @@ Namun disini saya sebagai praktikan menghitung jumlah kata pada WordCount.py den
 
 \end{enumerate}
 
-\newday{\textbf{23 Desember 2022}}
+\newday{\textbf{23 Desember 2022} - Tugas Individu}
 \begin{enumerate}
 \item Kendala dan Solusi
 \newline Pada tugas individu, tidak banya kendala yang saya alami. Kendala yang terjadi adalah hanya kekeliruan pada perintah saja. Solusi yang saya lakukan adalah melakukan teliti kembali pada perintah yang saya buat sebelumnya.
@@ -145,5 +145,66 @@ Namun disini saya sebagai praktikan menghitung jumlah kata pada WordCount.py den
 \newline Pada tugas individu yaitu menampilkan grafik mengenai bunga iris berdasarkan ciri-ciri yang telah diinput yaitu lebar sepal, tinggi sepal, lebar petal, dan tinggi petal. Hasil dari ciri-ciri tersebut menghasilkan vektor yang berbeda-beda mengenai bunga iris. Terdapat 5 vektor di dalamnya berdasarkan baris ciri-ciri yang berbeda-beda. 
 \newline Grafik pertama yang dihasilkan adalah grafik mengenai jumlah cluster dan hasil silhouette yaitu metode yang digunakan untuk menempatkan suatu objek pada cluster. 
 \newline Grafik kedua yang dihasilkan yaitu perhitungan jumlah titik pada cluster 0, cluster 1, dan cluster 2. 
+
+\end{enumerate}
+
+\newday{\textbf{23 Desember 2022} - Tugas Kelompok 4}
+\begin{enumerate}
+\item Kendala dan Solusi
+\newline Pada tugas kelompok membuat file python yang dapat dijalankan dengan spark-submit, tidak ada kendala yang terlalu berat di dalamnya. Hanya saja terdapat error pada proses pemunculan grafik terakhir mengenai cluster assignment. 
+\newline solusi yang kami lakukan adalah melakukan pengecekkan ulang pada program yang ada pada file python
+
+\item Kesimpulan
+\newline Pada tugas kelompok yaitu membuat file python yang dapat dijalankan dengan spark-submit, kami dari kelompok 4 berhasil menyelesaikan tugas ini.
+\newline Berikut alur atau langkah-langkah praktikum tugas kelompok ini:
+1) Membuat direktori baru di dalam hdfs. Direktori ini kami beri nama FolderPyspark. Kemudian masuk ke direktori tersebut, dan membuat file python untuk mengisi program. File python ini kami beri nama pysparkbigdata.py 
+
+\begin{figure}[!ht]
+\includegraphics[width=.9\textwidth]{TugasKelompok/Kelompok4/direktoribarudanfilepython}
+\caption{Direktori baru dan file python}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+
+2) Mengisi program seperti yang ada pada tugas individu ke dalam file python yang telah dibuat sebelumnya yaitu pysparkbigdata.py
+\begin{figure}[!ht]
+\includegraphics[width=.9\textwidth]{TugasKelompok/Kelompok4/programpython}
+\caption{Program file python}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+\begin{figure}[!ht]
+\includegraphics[width=.9\textwidth]{TugasKelompok/Kelompok4/programpython2}
+\caption{Program file python}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+
+3) Menjalankan program tersebut dengan perintah spark-submit pysparkbigdata.py dan tunggu proses selesai. Proses selesai ditandai dengan munculnya 2 tabel mengenal deskripsi bunga iris dan vektor yang dihasilkan dari deskripsi tersebut, juga 2 grafik mengenai jumlah cluster hasil silhouette dan cluster assignment.
+\begin{figure}[!ht]
+\includegraphics[width=.8\textwidth]{TugasKelompok/Kelompok4/runningdenganpyspark}
+\caption{Menjalankan program menggunakan Pyspark}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+
+4) Melihat hasil yang ditampilkan.
+\begin{figure}[!ht]
+\includegraphics[width=.9\textwidth]{TugasKelompok/Kelompok4/tabelpertama}
+\caption{ciri-ciri dari bunga iris berdasarkan sepal dan petal}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+\begin{figure}[!ht]
+\includegraphics[width=.9\textwidth]{TugasKelompok/Kelompok4/tabelkedua}
+\caption{vektor bunga iris yang dihasilkan dari ciri-ciri yang telah diinput}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+\includegraphics[width=.8\textwidth]{TugasKelompok/Kelompok4/grafikpertama}
+\caption{grafik jumlah cluster dan hasil silhouette dari software metaploit}
+\label{gam:perkuliahan-23-09}
+\end{figure}
+\begin{figure}[!ht]
+\includegraphics[width=.8\textwidth]{TugasKelompok/Kelompok4/grafikkedua}
+\caption{grafik cluster assignment dari software metaploit}
+\label{gam:perkuliahan-23-09}
+\end{figure}
 
 \end{enumerate}
