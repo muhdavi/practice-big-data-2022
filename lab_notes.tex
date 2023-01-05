@@ -1,4 +1,4 @@
-%%% Laboratory	 Notes
+ %%% Laboratory	 Notes
 %%% Template by Mikhail Klassen, April 2013
 %%% Contributions from Sarah Mount, May 2014
 %%% Contributions from Muhammad Davi, September 2022
@@ -58,7 +58,7 @@ Taravia Fauzah			& \url{https://github.com/traviafzah} \\
 Kelompok 5\\
 \midrule
 Salsabila Irmanda		& \url{https://github.com/salsabilairmanda17} \\
-\textcolor{red}{Siti Hajar Al Zahra	}	& \url{-} \\
+Siti Hajar Al Zahra		& \url{https://github.com/sitihjralzahara} \\
 Syarfani Akbar			& \url{https://github.com/SyarfaniAkbar} \\
 Cut Opy Mandalisa		& \url{https://github.com/cutopymdl} \\
 \midrule
@@ -158,8 +158,8 @@ No & Nama 				& Asal Sekolah 				& Alamat\\
 15 	& Resha Russita			& SMA N 1 Lhokseumawe 	& Alue Awe \\
 16 	& Rizki Ilhami			& SMK N 1 Lhoksukon 	& Lapang \\
 17 	& Salsabila Irmanda		& MAS Misbahul Ulum 	& Alue Awe \\
-18 	& Siti Hajar Al Zahra	& & \\
-19 	& Syarfani Akbar		& & \\
+18 	& Siti Hajar Al Zahra	& MAN 4 Aceh Utara 		& Blang Jruen \\
+19 	& Syarfani Akbar		& SMK N 1 Lhokseumawe 	& Uten Bayi \\
 20 	& Taravia Fauzah		& SMA N 1 Dewantara 	& Blang Naleung Mameh \\
 21 	& Zulfahmi				& SMK N 1 Lhokseumawe	& Kuta Makmur \\
 \bottomrule
@@ -266,14 +266,7 @@ Mahasiswa yang sudah berhasil konfigurasi Git dengan GitHub dan melakukan {\tt P
 \item Nurul Aflah
 \item Arya Saputra
 \item Faiza Yuwafiqi
-\end{enumerate}
-\end{multicols}
-
-\noindent
-Berikut beberapa mahasiswa yang belum melakukan {\tt Pull Request}:
-\begin{multicols}{2}
-\begin{enumerate}
-\item \textcolor{red}{Siti Hajar Al Zahra}
+\item Siti Hajar Al Zahra
 \item Syarfani Akbar
 \end{enumerate}
 \end{multicols}
@@ -365,7 +358,7 @@ Jika instalasi java berhasil tanpa ada bug atau error maka akan menampilkan hasi
 {\tt ssh-keygen -t rsa} \\
 {\tt cat $\sim$/.ssh/id\_rsa.pub >> $\sim$/.ssh/authorized\_keys} \\
 {\tt chmod og-wx $\sim$/.ssh/authorized\_keys} \\
-{\tt sudo apt-get update}
+{\tt sudo apt update}
 \item Coba Masuk via SSH Lagi \\
 {\tt ssh localhost}
 \item Jika sudah berhasil, keluar dengan perintah {\tt exit} \\
@@ -753,8 +746,8 @@ RauzatinurSyah, MAS_Misbahul_Ulum, Geudong
 ReshaRussita, SMA_N_1_Lhokseumawe, Alue_Awe
 RizkiIlhami, SMK_N_1_Lhoksukon, Lapang
 SalsabilaIrmanda, MAS_Misbahul_Ulum, Alue_Awe
-SitiHajarAlZahra
-SyarfaniAkbar
+SitiHajarAlZahra, MAN_4_Aceh_Utara, Blang_Jruen
+SyarfaniAkbar, SMK_N_1_Lhokseumawe, Uten_Bayi
 TaraviaFauzah, SMA_N_1_Dewantara, Blang_Naleung_Mameh
 Zulfahmi, SMK_N_1_Lhokseumawe, Kuta_Makmur
 \end{lstlisting}
@@ -904,13 +897,37 @@ Screenshot hasil dari langkah 9 dan 10 serta masukkan ke dalam laporan. Kumpulka
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022}
+\newday{\#12 - 22 Desember 2022 menggantikan 24 November 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+\item Adjie Yusmunandar
+\item Arya Saputra
+\item Cut Opy Mandalisa
+%\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+%\item Muhammad Ikrammullah
+\item Muhammad Munawir
+\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+\item Nuraula Tafiza
+\item Nurul Aflah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+\item Siti Hajar Al Zahra
+\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Instalasi Apache Spark (PySpark)}
 
 \begin{enumerate}
 \item Download Apache Spark \\
-{\tt wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}
+{\tt \footnotesize{wget https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz}}
 
 \item Ekstrak Apache Spark \\
 {\tt tar -xzvf spark-3.3.1-bin-hadoop3.tgz}
@@ -929,7 +946,7 @@ export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 \item Verifikasi Hasil Instalasi Spark
 
-{\tt pyspark --version}
+{\tt pyspark ---version}
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{spark-version}
@@ -951,7 +968,31 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022}
+\newday{\#13 - 23 Desember 2022 menggantikan 1 Desember 2022
+\footnote{Mahasiswa yang hadir:
+\begin{enumerate}
+\item Adinda Awaliah
+%\item Adjie Yusmunandar
+%\item Arya Saputra
+\item Cut Opy Mandalisa
+\item Faiza Yuwafiqi
+\item Jihan Dwi Sarah
+\item M. Ikhsan
+%\item Muhammad Ikrammullah
+%\item Muhammad Munawir
+%\item Nadzura Kumaira
+\item Nurani Harum Fardaniah
+%\item Nuraula Tafiza
+%\item Nurul Aflah
+\item Rauzatinur Syah
+\item Resha Russita
+\item Rizki Ilhami
+\item Salsabila Irmanda
+%\item Siti Hajar Al Zahra
+%\item Syarfani Akbar
+\item Taravia Fauzah
+\item Zulfahmi
+\end{enumerate}}}
 
 \newthought{Program WordCount dengan Python}
 
@@ -959,15 +1000,14 @@ Screenshot hasil dari langkah 5 dan masukkan ke dalam laporan. Kumpulkan melalui
 \item Pastikan Hadoop Service dan Spark Service berjalan
 \item Pastikan data input pada pertemuan sebelumnya masih tersedia di HDFS
 \item Buat folder baru untuk menyimpan file Python \\
-{\tt sudo mkdir WordCountPython} \\
-{\tt cd WordCountPython}
+{\tt sudo mkdir WordCountPython} 
 
 \item Buat file baru dengan nama dan kode berikut
 \begin{itemize}
 \item {\tt map.py} \\
-{\tt nano WordCountPython/map.py}
+{\tt sudo nano WordCountPython/map.py}
 \begin{lstlisting}
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys
 
@@ -980,14 +1020,14 @@ for line in sys.stdin:
 %{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/WordCountPython/map.py}
 
 \item {\tt reduce.py} \\
-{\tt nano WordCountPython/reduce.py}
+{\tt sudo nano WordCountPython/reduce.py}
 \begin{lstlisting}
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys
 
-current_word = None
 current_count = 0
+current_word = None
 word = None
 
 for line in sys.stdin:
@@ -1005,6 +1045,7 @@ for line in sys.stdin:
         if current_word:
             print('{}\t{}'.format(current_word, current_count))
         current_count = count
+        current_word = word        
 
 if current_word == word:
     print('{}\t{}'.format(current_word, current_count))
@@ -1015,24 +1056,18 @@ if current_word == word:
 \item Ubah Hak Akses \\
 {\tt sudo chmod +x -R WordCountPython/} 
 
-\item Mencoba Program di Local
-\begin{itemize}
-\item Mencoba jalankan {\tt map.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py}
-\item Mencoba jalankan {\tt reduce.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/reduce.py}
-\item Mencoba jalankan {\tt map.py} dan {\tt reduce.py} \\
-{\tt echo jangan heran jika orang cantik merasa jelek sementara orang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
-\end{itemize}
+\item Mencoba Program di Local \\
+{\tt echo jangan heran jika orang cantik merasa jelek sementara orang yang jelek merasa cantik | WordCountPython/map.py | sort | WordCountPython/reduce.py}
+
 
 \item Jalankan Program menggunakan Hadoop \\
-{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper ~/WordCountPython/map.py -reducer ~/WordCountPython/reduce.py -input /input/inputWordCount.txt -output /ResultWordCountPython}
+{\tt hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar -mapper $\sim$/WordCountPython/map.py -reducer $\sim$/WordCountPython/reduce.py -input /input/dataWordCount.txt -output /ResultWordCountPython}
 
 \item Cek Hasil \\
 {\tt hadoop fs -ls /ResultWordCountPython}
 
 \item Lihat Hasil \\
-{\tt hadoop fs -cat /ResultWordCountPython/part-r-00000}
+{\tt hadoop fs -cat /ResultWordCountPython/part-00000}
 \end{enumerate}
 
 \vspace*{-.5cm}
@@ -1055,20 +1090,18 @@ Screenshot hasil dari langkah 8 dan 9 serta masukkan ke dalam laporan. Kumpulkan
 {\tt cd WordCountPySpark}
 
 \item Buat file baru dengan nama dan kode berikut \\
-{\tt nano WordCount.py}
+{\tt sudo nano WordCount.py}
 \begin{lstlisting}
 from pyspark.sql import SparkSession
-spark = SparkSession.builder\
-                    .master("local")\
-                    .appName('WordCount')\
-                    .getOrCreate()
+spark = SparkSession.builder.master("local").appName('WordCount').getOrCreate()
 sc = spark.sparkContext
 sc.setLogLevel("ERROR")
-data = sc.textFile("/input/inputWordCount.txt")
-counts = data.flatMap(lambda line: line.split(" ")) \
-             .map(lambda word: (word, 1)) \
-             .reduceByKey(lambda a, b: a + b)
-counts.saveAsTextFile("/ResultWordCountPyspark")
+# input data
+data = sc.textFile("/input/dataWordCount.txt")
+# process
+counts = data.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+# output
+counts.saveAsTextFile("/ResultWordCountPySpark")
 output = counts.collect()
 for (word, count) in output:
     print("%s: %i" % (word, count))
@@ -1081,7 +1114,7 @@ for (word, count) in output:
 {\tt hadoop fs -ls /ResultWordCountPyspark}
 
 \item Lihat Hasil \\
-{\tt hadoop fs -cat /ResultWordCountPyspark/part-r-00000}
+{\tt hadoop fs -cat /ResultWordCountPyspark/part-00000}
 \end{enumerate}
 
 \vspace*{-.5cm}
@@ -1096,81 +1129,118 @@ Screenshot hasil dari langkah 6 dan 7 serta masukkan ke dalam laporan. Kumpulkan
 
 \newthought{Program Machine Learning dengan PySpark}
 
-Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
+Berbeda dengan program sebelumnyan, program ini dijalankan satu-per-satu perintahnya di terminal PySpark. Ikutilah langkah-langkah berikut ini secara cermat dan teliti. Setiap perintah yang Anda kerjakan buat dokumentasi-nya dan Anda masukkan ke dalam Laporan dengan mengumpulkannya melalui GitHub dengan \textit{message "Laporan Tugas Mandiri a.n. Nama"}.
 
 \begin{enumerate}
-\item Download data \\
-{\tt wget https://raw.githubusercontent.com/muhdavi/kode-practice- big-data/main/Data/cc\_general.csv?token=GHSAT0AAAAAAB4OSMEAHV6C53FZEJ4NZ66CY5D7CVQ}
+\item Pastikan Hadoop dan Spark berjalan
+\item Pastikan package sudah tersedia \\
+{\tt pip list}
+\begin{multicols}{3}
+\begin{itemize}
+\item pandas
+\item matplotlib
+\item numpy
+\item seaborn
+\item scikit-learn
+\end{itemize}
+\end{multicols}
 
-\item Pindahkan Data ke HDFS \\
-{\tt hadoop fs -put cc\_general.csv /input}
+Jika package tersebut belum tersedia, install terlebih dahulu menggunakan {\tt pip}, misalnya {\tt pip install scikit-learn}.
 
-\item Masukkan ke terminal PySpark \\
-{\tt pyspark}
-
-\item Membaca Data \\
+\item Load Package \\
 {\tt 
+import numpy as np \\
+import pandas as pd \\
+import seaborn as sns \\
+import matplotlib.pyplot as plt \\
+from sklearn.datasets import load\_iris \\
 from pyspark.sql import SparkSession \\
-spark = SparkSession.builder.appName('Program Machine Learning').getOrCreate() \\
-df=spark.read.csv('/input/cc\_general.csv', header=True, inferSchema=True) \\
-df.printSchema() \\
-df.show(5, truncate = False) \\
-df.describe().show() \\
-}
-\item Data Preprocessing \\
-{\tt
-df=df.na.drop() \\
-from pyspark.ml.feature import VectorAssembler \\
-df.columns \\
-assemble=VectorAssembler(inputCols=[
- 'BALANCE',
- 'BALANCE\_FREQUENCY',
- 'PURCHASES',
- 'ONEOFF\_PURCHASES',
- 'INSTALLMENTS\_PURCHASES',
- 'CASH\_ADVANCE',
- 'PURCHASES\_FREQUENCY',
- 'ONEOFF\_PURCHASES\_FREQUENCY',
- 'PURCHASES\_INSTALLMENTS\_FREQUENCY',
- 'CASH\_ADVANCE\_FREQUENCY',
- 'CASH\_ADVANCE\_TRX',
- 'PURCHASES\_TRX',
- 'CREDIT\_LIMIT',
- 'PAYMENTS',
- 'MINIMUM\_PAYMENTS',
- 'PRC\_FULL\_PAYMENT',
- 'TENURE'], outputCol='features') \\
-assembled\_df=assemble.transform(df) \\
-assembled\_df.show(2) \\
-from pyspark.ml.feature import StandardScaler \\
-scale=StandardScaler(inputCol='features',outputCol='standardized') \\
-df\_scale=scale.fit(assembled\_df) \\
-df\_scale\_output=df\_scale.transform(assembled\_df) \\
-df\_scale\_output.show(2)
 }
 
-\item Membangun Model \\
+\item Load Data \\
 {\tt
+data\_iris = load\_iris(as\_frame=True) \\
+df = pd.DataFrame(data\_iris.data, columns = data\_iris.feature\_names) \\
+spark\_df = spark.createDataFrame(df) \\
+spark\_df.show(5)
+}
+
+\item Menentukan nilai K dengan metode \textit{silhouette} \\
+{\tt
+from pyspark.ml.feature import VectorAssembler \\
+
+assemble=VectorAssembler(inputCols=[\\
+'sepal length (cm)',\\
+'sepal width (cm)',\\
+'petal length (cm)',\\
+'petal width (cm)'],\\
+outputCol = 'iris\_features')
+}
+
+{\tt
+assembled\_data=assemble.transform(spark\_df) \\
+assembled\_data.show(5) \\
 from pyspark.ml.clustering import KMeans \\
 from pyspark.ml.evaluation import ClusteringEvaluator \\
-silhouette\_score=[] \\
-evaluator = ClusteringEvaluator(predictionCol='prediction', featuresCol='standardized', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
-for i in range(2,10): \\
-    KMeans\_algo=KMeans(featuresCol='standardized', k=i) \\
-    KMeans\_fit=KMeans\_algo.fit(data\_scale\_output) \\
-    output=KMeans\_fit.transform(data\_scale\_output) \\
-    score=evaluator.evaluate(output) \\
-    silhouette\_score.append(score) \\
-    print("Silhouette Score:",score) \\
+
+silhouette\_scores=[]
 }
-\item Tampilkan silhouette score \\
+
 {\tt
-import matplotlib.pyplot as plt \\
-fig, ax = plt.subplots(1,1, figsize =(8,6)) \\
-ax.plot(range(2,10),silhouette\_score) \\
-ax.set\_xlabel('k') \\
-ax.set\_ylabel('cost') \\
+evaluator = ClusteringEvaluator(featuresCol='iris\_features', metricName='silhouette', distanceMeasure='squaredEuclidean') \\
 }
+
+{\tt
+for K in range(2,11): \\
+\hspace*{7mm}KMeans\_=KMeans(featuresCol='iris\_features', k=K) \\
+\hspace*{7mm}KMeans\_fit=KMeans\_.fit(assembled\_data) \\
+\hspace*{7mm}KMeans\_transform=KMeans\_fit.transform(assembled\_data) \\
+\hspace*{7mm}evaluation\_score=evaluator.evaluate(KMeans\_transform) \\
+\hspace*{7mm}silhouette\_scores.append(evaluation\_score) \\
+
+fig, ax = plt.subplots(1,1, figsize=(10,8)) \\
+ax.plot(range(2,11), silhouette\_scores) \\
+ax.set\_xlabel('Jumlah Cluster') \\
+ax.set\_ylabel('Hasil Silhouette') \\
+plt.show()
+}
+
+\item Membangun Model \textit{K-Means Clustering} \\
+{\tt
+KMeans\_=KMeans(featuresCol='iris\_features', k=3) \\
+KMeans\_Model=KMeans\_.fit(assembled\_data) \\
+KMeans\_Assignments=KMeans\_Model.transform(assembled\_data)
+}
+
+\item Menampilkan Hasil \textit{Clustering} dengan PCA \\
+{\tt
+from pyspark.ml.feature import PCA as PCAml \\
+pca = PCAml(k=2, inputCol="iris\_features", outputCol="pca") \\
+pca\_model = pca.fit(assembled\_data) \\
+pca\_transform = pca\_model.transform(assembled\_data)
+} 
+
+{\tt
+x\_pca = np.array(pca\_transform.rdd.map(lambda row: row.pca).collect())
+}
+
+{\tt
+cluster\_assignment = np.array(KMeans\_Assignments.rdd.map(lambda row: row.prediction).collect()).reshape(-1,1)
+}
+
+{\tt
+pca\_data = np.hstack((x\_pca,cluster\_assignment))
+}
+
+{\tt
+pca\_df = pd.DataFrame(data=pca\_data, columns=("1st\_principal", "2nd\_principal","cluster\_assignment")) 
+}
+
+{\tt
+sns.FacetGrid(pca\_df,hue="cluster\_assignment", height=6).map(plt.scatter, '1st\_principal', '2nd\_principal').add\_legend() \\
+}
+
+{\tt plt.show()}
 \end{enumerate}
 
 \hrulefill
@@ -1181,7 +1251,21 @@ ax.set\_ylabel('cost') \\
 
 \newthought{Program Machine Learning dengan PySpark}
 
-Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, buatlah program tersebut dalam bentuk file sehingga dapat dijalankan menggunakan {\tt spark-submit}. Dokumentasikan hasil dan perubahan yang Anda lakukan untuk dimasukkan ke dalam laporan. Kumpulkan laporan dengan format \textit{message "Laporan Kelompok Nomor-Kelompok}".
+Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, kerjakan tugas berikut secara berkelompok:
+
+\begin{enumerate}
+\item Buatlah program tersebut dalam bentuk file Python sehingga dapat dijalankan menggunakan {\tt spark-submit}.
+\item Dokumentasikan hasil dan perubahan yang Anda lakukan untuk dimasukkan ke dalam laporan.
+\item Kumpulkan laporan beserta file Python melalui GitHub dengan format \textit{message "Laporan Kelompok Nomor-Kelompok}".
+\item Kumpulkan file Python didalam folder yang telah disediakan \textit{TugasKelompok}. Yang mengumpulkan cukup salah satu sebagai perwakilan/ketua kelompok.
+\end{enumerate}
+
+\hrulefill
+
+\begin{center}
+\noindent
+\textbf{\textcolor{red}{Ingat!\\ Semua Tugas dan Laporan panling lambat dikumpulkan tanggal 5 Januari 2023.}}
+\end{center}
 
 \hrulefill
 
@@ -1197,7 +1281,7 @@ Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, bu
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Hadoop}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Hadoop}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Java}}} & 
-	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Apaceh Spark}}} &
+	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Install Apache Spark}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount Python}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{WordCount PySpark}}} &
 	\multirow{9}{*}{\rotatebox{90}{\parbox[l]{3.3cm}{Tugas Individu}}} &
@@ -1208,13 +1292,13 @@ Berdasarakn program sebelumnya yang telah Anda coba malalui Terminal PySpark, bu
 	& & & & & & & & & \\
 	& & & & & & & & & \\
 	& & & & & & & & & \\
-No 	& Nama 						& & & & & & & & \\ \hline
+No 	& Nama 						& $\star$ & & & & & & & \\ \hline
 1 	& Adinda Awaliah			& & & & & & & & \\ \hline
 2 	& Adjie Yusmunandar			& & & & & & & & \\ \hline
 3 	& Arya Saputra 				& & & & & & & & \\ \hline
 4 	& Cut Opy Mandalisa			& $\star$ & $\star$ & $\star$ & & & & & \\ \hline
-5 	& Faiza Yuwafiqi			& & & & & & & & \\ \hline
-6 	& Jihan Dwi Sarah			& $\star$ & $\star$ & & & & & & \\ \hline
+5 	& Faiza Yuwafiqi			& $\star$ & $\star$ & $\star$ & & & & & \\ \hline
+6 	& Jihan Dwi Sarah			& $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & & \\ \hline
 7 	& M. Ikhsan					& & & & & & & & \\ \hline
 8 	& Muhammad Ikrammullah		& & & & & & & & \\ \hline
 9 	& Muhammad Munawir			& & & & & & & & \\ \hline
@@ -1222,22 +1306,22 @@ No 	& Nama 						& & & & & & & & \\ \hline
 11 	& Nurani Harum Fardaniah	& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
 12 	& Nuraula Tafiza			& & & & & & & & \\ \hline
 13 	& Nurul Aflah				& & & & & & & & \\ \hline
-14 	& Rauzatinur Syah			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
-15 	& Resha Russita				& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
-16 	& Rizki Ilhami				& $\star$ & & & & & & & \\ \hline
+14 	& Rauzatinur Syah			& $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & \\ \hline
+15 	& Resha Russita				& $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & \\ \hline
+16 	& Rizki Ilhami				& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
 17 	& Salsabila Irmanda			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
 18 	& Siti Hajar Al Zahra		& & & & & & & & \\ \hline
 19 	& Syarfani Akbar			& & & & & & & & \\ \hline
-20 	& Taravia Fauzah			& $\star$ & $\star$ & $\star$ & $\star$ & & & & \\ \hline
+20 	& Taravia Fauzah			& $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & $\star$ & & \\ \hline
 21 	& Zulfahmi					& & & & & & & & \\ \hline
 \multicolumn{2}{c|}{Perbandingan}		& 
-$\frac{8}{13}$ &
+$\frac{9}{12}$ &
+$\frac{9}{12}$ &
+$\frac{9}{12}$ &
 $\frac{7}{14}$ &
-$\frac{6}{15}$ &
-$\frac{5}{16}$ &
-$\frac{0}{21}$ &
-$\frac{0}{21}$ &
-$\frac{0}{21}$ &
+$\frac{4}{17}$ &
+$\frac{4}{17}$ &
+$\frac{2}{19}$ &
 $\frac{0}{21}$ \\
 \end{tabular}
 \end{table}
