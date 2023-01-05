@@ -74,11 +74,11 @@ Berhasil mencoba program bawaan Hadoop yaitu program menghitung jumlah kata dala
 
 \newday{\textbf{16 Desember 2022} - Program WordCount dengan Java}
 \begin{enumerate}
-\item Kendala dan Solusi \\
+\item Kendala dan Solusi 
 % jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
 Pada pertemuan hari ini, kegiatan yang dilakukan adalah mencoba program  wordcount dengan java. Selama praktikum mengalami kendala pada poin ke-6 berdasarkan urutan di modul. Program tidak mau dicompile karena kesalahan penulisan perintah.\\
 
-solusinya adalah menggunakan perintah seperti berikut \\
+solusinya adalah menggunakan perintah seperti berikut 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{JihanDwiSarah/solusi-java-compile(jihan)}
 \caption{Solusi Meng-Compile java}
@@ -120,14 +120,208 @@ Berhasil melakukan instalasi apache spark (PySpark), berikut hasil praktikum : \
 \end{enumerate}
 
 
-\newday{\textbf{22 Desember 2022} - }
+\newday{\textbf{22 Desember 2022} - Program WordCount dengan Python }
 \begin{enumerate}
 \item Kendala dan Solusi \\
 % jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
-
+Terdapat error di poin ke-6 yaitu mencoba program local. Belum ada solusinya 
 
 \item Kesimpulan\\
 % berikan kesimpulan dari praktikum yang telah dikerjkan
+Belum ada hasil akhir, karena masih ada kendala. Masih mencoba sampai berhasil.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/kendala-WordCountPython(jihan)}
+\caption{Kendala Program Local}
+\label{gam:kendala-WordCountPython(jihan)}
+\end{figure}
 
+
+\end{enumerate}
+
+\newday{\textbf{23 Desember 2022} - Program WordCount dengan Pyspark }
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Pada pertemuan hari ini, kegiatan yang dilakukan adalah mencoba program  wordcount dengan Pyspark. Selama praktikum tidak mengalami kendala.
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menjalankan program menggunakan PySpark, berikut hasil yang diperoleh \\
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-PySpark(jihan)}
+\caption{Output Wordcount PySpark}
+\label{gam:WordCount-PySpark(jihan)}
+\end{figure}
+\end{enumerate}
+
+\newday{\textbf{25 Desember 2022} - Program WordCount dengan Python }
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Kendala yang  pertama terdapat di poin ke-6 yaitu mencoba program local. Solusinya adalah menambahkan python3 di dalam program map.py dan reduce.py karena versi python yang tersedia adalah python3, baru setelah itu program di lokal bisa di jalankan. berikut program yang benar : \\
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/solusi-python-poin-6(jihan)}
+\caption{solusi python poin 6}
+\label{gam:solusi-python-poin-6(jihan)}
+\end{figure} 
+
+kendala yang kedua tidak bisa menjalankan program hadoop python. Terdapat pesan error 'Streaming Command Failed' seperti gambar di bawah ini :
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/kendala-menjalankan-hadoop-python(jihan)}
+\caption{Kendala Menjalankan Hadoop Python}
+\label{gam:kendala-menjalankan-hadoop-python(jihan)}
+\end{figure} 
+
+Ternyata kesalahannya adalah saya tidak mendeklarasikan direktori penyimpanan program WordCountPython dengan benar. Saya menyimpan program WordCountPython di dalam direktori '/usr/local/hadoop/etc/hadoop'. jadi saya harus mendeklasikan direktori tersebut terlebih dahulu, baru setelah itu program hadoop python ini bisa dijalankan. berikut perintah yang benar.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/solusi-python(jihan)}
+\caption{Solusi Menjalankan hadoop Python(jihan)}
+\label{gam:solusi-python(jihan)}
+\end{figure} 
+
+\item Kesimpulan\\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menjalankan program wordcount dengan python walaupun banyak mengalami kendala, berikut bukti hasil praktikum. 
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/program-local-python(jihan)}
+\caption{Mencoba program di local}
+\label{gam:program-local-python(jihan)}
+\end{figure} 
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-Python(jihan)}
+\caption{Hasil wordcount python}
+\label{gam:WordCount-Python(jihan)}
+\end{figure} 
+
+
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/WordCount-Python2(jihan)}
+\caption{Hasil wordcount python2}
+\label{gam:WordCount-Python2(jihan)}
+\end{figure} 
+
+\end{enumerate}
+
+\newday{\textbf{31 Desember 2022} - Program Machine Learning dengan PySpark (Individu)}
+
+\begin{enumerate}
+\item Kendala dan Solusi \\
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+Banyak mengalami kendala karena tidak paham awalnya. Selain itu, banyak program yang error karena kesalahan dari penulisan program. Terjadi error pada poin ke-5 yaitu menentukan nilai K dengan metode silhouette yaitu setelah program 'for K in range (2,11)'. Solusinya adalah dengan mengetikkan tab, baru setelah itu dilanjutkan dengan menulis program sampai selesai.
+
+\item Kesimpulan  \\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menjalankan Program Machine Learning dengan PySpark pada awalnya banyak mengalami kendala. Berikut ini gambar sebagai bukti praktikum : 
+\end{enumerate}
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/Spark-df-show(jihan)}
+\caption{Hasil Spark df show}
+\label{gam:Spark-df-show(jihan)}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/assembled-data-show(jihan)}
+\caption{Hasil assembled-data-show}
+\label{gam:assembled-data-show(jihan)}
+\end{figure}
+
+\newpage
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/Menentukan-nilai-K-dengan-silhouette(jihan)}
+\caption{Menentukan Nilai-K Dengan Silhouette}
+\label{gam:Menentukan-nilai-K-dengan-silhouette(jihan)}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{JihanDwiSarah/Hasil-clustering-dengan-PCA(jihan)}
+\caption{Hasil Clustering Dengan PCA}
+\label{gam:Hasil-clustering-dengan-PCA(jihan)}
+\end{figure}
+
+
+\newday{\textbf{31 Desember 2022} - Tugas Kelompok 1}
+\begin{enumerate}
+\item Kendala dan Solusi
+% jelaskan kendala dan penyebab yang dialami saat mengikuti praktikum serta solusi atau langkah-langkah yang telah dilakukan
+\newline kendalanya terdapat error ketika menjalankan perintah menggunakan spark-submit. pesan errornya adalah 'NameError : name 'spark' is not defined'.
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/kendala}
+\caption{Kendala menjalankan spark-submit}
+\label{gam:kendala}
+\end{figure} 
+\newpage
+solusinya adalah mengimport beberapa modul berikut :
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/solusi}
+\caption{solusi menjalankan spark-submit}
+\label{gam:solusi}
+\end{figure} 
+
+\item Kesimpulan \\
+% berikan kesimpulan dari praktikum yang telah dikerjkan
+Berhasil menyelesaikan tugas kelompok yaitu membuat program dalam bentuk file Python sehingga
+dapat dijalankan menggunakan spark-submit.
+
+berikut ini langkah-langkah praktikum :\\
+a. Membuat direktori dengan nama ruangPyspark, lalu di dalam direktori tersebut membuat file python bernama progpyspark.py
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/membuat-direktori}
+\caption{Membuat direktori baru}
+\label{gam:membuat-direktori}
+\end{figure} 
+
+
+b. Membuat program berikut ini di dalam file python bernama progpyspark.py
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/prog1_1}
+\caption{Program python}
+\label{gam:prog1_1}
+\end{figure} 
+
+\newpage
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/prog1_2}
+\caption{Program python}
+\label{gam:prog1_2}
+\end{figure}
+
+
+c. Menjalankan Program menggunakan PySpark. Prosesnya sedikit lama, tunggu sampai selesai
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/perintah-spark-submit}
+\caption{Menjalankan Program menggunakan PySpark}
+\label{gam:perintah-spark-submit}
+\end{figure}
+
+d. Hasil 
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/hasil1}
+\caption{Hasil pertama}
+\label{gam:hasil1}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/hasil2}
+\caption{Hasil kedua}
+\label{gam:hasil2}
+\end{figure}
+
+\newpage
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/hasil3}
+\caption{Hasil ketiga}
+\label{gam:hasil3}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{TugasKelompok/Kelompok1/hasil4}
+\caption{Hasil keempat}
+\label{gam:hasil4}
+\end{figure}
 
 \end{enumerate}
